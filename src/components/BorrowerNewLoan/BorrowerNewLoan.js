@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import './BorrowerNewLoan.css'  
 import { observer, inject } from 'mobx-react';
+=======
+import './BorrowerNewLoan.css'
+import Slider from './Slider'
+>>>>>>> b23d4b7a883efd5bc3eb947fc16c12e23c7e1adc
 const axios = require('axios')
 @inject('UserStore')
 @observer
@@ -78,6 +83,10 @@ class BorrowerNewLoan extends Component {
                 </div>
 
                 <button onClick={this.handleClick} id="submit-new-loan">Submit</button>
+                <Slider title={"Amount"} max={70000}/>
+                <Slider title={"Period (months)"} max={60}/>
+                <Slider title={"Interest"} max={15}/>
+
             </div>
         );
     }
