@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { observer } from 'mobx-react'
 import Lender from './components/lender'
+
+import DynamicTable from './components/DynamicTable'
+import Button from '@material-ui/core/Button';
+
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
+
 
 
 
