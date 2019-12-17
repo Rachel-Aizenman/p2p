@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './BorrowerNewLoan.css'  
+import './BorrowerNewLoan.css'
+import Slider from './Slider'
 const axios = require('axios')
 
 
@@ -76,6 +77,10 @@ class BorrowerNewLoan extends Component {
                 </div>
 
                 <button onClick={this.handleClick} id="submit-new-loan">Submit</button>
+                <Slider title={"Amount"} max={70000}/>
+                <Slider title={"Period (months)"} max={60}/>
+                <Slider title={"Interest"} max={15}/>
+
             </div>
         );
     }
