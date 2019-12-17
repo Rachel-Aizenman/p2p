@@ -7,9 +7,6 @@ import Lender from './components/lender'
 import DynamicTable from './components/DynamicTable'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
 
-
-
-
 @observer
 class App extends Component {
   render() {
