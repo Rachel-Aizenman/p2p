@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
-const api = require('./server/routes/api')
+const api = require('./routes/api')
 const port = 3001
 
 app.use(bodyParser.json())
@@ -17,8 +17,7 @@ app.use(function (req, res, next) {
 })
 
 
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/transactions', { useNewUrlParser: true, useUnifiedTopology: true })
+
 app.use('/', api)
 
 
