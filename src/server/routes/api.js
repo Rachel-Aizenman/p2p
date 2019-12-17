@@ -3,59 +3,54 @@ const router = express.Router();
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 
-router.get("/userData", async function(req, res) {
-  query = `SELECT * FROM user`;
-  const data = await sequelize.query(query);
-  query = `SELECT * FROM loan`;
-  const data = await sequelize.query(query);
-  res.send(data);
+router.get("/userData/:userName", async function(req, res) {
+  let userName = req.params.userName;    
+  query = `SELECT * FROM user WHERE userName = '${userName}'`;
+  const user = await sequelize.query(query);
+  if(user.type === "l"){
+    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = '${user.id}' AND loan_lender.loanID = loan.id`;
+    const openLoans = await sequelize.query(query);
+    user.push(openLoans)
+    res.send(user);
+  }else{
+    res.send(user)
+  }
+});
+
+router.get("/findLoan", async function(req, res) {
+  let id = req.body.id;
+  query = `SELECT loan FROM loan WHERE id = '${id}'`;
+  const loan = await sequelize.query(query);
+  res.send(loan);
 });
 
 router.post("/newUser", async function(req, res) {
   let user = req.body.user;
-  let id = user.id;
-  let name = user.name;
-  let email = user.email;
-  let country = user.country;
-  let owner = user.owner;
-  query = `INSERT INTO client
-  VALUES('${id}','${name}','${email}',null,null,null,'${country}','${owner}')`;
-  await sequelize.query(query);
-  
-});
-
-router.post("/updateEmail", async function(req, res) {
-  let id = req.body.id;
-  let email = req.body.email;
-  query = `UPDATE client SET emailType = '${email}' WHERE id = '${id}'`;
-  await sequelize.query(query);
-  res.end();
-});
-router.post("/updateSold", async function(req, res) {
-  let id = req.body.id;
-  query = `UPDATE client SET sold = true WHERE id = '${id}'`;
-  await sequelize.query(query);
-  res.end();
-});
-router.post("/addClient", async function(req, res) {
-  let client = req.body.client;
-  let id = client.id;
-  let name = client.name;
-  let email = client.email;
-  let country = client.country;
-  let owner = client.owner;
-  query = `INSERT INTO client
-  VALUES('${id}','${name}','${email}',null,null,null,'${country}','${owner}')`;
+  let userName = user.userName;
+  let password = user.password;
+  let type = user.type;
+  let availableMoney = user.availableMoney;
+  query = `INSERT INTO user
+  VALUES('${userName}','${password}','${type}', ${availableMoney})`;
   await sequelize.query(query);
   res.end();
 });
 
-router.post("/editClient", async function(req, res) {
-  let id = req.body.id;
-  let name = req.body.name;
-  let country = req.body.country;
-  query = `UPDATE client SET name = '${name}', country = '${country}' WHERE id = '${id}'`;
+router.post("/addLoan", async function(req, res) {
+  let loan = req.body.loan;
+  let amount = loan.amount;
+  let intrest = loan.intrest;
+  let purpose = loan.purpose;
+  let period = loan.period;
+  let amountPaid = loan.amountPaid;
+  let status = loan.status;
+  let dateOfIssuance = loan.dateOfIssuance;
+  let percentage = loan.percentage;
+  query = `INSERT INTO loan
+  VALUES(${amount},${intrest},'${purpose}',${period},${amountPaid},'${status}',${dateOfIssuance},${percentage})`;
   await sequelize.query(query);
   res.end();
 });
+
+
 module.exports = router;
