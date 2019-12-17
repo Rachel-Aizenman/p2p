@@ -4,22 +4,30 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 
 router.get("/userData/:userName", async function(req, res) {
-  let userName = req.params.userName;    
+  let userName = req.params.userName;
   query = `SELECT * FROM user WHERE userName = '${userName}'`;
-  const user = await sequelize.query(query);
-  if(user.type === "l"){
-    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = '${user.id}' AND loan_lender.loanID = loan.id`;
-    const openLoans = await sequelize.query(query);
-    user.push(openLoans)
+  let user = await sequelize.query(query);
+  user = user[0][0];
+  if (user.type === "l") {
+    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
+    let openLoans = await sequelize.query(query);
+    openLoans = openLoans[0];
+    user = [user];
+    user.push(openLoans);
     res.send(user);
-  }else{
-    res.send(user)
+  } else {
+    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} AND loanID=loan.id `;
+    let openLoans = await sequelize.query(query);
+    openLoans = openLoans[0];
+    user = [user];
+    user.push(openLoans);
+    res.send(user);
   }
 });
 
 router.get("/findLoan", async function(req, res) {
-  let id = req.body.id;
-  query = `SELECT loan FROM loan WHERE id = '${id}'`;
+  let id = req.params.id;
+  query = `SELECT * FROM loan WHERE id = '${id}'`;
   const loan = await sequelize.query(query);
   res.send(loan);
 });
@@ -51,6 +59,5 @@ router.post("/addLoan", async function(req, res) {
   await sequelize.query(query);
   res.end();
 });
-
 
 module.exports = router;
