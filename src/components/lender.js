@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-// import { render } from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import NavBar from './lenderNavBar'
+import { inject } from "mobx-react";
+import InfoContainer from './lenderInfoContainer';
+import mockData from '../data.json'
 
-
-export class Lender extends Component {
-    constructor() {
+@inject('userStore')
+class Lender extends Component {
+    constructor(){
         super()
         this.state = {
-
+            data: []
         }
-
+    }
+    getData = () => {
+    mockData.forEach(m => 
+        this.state.data.push(m))
     }
 
     render() {
-
+        const headArr = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest', 'Remaining Amount', 'Status', 'Issuance Date', 'Next Payment' ]
+        this.getData()
         return (
             <div>
+
                 <div class='nav-bar'>
                     <button>Deposite</button>
                     <button>Add Loan</button>
@@ -29,7 +36,6 @@ export class Lender extends Component {
                     <div class='open-loans' style={{ border: '3px solid black'}}> 
                     <h3>OPEN LOANS: </h3>
                     {/* <CustomizedTable head={'head'} data={'data'}/> */}
-                    {/* <Link></Link> */}
                         <table>
                             <tr>
                                 <th>Username</th>
@@ -68,7 +74,12 @@ export class Lender extends Component {
                         </table>
                     </div>
                 </div>
+
+                <NavBar/>
+                <InfoContainer/>
+                {/* <DynamicTable head={headArr} data={}/> */}
             </div>
+           
         )
     }
 }
