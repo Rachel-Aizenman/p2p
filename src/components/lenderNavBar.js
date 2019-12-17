@@ -8,7 +8,7 @@ class navBar extends Component {
     render() {
         return (
             <Router>
-            <div class='nav-bar'>
+            <div className='nav-bar'>
             <Link to={'/deposite'}>
             <button>Deposite</button>
             </Link>
