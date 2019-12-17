@@ -3,6 +3,7 @@ const router = express.Router();
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 
+// userdata
 router.get("/userData/:userName", async function(req, res) {
   let userName = req.params.userName;
   query = `SELECT * FROM user WHERE userName = '${userName}'`;
@@ -25,13 +26,19 @@ router.get("/userData/:userName", async function(req, res) {
   }
 });
 
-router.get("/findLoan", async function(req, res) {
-  let id = req.params.id;
-  query = `SELECT * FROM loan WHERE id = '${id}'`;
-  const loan = await sequelize.query(query);
+// fund loan fix !!!!
+router.post("/fundLoan", async function(req, res) {
+  let loan = req.body.loan;
+  let loanID = loan.loanID
+  let lenderID = loan.lenderID
+  let borrowerID = loan.borrowerID
+  query = `INSERT INTO loan_lender
+  VALUES(${loanID},${lenderID},${borrowerID},1)`;
+  await sequelize.query(query);
   res.send(loan);
 });
 
+// new User - OK
 router.post("/newUser", async function(req, res) {
   let user = req.body.user;
   let userName = user.userName;
@@ -44,16 +51,20 @@ router.post("/newUser", async function(req, res) {
   res.end();
 });
 
+
 router.post("/addLoan", async function(req, res) {
   let loan = req.body.loan;
+  
   let amount = loan.amount;
   let intrest = loan.intrest;
   let purpose = loan.purpose;
   let period = loan.period;
+  
   let amountPaid = loan.amountPaid;
-  let status = loan.status;
-  let dateOfIssuance = loan.dateOfIssuance;
-  let percentage = loan.percentage;
+  let status = "ok";
+  let dateOfIssuance = moment();
+  let percentage = 0;
+
   query = `INSERT INTO loan
   VALUES(${amount},${intrest},'${purpose}',${period},${amountPaid},'${status}',${dateOfIssuance},${percentage})`;
   await sequelize.query(query);
