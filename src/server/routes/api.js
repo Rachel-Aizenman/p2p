@@ -33,7 +33,7 @@ router.post("/fundLoan", async function(req, res) {
   let lenderID = loan.lenderID
   let borrowerID = loan.borrowerID
   query = `INSERT INTO loan_lender
-  VALUES(${loanID},${lenderID},${borrowerID},1)`;
+  VALUES(${loanID},${borrowerID},${lenderID},1)`;
   await sequelize.query(query);
   res.send(loan);
 });
