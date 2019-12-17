@@ -9,6 +9,7 @@ export class UserStore {
 
   @action getData = async () => {
     this.user = {
+      "userID":1,
       "username": "Rachel",
       "noOfLoans":3,
       "monthlyPayment":500,

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './BorrowerNewLoan.css'  
+import { observer, inject } from 'mobx-react';
 const axios = require('axios')
-
-
+@inject('UserStore')
+@observer
 class BorrowerNewLoan extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +28,8 @@ class BorrowerNewLoan extends Component {
     }
 
     handleClick = () => { 
-        axios.post('/addLoan', {
+        const userID=this.props.UserStore.user.userID
+        axios.post(`/addLoan/${userID}`, {
             "amount": this.state.amount,
             "period": this.state.period,
             "interest": this.state.interest,

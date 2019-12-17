@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
-
+const moment = require('moment')
 // userdata
 router.get("/userData/:userName", async function(req, res) {
   let userName = req.params.userName;
@@ -54,19 +54,11 @@ router.post("/newUser", async function(req, res) {
 
 router.post("/addLoan", async function(req, res) {
   let loan = req.body.loan;
-  
-  let amount = loan.amount;
-  let intrest = loan.intrest;
-  let purpose = loan.purpose;
-  let period = loan.period;
-  
-  let amountPaid = loan.amountPaid;
-  let status = "ok";
-  let dateOfIssuance = moment();
-  let percentage = 0;
-
+  // let {amount,interest,purpose,period} = loan;  
+  const issuanceDate=moment().format('YYYY-MM-DD')// how to enter dates to sql DB - Dudi PLEASE CHECK THAT!
   query = `INSERT INTO loan
-  VALUES(${amount},${intrest},'${purpose}',${period},${amountPaid},'${status}',${dateOfIssuance},${percentage})`;
+  VALUES(${{...loan}},0,'ok',${issuanceDate},0)`;
+  console.log(query)
   await sequelize.query(query);
   res.end();
 });
