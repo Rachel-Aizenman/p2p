@@ -3,12 +3,8 @@ import './App.css';
 import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/lender'
-
 import DynamicTable from './components/DynamicTable'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
-
-
-
 
 @observer
 class App extends Component {
@@ -29,7 +25,6 @@ class App extends Component {
             </Link>
             <hr />
           </header>
-          <h4>Browse Loan Requests:</h4>
           <Route path="/" exact render={()=><DynamicTable/>}/>
           <Route path="/take-loan" exact render={() => <BorrowerNewLoan />} />
           <Route path="/give-loan" exact render={() => <Lender />} />
@@ -37,22 +32,6 @@ class App extends Component {
       </Router>
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
