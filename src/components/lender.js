@@ -29,7 +29,7 @@ export class Lender extends Component {
                     <div class='open-loans' style={{ border: '3px solid black'}}> 
                     <h3>OPEN LOANS: </h3>
                     {/* <CustomizedTable head={'head'} data={'data'}/> */}
-                    <Link></Link>
+                    {/* <Link></Link> */}
                         <table>
                             <tr>
                                 <th>Username</th>
