@@ -15,7 +15,6 @@ class Lender extends Component {
                 <NavBar/>
                 <InfoContainer/>
                 {/* <DynamicTable head={headArr} data={}/> */}
-                
             </div>
            
         )
