@@ -17,26 +17,14 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(name, period, purpose, amount, interest, remainingAmount, status, issueDate, nextPay) {
-    return { name, period, purpose, amount, interest, remainingAmount, status, issueDate, nextPay };
-}
-
-const rows = [
-    createData('Guy', 24, 'Education', 2400, 4.0, 4, 'pending', '12/12/19', '12/12/20'),
-    createData('Yonatan', 14, 'Education', 22400, 2.0, 4, 'pending', '12/12/19', '12/12/20'),
-    createData('Racheli', 12, 'Education', 400, 4.0, 4, 'pending', '12/12/19', '12/12/20'),
-    createData('Noam', 6, 'Education', 22300, 4.0, 4, 'pending', '12/12/19', '12/12/20'),
-    createData('Dudi', 24, 'Education', 20, 4.0, 4, 'pending', '12/12/19', '12/12/20'),
-];
-
 export default function SimpleTable() {
     const classes = useStyles();
     // const data = props.data
-    const keys =["Name", "Period(m)", "Purpose", "Amount", "Interest", "Remaining Amount", "Status", "Issue Date", "Next Pay"]
-
+    const keys = ["Name", "Period(m)", "Purpose", "Amount", "Interest", "Remaining Amount", "Status", "Issue Date", "Next Pay"]
+    const rows = ['name', 'period', 'porpuse', 'amount', 'interest', 'remainingAmount', 'dateOfIssuance', 'nextPayment']
     return (
         <TableContainer id='dynamic-table' component={Paper}>
-             <h3>Browse Loan Requests:</h3>
+            <h3>Browse Loan Requests:</h3>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -49,16 +37,30 @@ export default function SimpleTable() {
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.period}</TableCell>
-                            <TableCell align="right">{row.purpose}</TableCell>
-                            <TableCell align="right">${row.amount}</TableCell>
-                            <TableCell align="right">%{row.interest}</TableCell>
-                            <TableCell align="right">{row.remainingAmount}</TableCell>
-                            <TableCell align="right">{row.status}</TableCell>
-                            <TableCell align="right">{row.issueDate}</TableCell>
-                            <TableCell align="right">{row.nextPay}</TableCell>
-
-
+                            <TableCell scope="row">
+                                {row.period}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.purpose}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.amount}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.interest}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.remainingAmount}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.status}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.issueDate}
+                            </TableCell>
+                            <TableCell scope="row">
+                                {row.nextPay}
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
