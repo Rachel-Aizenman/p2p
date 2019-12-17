@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { observer } from 'mobx-react'
-<<<<<<< HEAD
-import Borrower from './components/Borrower/Borrower'
-=======
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/lender'
->>>>>>> e4af0907bd0215fb51915e20e25a57987d33fff6
-
 import DynamicTable from './components/DynamicTable'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
 
 @observer
 class App extends Component {
   render() {
-<<<<<<< HEAD
-  return (
-    <div className="App">
-    {/* <Lender/> */}
-    <Borrower/>
-    </div>
-  );
-}
-=======
     return (
       <Router>
         <div className="App">
@@ -46,23 +32,6 @@ class App extends Component {
       </Router>
     );
   }
->>>>>>> e4af0907bd0215fb51915e20e25a57987d33fff6
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
