@@ -9,8 +9,8 @@ class navBar extends Component {
         return (
             <Router>
             <div className='nav-bar'>
-            <Link to={'/deposite'}>
-            <button>Deposite</button>
+            <Link to={'/depositgit '}>
+            <button>Deposit</button>
             </Link>
             <Link to={'/new-loan'}>
             <button>Add Loan</button>
