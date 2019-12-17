@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { observer } from 'mobx-react'
-import Lender from './components/lender'
+import Borrower from './components/Borrower/Borrower'
 
 
 @observer
@@ -10,7 +10,8 @@ class App extends Component {
   render() {
   return (
     <div className="App">
-    <Lender/>
+    {/* <Lender/> */}
+    <Borrower/>
     </div>
   );
 }
