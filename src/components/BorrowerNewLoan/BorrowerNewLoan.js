@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './BorrowerNewLoan.css'  
 const axios = require('axios')
 
 
@@ -27,24 +28,18 @@ class BorrowerNewLoan extends Component {
 
     handleClick = () => { 
         axios.post('/addLoan', {
-            amount: this.state.amount,
-            period: this.state.period,
-            interest: this.state.interest,
-            payment: this.state.payment
+            "amount": this.state.amount,
+            "period": this.state.period,
+            "interest": this.state.interest,
+            "payment": this.state.payment
           })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
     }
 
     render() {
         return (
-            <form id="newLoanForm">
+            <div id="new-loan">
                 <h1>Borrower - New Loan</h1>
-                <div id="loanInputs">
+                <div id="loan-inputs">
                     <div>
                         <label>Amount:</label>
                         <input
@@ -80,8 +75,8 @@ class BorrowerNewLoan extends Component {
                     </div>
                 </div>
 
-                <button onClick={this.handleClick} id="submitNewLoan">Submit</button>
-            </form>
+                <button onClick={this.handleClick} id="submit-new-loan">Submit</button>
+            </div>
         );
     }
 }

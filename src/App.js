@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { observer } from 'mobx-react'
 import Lender from './components/lender'
-import BorrowerNewLoan from './components/BorrowerNewLoan'
+import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
 
 
 

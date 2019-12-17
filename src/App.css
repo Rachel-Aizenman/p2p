@@ -22,15 +22,3 @@
 }
 
 
-#submitNewLoan{
-  font-size: large;
-}
-
-#newLoanForm{
-  text-align: center;
-}
-
-#loanInputs{
-  grid-template-columns: repeat(2, 1fr);
-  border: 1px black solid;
-}
