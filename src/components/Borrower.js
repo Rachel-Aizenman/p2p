@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // import { render } from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 
-export class Lender extends Component {
+export class Borrower extends Component {
     constructor() {
         super()
         this.state = {
@@ -75,4 +74,4 @@ export class Lender extends Component {
 
 
 
-export default Lender;
+export default Borrower;
