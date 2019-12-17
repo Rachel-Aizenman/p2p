@@ -29,7 +29,6 @@ class App extends Component {
             </Link>
             <hr />
           </header>
-          <h4>Browse Loan Requests:</h4>
           <Route path="/" exact render={()=><DynamicTable/>}/>
           <Route path="/take-loan" exact render={() => <BorrowerNewLoan />} />
           <Route path="/give-loan" exact render={() => <Lender />} />
