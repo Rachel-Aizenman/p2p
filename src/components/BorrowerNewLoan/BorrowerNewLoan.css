@@ -1,0 +1,12 @@
+#submit-new-loan{
+    font-size: large;
+  }
+  
+  #new-loan{
+    text-align: center;
+  }
+  
+  #loan-inputs{
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px black solid;
+  }
