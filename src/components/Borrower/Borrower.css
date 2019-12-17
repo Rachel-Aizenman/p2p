@@ -1,0 +1,24 @@
+.info{
+margin: 15px;
+display: inline; 
+}
+
+table{
+    margin-left:auto; 
+    margin-right:auto;
+    }
+
+table, th, td {
+    border: 1px solid black;
+    }
+
+.header{
+    margin:20px
+}
+
+.circle{
+    background: aqua;
+    clip-path: circle(50%);
+    height: 5em;
+    width: 5em;
+}
