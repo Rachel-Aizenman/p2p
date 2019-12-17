@@ -49,14 +49,14 @@ export default function SimpleTable() {
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.period}</TableCell>
-                            <TableCell align="right">{row.purpose}</TableCell>
-                            <TableCell align="right">${row.amount}</TableCell>
-                            <TableCell align="right">%{row.interest}</TableCell>
-                            <TableCell align="right">{row.remainingAmount}</TableCell>
-                            <TableCell align="right">{row.status}</TableCell>
-                            <TableCell align="right">{row.issueDate}</TableCell>
-                            <TableCell align="right">{row.nextPay}</TableCell>
+                            <TableCell align="left">{row.period}</TableCell>
+                            <TableCell align="left">{row.purpose}</TableCell>
+                            <TableCell align="left">${row.amount}</TableCell>
+                            <TableCell align="left">{row.interest}%</TableCell>
+                            <TableCell align="left">{row.remainingAmount}</TableCell>
+                            <TableCell align="left">{row.status}</TableCell>
+                            <TableCell align="left">{row.issueDate}</TableCell>
+                            <TableCell align="left">{row.nextPay}</TableCell>
 
 
                         </TableRow>
