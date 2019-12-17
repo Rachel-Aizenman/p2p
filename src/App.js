@@ -3,7 +3,6 @@ import './App.css';
 import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/lender'
-
 import DynamicTable from './components/DynamicTable'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan'
 
@@ -33,22 +32,6 @@ class App extends Component {
       </Router>
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
