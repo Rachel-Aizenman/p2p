@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 
 
 export default function SimpleTable(props) {
-    console.log(props)
     const classes = useStyles();
     return (
         <TableContainer id='dynamic-table' component={Paper}>
