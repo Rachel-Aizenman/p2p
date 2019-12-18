@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './Borrower.css'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
-
-
-
+import DynamicTable from '../DynamicTable'
 export class Borrower extends Component {
     render() {
-        const headers = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
-        let loans = [{
+        const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
+        const keys=['amount','interest','purpose','period','amount_paid','remaining_amount','status']
+        // const rows=this.props.userStore.openLoans
+        let rows = [{
             amount: 5000,
             interest: 9.9,
             purpose: "Coding Bootcamp",
@@ -36,16 +36,7 @@ export class Borrower extends Component {
                     <div className="info">Open loans: 3</div>
                     <Router><Link to="/newLoan"><button className="circle">New Loan</button></Link></Router>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            {headers.map(h => <th>{h}</th>)}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loans.map(l => <tr><td>{l.amount}</td><td>{l.interest}</td><td>{l.purpose}</td><td>{l.period}</td><td>{l.amount_paid}</td><td>{l.remaining_amount}</td><td>{l.status}</td></tr>)}
-                    </tbody>
-                </table>
+                <DynamicTable head={header} keys={keys} rows={rows}/>
 
             </div>
         )

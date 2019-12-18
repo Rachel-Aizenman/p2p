@@ -17,7 +17,7 @@ export class UserStore {
       "remaining amount": 6,
       "open loans": 4,
       "available cash": 6000,
-      "average return": 900,
+      "average return": 7.8,
       "next payment": "15-02-19"
 
     }
