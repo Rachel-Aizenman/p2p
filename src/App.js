@@ -7,6 +7,8 @@ import Borrower from './components/Borrower/Borrower'
 import Withdraw from './components/Withdraw/withdraw'
 import Deposit from './components/Deposite/deposite'
 import DynamicTable from './components/DynamicTable'
+import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
+import Market from './components/Market/Market'
 @observer
 class App extends Component {
   render() {
@@ -25,8 +27,11 @@ class App extends Component {
               <button>Lend</button>
             </Link>
             <hr />
+          
           </header>
-          <Route path="/" exact render={()=><DynamicTable/>}/>
+          {/* <Route path="/" exact render={()=><DynamicTable/>}/> */}
+          <Route path="/market" exact render={()=><Market/>}/>
+          <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
           <Route path="/take-loan" exact render={() => <Borrower />} />
           <Route path="/give-loan" exact render={() => <Lender />} />
           <Route path="/deposit" exact render={() => <Deposit />} />
