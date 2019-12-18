@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import './Borrower.css'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import DynamicTable from '../DynamicTable'
+
 import { inject, observer} from 'mobx-react';
 
 @inject('userStore')
 @observer
+
+
+
+
 class Borrower extends Component {
     render() {
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]

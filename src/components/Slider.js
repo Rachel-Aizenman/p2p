@@ -20,6 +20,9 @@ export default function InputSlider(props) {
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    const name = props.name
+    const value = newValue
+    props.handleInput(name, value)
   };
 
   const handleInputChange = event => {

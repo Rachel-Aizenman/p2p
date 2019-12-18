@@ -4,11 +4,14 @@ import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/Lender/lender'
 import Borrower from './components/Borrower/Borrower'
+
 import Withdraw from './components/Withdraw/withdraw'
-import Deposit from './components/Deposite/deposite'
-import DynamicTable from './components/DynamicTable'
-import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
+
+import Deposit from './components/Deposit/deposit'
+import HomeMarket from './components/Market/HomeMarket'
+import BorrowerNewLoan from './components/Borrower/BorrowerNewLoan';
 import Market from './components/Market/Market'
+
 @observer
 class App extends Component {
   render() {
@@ -29,7 +32,8 @@ class App extends Component {
             <hr />
           
           </header>
-          <Route path="/" exact render={()=><DynamicTable/>}/>
+
+          <Route path="/" exact render={()=><HomeMarket/>}/>
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
           <Route path="/take-loan" exact render={() => <Borrower />} />

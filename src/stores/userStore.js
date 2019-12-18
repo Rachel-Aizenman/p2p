@@ -20,9 +20,36 @@ export class UserStore {
       "average return": 7.8,
       "next payment": "15-02-19"
     }
+<<<<<<< HEAD
     
+=======
+    this.openLoans = [{
+
+      "remaining amount": 4300,
+      "status": "OK",
+      "issuance date": "15-09-19",
+      "next payment": "15-01-20"
+    },
+    {
+
+      "id": "5df8ddf3gart6ergdfgsreww23",
+      "username":  "rachel",
+      "period": 12,
+      "purpose": "coding bootcamp",
+      "amount": 934,
+      "interest": 5,
+      "funded": 90,
+      "remaining amount": 4300,
+      "status": "OK",
+      "issuance date": "15-09-19",
+      "next payment": "15-01-20",
+    }
+  
+  ]
+>>>>>>> cf1c0c6df27ab09bd45eba1d157e3a7edcc098d9
 
     console.log(this.user)
+
     // let data = await axios.get(dataRoute);
     // data = data.data[0];
     // this.user = data;

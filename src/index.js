@@ -5,9 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {UserStore} from './stores/userStore'
 import {Provider} from 'mobx-react'
+import {InputStore} from './stores/inputStore'
 
 let userStore = new UserStore()
-const store = { userStore }
+let inputStore = new InputStore()
+
+const store = { userStore, inputStore }
+
 
 ReactDOM.render(<Provider {...store}><App /></Provider>, document.getElementById('root'));
 

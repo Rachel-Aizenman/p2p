@@ -11,6 +11,7 @@ class Lender extends Component {
 
   render() {
     this.props.userStore.getData()
+<<<<<<< HEAD
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest (%)', 'Remaining Amount ($)', 'Status', 'Issuance Date', 'Next Payment', 'Give Loan']
     const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remaining amount', 'status', 'issuance date', 'next payment', 'give loan']
     const rows=this.openLoans = [{
@@ -49,6 +50,11 @@ class Lender extends Component {
   
   ]
     //  const rows = this.props.userStore.openLoans
+=======
+    const header = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest (%)', 'Remaining Amount ($)', 'Status', 'Issuance Date', 'Next Payment']
+    const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remaining amount', 'status', 'issuance date', 'next payment']
+    const rows = this.props.userStore.openLoans
+>>>>>>> cf1c0c6df27ab09bd45eba1d157e3a7edcc098d9
     const button = <TableCell><button>+</button></TableCell>
     return (
       <div>
