@@ -9,13 +9,13 @@ class navBar extends Component {
         return (
             <Router>
             <div className='nav-bar'>
-            <Link to={'/depositgit '}>
+            <Link to={'/deposit'}>
             <button>Deposit</button>
             </Link>
             <Link to={'/new-loan'}>
             <button>Add Loan</button>
             </Link>
-            <Link to={'/withdraws'}>
+            <Link to={'/withdraw'}>
             <button>Withdraw</button>
             </Link>
             <Link to={'/summary'}>
