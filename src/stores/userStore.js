@@ -4,72 +4,80 @@ import axios from "axios";
 import data from '../../src/data.json'
 
 export class UserStore {
-  @observable user = [] 
+  @observable user = []
   @observable openLoans = []
+  @path
+  @action getData = async (username) => {
 
-  @action getData = async () => {
-    this.user = {
-      "userID":1,
-      "username": "Rachel",
-      "noOfLoans":3,
-      "monthlyPayment":500,
-      "total worth": 5000,
-      "remaining amount": 6,
-      "open loans": 4,
-      "available cash": 6000,
-      "average return": 7.8,
-      "next payment": "15-02-19"
-    }
+    let data = await axios.get(`/userData/:${username}`);
+    this.user = data;
 
-    this.openLoans = [{
-      "id": "5df8ddf394e5d85a35ac7830",
-      "username":  "shooobert",
-      "period": 24,
-      "purpose": "coding bootcamp",
-      "amount": 452,
-      "interest": 5,
-      "funded": 82,
-      "remaining amount": 4300,
-      "status": "OK",
-      "issuance date": "15-09-19",
-      "next payment": "15-01-20",
-    },
-    {
-      "id": "5df8ddf3adcfbef10a8ec967",
-      "username":  "dudi",
-      "period": 24,
-      "purpose": "coding bootcamp",
-      "amount": 1345,
-      "interest": 6,
-      "funded": 70,
-      "remaining amount": 4300,
-      "status": "OK",
-      "issuance date": "15-09-19",
-      "next payment": "15-01-20"
-    },
-    {
-      "id": "5df8ddf3gart6ergdfgsreww23",
-      "username":  "rachel",
-      "period": 12,
-      "purpose": "coding bootcamp",
-      "amount": 934,
-      "interest": 5,
-      "funded": 90,
-      "remaining amount": 4300,
-      "status": "OK",
-      "issuance date": "15-09-19",
-      "next payment": "15-01-20",
-    }
-  ]
+    //   this.user = {
+    //     "userID":1,
+    //     "username": "Rachel",
+    //     "noOfLoans":3,
+    //     "monthlyPayment":500,
+    //     "total worth": 5000,
+    //     "remaining amount": 6,
+    //     "open loans": 4,
+    //     "available cash": 6000,
+    //     "average return": 7.8,
+    //     "next payment": "15-02-19"
+    //   }
 
-    console.log(this.user)
+    //   this.openLoans = [{
+    //     "id": "5df8ddf394e5d85a35ac7830",
+    //     "username":  "shooobert",
+    //     "period": 24,
+    //     "purpose": "coding bootcamp",
+    //     "amount": 452,
+    //     "interest": 5,
+    //     "funded": 82,
+    //     "remaining amount": 4300,
+    //     "status": "OK",
+    //     "issuance date": "15-09-19",
+    //     "next payment": "15-01-20",
+    //   },
+    //   {
+    //     "id": "5df8ddf3adcfbef10a8ec967",
+    //     "username":  "dudi",
+    //     "period": 24,
+    //     "purpose": "coding bootcamp",
+    //     "amount": 1345,
+    //     "interest": 6,
+    //     "funded": 70,
+    //     "remaining amount": 4300,
+    //     "status": "OK",
+    //     "issuance date": "15-09-19",
+    //     "next payment": "15-01-20"
+    //   },
+    //   {
+    //     "id": "5df8ddf3gart6ergdfgsreww23",
+    //     "username":  "rachel",
+    //     "period": 12,
+    //     "purpose": "coding bootcamp",
+    //     "amount": 934,
+    //     "interest": 5,
+    //     "funded": 90,
+    //     "remaining amount": 4300,
+    //     "status": "OK",
+    //     "issuance date": "15-09-19",
+    //     "next payment": "15-01-20",
+    //   }
+    // ]
+
+    //   console.log(this.user)
 
 
-    // let data = await axios.get(dataRoute);
-    // data = data.data[0];
-    // this.user = data;
-    // this.user.openLoans ? this.openLoans = this.user.openLoans : null 
   };
+
+  @action setPath() {
+    if (this.uesr.type === "b")
+      this.path = "/give-loan"
+    else
+      this.path = "/take-loan"
+  }
+
 }
 
 export default UserStore;
