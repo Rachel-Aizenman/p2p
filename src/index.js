@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {UserStore} from './stores/UserStore'
-import {InputStore} from './stores/InputStore'
+import {UserStore as userStore} from './stores/UserStore'
+import {InputStore as inputStore} from './stores/InputStore'
 import {Provider} from 'mobx-react'
 
-let userStore = new UserStore()
-let inputStore = new InputStore()
+let UserStore = new userStore()
+let InputStore = new inputStore()
 
-const store = { userStore, inputStore }
+const store = { UserStore, InputStore }
 
 
 ReactDOM.render(<Provider {...store}><App /></Provider>, document.getElementById('root'));

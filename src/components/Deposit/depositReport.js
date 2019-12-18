@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import axios from "axios";
 
-@inject('userStore')
+@inject('UserStore')
 @observer
 class DepositReport extends Component {
     deposit = () => {
-        this.props.userStore.getData()
-        let availableMoney = this.props.userStore.user["available cash"]
+        this.props.UserStore.getData()
+        let availableMoney = this.props.UserStore.user["available cash"]
         let amount = document.getElementById('amount').value
         
         let deposit = {

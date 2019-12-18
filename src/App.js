@@ -10,11 +10,11 @@ import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
 
-@inject("userStore", "inputStore")
+@inject("UserStore", "InputStore")
 @observer
 class App extends Component {
    async componentWillMount(){
-    await this.props.userStore.getData()
+    await this.props.UserStore.getData()
    }
   handleClick = async () => {
     const InputStore = this.props.InputStore

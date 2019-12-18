@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 
-@inject("userStore")
+@inject("UserStore")
 @observer
 class InfoContainer extends Component {
   render() {
-    const user = this.props.userStore.user;
+    const user = this.props.UserStore.user;
     return (
         <div id="info-container" style={{ display: "flex" }}>
           <div
@@ -64,14 +64,6 @@ class InfoContainer extends Component {
               Add Investment!
             </button>
           </Link>
-
-        <br />
-        <Link to={"/market"}>
-          <button
-            id="add-investment">
-            Add Investment
-            </button>
-        </Link>
       </div>
     );
   }

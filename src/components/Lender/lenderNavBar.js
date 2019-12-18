@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 
-@inject("userStore")
+@inject("UserStore")
 @observer
 class NavBar extends Component {
   render() {
