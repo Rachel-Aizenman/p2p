@@ -8,6 +8,7 @@ import Withdraw from './components/Withdraw/withdraw'
 import Deposit from './components/Deposite/deposite'
 import DynamicTable from './components/DynamicTable'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
+import Market from './components/Market/Market'
 @observer
 class App extends Component {
   render() {
