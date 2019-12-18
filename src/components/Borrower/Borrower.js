@@ -11,8 +11,8 @@ class Borrower extends Component {git
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
         const keys=['amount','interest','purpose','period','amountPaid','remainingAmount','status']
         const rows= this.props.UserStore.openLoans
-        console.log(rows)
         let user = this.props.UserStore.user     
+
         return (
             <div>
                 <h2>Borrower</h2>

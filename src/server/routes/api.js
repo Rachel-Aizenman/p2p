@@ -7,27 +7,35 @@ const moment = require("moment");
 router.put('/transaction', function (req, res) {
   let username =  req.body.username
   let availableMoney = req.body.availableMoney
-
   let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`
   sequelize.query(update_query)
-
   res.end()
 })
 
-router.post("/addLoan", async function(req, res) {
-  let loan = req.body.loan;
+router.post("/addLoan/", async function(req, res) {
+  console.log(req.body)
+  let loan = req.body;
+  let userName = loan.userName
   let amount = loan.amount;
   let interest = loan.interest;
   let purpose = loan.purpose;
   let period = loan.period;
+  let monthlyPayment = loan.monthlyPayment
   const issuanceDate = moment().format("YYYY-MM-DD"); // how to enter dates to sql DB - Dudi PLEASE CHECK THAT!
 
   // purpose should be added in loan screen !!!!!!
   // until then change field to mock data in order to solve bug
 
-  query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},0,'ok','${issuanceDate}',0)`;
+  query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},0,'ok','${issuanceDate}',0,${monthlyPayment})`;
   await sequelize.query(query);
-
+  let userID = await getUserInfo(userName)
+  userID = userID[0]
+  query = `SELECT COUNT(*) AS count FROM loan`;
+  let loanID = await sequelize.query(query);
+  loanID = loanID[0][0].count
+  query = `INSERT INTO loan_lender
+  VALUES(${loanID},${userID},null,1)`;
+  await sequelize.query(query);
   res.end();
 });
 

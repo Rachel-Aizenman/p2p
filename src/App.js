@@ -49,16 +49,10 @@ class App extends Component {
               </Link>
             </div>
           </header>
-
-
-
           <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
-          <Link to={this.props.UserStore.path}>
+          {/* <Link to={this.props.UserStore.path}>
             <button id="log-in-button" onClick={this.handleClick}>Log-in</button>
-          </Link>
-         
-
-            
+          </Link> */}
           <Route path="/" exact render={()=><HomeMarket/>}/>
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
