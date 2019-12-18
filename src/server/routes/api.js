@@ -31,6 +31,12 @@ router.post("/addLoan", async function(req, res) {
       //           "average return": 7.8, // lender - weighted average interest rate
       //             "next payment": "15-02-19" // open loans 
 
+  router.put('/transaction', (req, res)=> {
+        console.log(req.body)
+        res.send(req.body)
+       })
+    
+
 router.get("/userData/:username", async function (req, res) {
   const username = req.params.username
   const [userID,type,availableCash] = getUserInfo(username)
@@ -38,6 +44,7 @@ router.get("/userData/:username", async function (req, res) {
   const [remainingAmount,interest]=remainingAmountAndInterest(totalWorth)
   const openLoans = getOpenLoans(userID)
   
+ 
   
   // "monthlyPayment":500,
   // "open loans": 4,
@@ -52,18 +59,18 @@ router.get("/userData/:username", async function (req, res) {
 
 })
 
-function getUserInfo(username) {
+async function getUserInfo(username) {
   const query = `SELECT id type FROM user WHERE username='${username}'`
   let result = await sequelize.query(query)
   result = result[0][0]
   return [result.id,result.type,result.availableCash]
 }
-function getOpenLoans(userID){
+async function getOpenLoans(userID){
   query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
   let openLoans = await sequelize.query(query);
   return openLoans[0];
 }
-function overallLoanData(userID,userType) {
+async function overallLoanData(userID,userType) {
   const typeColumn = userType === "l" ? 'lender' : 'borrower'
   let query = `SELECT count(*) AS noOfLoans, SUM(loan.amount) AS totalWorth
   FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
@@ -74,8 +81,7 @@ function overallLoanData(userID,userType) {
 }
 
 //average return - calculates routes
-function remainingAmountAndInterest(userID,totalWorth){
-  const typeColumn = userType === "l" ? 'lender' : 'borrower'
+async function remainingAmountAndInterest(userID,totalWorth){
   const typeColumn = userType === "l" ? 'lender' : 'borrower'
   let query = `SELECT amount, interest, amountPaid  
   FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
