@@ -11,7 +11,6 @@ class Borrower extends Component {
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
         const keys=['amount','interest','purpose','period','amountPaid','remainingAmount','status']
         const rows= this.props.userStore.openLoans
-        console.log(rows)
         let user = this.props.userStore.user     
         return (
             <div>
