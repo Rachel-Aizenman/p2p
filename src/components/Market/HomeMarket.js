@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavBar from '../Lender/lenderNavBar'
 import { inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
