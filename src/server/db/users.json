@@ -1,0 +1,123 @@
+[
+    {
+      "userName": "Zimmerman",
+      "password": "80137862-c7e7-4fd5-9087-2bedf352cf3b",
+      "type": "l",
+      "availableMoney": 1000
+    },
+    {
+      "userName": "Mullen",
+      "password": "caed8eb6-1251-42e0-8bf4-48b21b69e428",
+      "type": "l",
+      "availableMoney": 11000
+    },
+    {
+      "userName": "Mayer",
+      "password": "c4dd5d84-5613-4e99-a7ad-3fb68b8d1bd8",
+      "type": "b",
+      "availableMoney": 21000
+    },
+    {
+      "userName": "Agnes",
+      "password": "8ee6181f-fcfb-4af7-9bc5-e0f27e2c06f9",
+      "type": "b",
+      "availableMoney": 31000
+    },
+    {
+      "userName": "Crawford",
+      "password": "4a925d98-a353-42c2-9753-c13d99238eff",
+      "type": "b",
+      "availableMoney": 41000
+    },
+    {
+      "userName": "Sullivan",
+      "password": "2dad7432-25cb-4162-8e35-379c43863ce6",
+      "type": "b",
+      "availableMoney": 51000
+    },
+    {
+      "userName": "Carolina",
+      "password": "10f2ac80-7fde-4181-a978-f469ad3bb797",
+      "type": "b",
+      "availableMoney": 61000
+    },
+    {
+      "userName": "Shelly",
+      "password": "9aab4212-ba3e-4e2d-9c6a-55179e1f8c0f",
+      "type": "b",
+      "availableMoney": 71000
+    },
+    {
+      "userName": "Winnie",
+      "password": "3db07c32-1303-414a-a6f7-e1dab174f1d8",
+      "type": "b",
+      "availableMoney": 81000
+    },
+    {
+      "userName": "Eaton",
+      "password": "03586809-c7a6-401a-86c8-6662a6ffd818",
+      "type": "l",
+      "availableMoney": 91000
+    },
+    {
+      "userName": "Stephenson",
+      "password": "1fb1699a-92fe-4e8d-829c-8a5dba25699d",
+      "type": "l",
+      "availableMoney": 101000
+    },
+    {
+      "userName": "Contreras",
+      "password": "b870abe7-f95c-42e3-894b-e05e01cf25b9",
+      "type": "l",
+      "availableMoney": 111000
+    },
+    {
+      "userName": "Gabriela",
+      "password": "a0647cb6-f93f-45bd-96f1-c7e269eada5c",
+      "type": "l",
+      "availableMoney": 121000
+    },
+    {
+      "userName": "Hernandez",
+      "password": "edd178d0-59ff-4700-b50a-ead935d01a5f",
+      "type": "l",
+      "availableMoney": 131000
+    },
+    {
+      "userName": "Mercer",
+      "password": "b2db6b66-98a0-4800-8b0c-21fdaab3ed26",
+      "type": "l",
+      "availableMoney": 141000
+    },
+    {
+      "userName": "Walter",
+      "password": "99de2ba6-fb85-48d0-baa3-c620608a1fb8",
+      "type": "b",
+      "availableMoney": 151000
+    },
+    {
+      "userName": "Cherry",
+      "password": "48b52af0-a75a-45e2-9b70-46bffb70d33a",
+      "type": "b",
+      "availableMoney": 161000
+    },
+    {
+      "userName": "Araceli",
+      "password": "d3f23cf6-f30f-4b4b-8020-a6ed07faff00",
+      "type": "b",
+      "availableMoney": 171000
+    },
+    {
+      "userName": "Bessie",
+      "password": "ef87b6e2-f982-434d-a726-51628f2f6712",
+      "type": "b",
+      "availableMoney": 181000
+    },
+    {
+      "userName": "Santana",
+      "password": "aafe8575-e3ae-4a95-9b3d-8523ce744a2d",
+      "type": "b",
+      "availableMoney": 191000
+    }
+  ]
+  
