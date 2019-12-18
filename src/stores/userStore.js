@@ -21,42 +21,31 @@ export class UserStore {
       "next payment": "15-02-19"
     }
     this.openLoans = [{
-      "username":  "shooobert",
-      "period": 2400,
-      "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
+
       "remaining amount": 4300,
       "status": "OK",
       "issuance date": "15-09-19",
       "next payment": "15-01-20"
     },
     {
-      "username":  "dudi",
-      "period": 2400,
-      "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
-      "remaining amount": 4300,
-      "status": "OK",
-      "issuance date": "15-09-19",
-      "next payment": "15-01-20"
-    },
-    {
+
+      "id": "5df8ddf3gart6ergdfgsreww23",
       "username":  "rachel",
-      "period": 2400,
+      "period": 12,
       "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
+      "amount": 934,
+      "interest": 5,
+      "funded": 90,
       "remaining amount": 4300,
       "status": "OK",
       "issuance date": "15-09-19",
-      "next payment": "15-01-20"
+      "next payment": "15-01-20",
     }
   
   ]
 
     console.log(this.user)
+
     // let data = await axios.get(dataRoute);
     // data = data.data[0];
     // this.user = data;
