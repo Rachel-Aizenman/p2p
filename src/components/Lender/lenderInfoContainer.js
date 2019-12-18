@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { inject } from "mobx-react";
 
 @inject("userStore")

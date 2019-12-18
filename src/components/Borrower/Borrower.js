@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Borrower.css'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 import DynamicTable from '../DynamicTable'
 
 import { inject, observer} from 'mobx-react';
@@ -40,7 +40,7 @@ class Borrower extends Component {
 
         return (
             <div>
-                <h1>Borrower</h1>
+                <h2>Borrower</h2>
                 <div><span className="header">Hello User</span> <span className="header">Status: OK</span></div>
                 <div id="infos">
                     <div className="info">Amount remained to pay: {user["remaining amount"]}$</div>
