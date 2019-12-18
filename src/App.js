@@ -7,9 +7,9 @@ import Borrower from './components/Borrower/Borrower'
 
 import Withdraw from './components/Withdraw/withdraw'
 
-import Deposit from './components/Deposite/deposite'
+import Deposit from './components/Deposit/deposit'
 import HomeMarket from './components/Market/HomeMarket'
-import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
+import BorrowerNewLoan from './components/Borrower/BorrowerNewLoan';
 import Market from './components/Market/Market'
 
 @observer
