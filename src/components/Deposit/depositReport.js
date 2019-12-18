@@ -17,6 +17,7 @@ class depositeReport extends Component {
         axios('https://localhost:3001/transaction', deposit)
     }
     
+    
     render(){
         return(
             <div class='deposite-report' style={{backgroundColor: 'grey', position: 'inline-block', width: '300px', margin: '30px', textAlign: 'center', padding: '15px'}}>

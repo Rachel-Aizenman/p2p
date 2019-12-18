@@ -33,6 +33,8 @@ class App extends Component {
               </Link>
             </div>
           </header>
+          
+          <input placeholder='username here'/>
 
           <Route path="/" exact render={() => <HomeMarket />} />
           <Route path="/market" exact render={() => <Market />} />

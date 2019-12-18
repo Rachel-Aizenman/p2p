@@ -21,6 +21,14 @@ router.post("/addLoan", async function(req, res) {
   res.end();
 });
 
+router.put('/fundLoan', async function(req, res){
+  console.log(req.body)
+  //update user avilable cash
+
+  // add loan to loan_lender table 
+  res.send(req.body)
+})
+
 // userdata
 
 
