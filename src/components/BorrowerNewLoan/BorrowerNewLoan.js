@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './BorrowerNewLoan.css'  
+import './BorrowerNewLoan.css'
+import Slider from './Slider'
 const axios = require('axios')
-
 
 class BorrowerNewLoan extends Component {
     constructor(props) {
@@ -27,7 +27,8 @@ class BorrowerNewLoan extends Component {
     }
 
     handleClick = () => { 
-        axios.post('/addLoan', {
+        const userID=this.props.UserStore.user.userID
+        axios.post(`/addLoan/${userID}`, {
             "amount": this.state.amount,
             "period": this.state.period,
             "interest": this.state.interest,
@@ -76,6 +77,9 @@ class BorrowerNewLoan extends Component {
                 </div>
 
                 <button onClick={this.handleClick} id="submit-new-loan">Submit</button>
+                <Slider title={"Amount"} max={70000}/>
+                <Slider title={"Period (months)"} max={60}/>
+                <Slider title={"Interest"} max={15}/>
             </div>
         );
     }
