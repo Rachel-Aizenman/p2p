@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./BorrowerNewLoan.css";
 import Slider from "../Slider";
 import { observer, inject } from "mobx-react";
+const postRoute = "http://localhost:3001/addLoan/"
 const axios = require("axios");
 
 const color = "color";
@@ -34,14 +35,16 @@ class BorrowerNewLoan extends Component {
   handleClick = () => {
     this.props.UserStore.getData();
     const loan = {
-      purpose: this.props.InputStore.purpose,
-      amount: this.props.InputStore.amount,
-      period: this.props.InputStore.period,
-      interest: this.props.InputStore.interest,
-      monthlyPayment: this.props.InputStore.payment
+
+      userName : this.props.userStore.user.username,
+      purpose: this.props.inputStore.purpose,
+      amount: this.props.inputStore.amount,
+      period: this.props.inputStore.period,
+      interest: this.props.inputStore.interest,
+      monthlyPayment: this.props.inputStore.payment
     };
-    const userName = this.props.UserStore.user.username;
-    axios.post(`/addLoan/${userName}`, loan);
+    axios.post(postRoute, loan);
+
   };
 
   changeColor = e => {
