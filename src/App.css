@@ -44,12 +44,24 @@ header {
   width: 70vw;
   margin: 0 auto;
   display: flex;
+  cursor: pointer;
+  float: left;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.05rem;
+  text-decoration: none !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .nav-bar {
   padding-left: 75px;
   align-self: center;
   display: inline;
+  
 }
 
 .nav-btn {
@@ -87,4 +99,8 @@ header {
 
 .invest-btn:hover {
   color: rgb(49, 153, 58);
+}
+
+#deposite-container{
+  align-items: center;
 }
