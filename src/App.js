@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { observer, inject } from 'mobx-react'
+
+import { observer, inject } from "mobx-react";
+
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/Lender/Lender'
 import Borrower from './components/Borrower/Borrower'
@@ -9,12 +11,13 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
-import Axios from 'axios';
-// import UserStore from './stores/UserStore';
 
-@inject('InputStore', 'UserStore')
+@inject("userStore", "inputStore")
 @observer
 class App extends Component {
+   async componentWillMount(){
+    await this.props.userStore.getData()
+   }
   handleClick = async () => {
     const InputStore = this.props.InputStore
     const UserStore = this.props.UserStore
@@ -43,22 +46,26 @@ class App extends Component {
               <Link className="nav-btn" to="/takeLoan">
                 <button>Loan<hr /></button>
               </Link>
-              <Link className="nav-btn" to="/giveloan">
+              <Link className="nav-btn" to="/giveLoan">
                 <button>Lend<hr /></button>
               </Link>
             </div>
           </header>
 
+
+
           <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
           <Link to={this.props.UserStore.path}>
             <button id="log-in-button" onClick={this.handleClick}>Log-in</button>
           </Link>
-          <Route path="/" exact render={() => <HomeMarket />} />
-          <Route path="/market" exact render={() => <Market />} />
-          <Route path="/newLoan" exact render={() => <BorrowerNewLoan />} />
-          <Route path="/take-loan" exact render={() => <Borrower />} />
-          <Route path="/give-loan" exact render={() => <Lender />} />
+         
 
+            
+          <Route path="/" exact render={()=><HomeMarket/>}/>
+          <Route path="/market" exact render={()=><Market/>}/>
+          <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
+          <Route path="/takeLoan" exact render={() => <Borrower />} />
+          <Route path="/giveLoan" exact render={() => <Lender />} />
           <Route path="/deposit" exact render={() => <Deposit />} />
           <Route path='/withdraw' exact render={() => <Withdraw />} />
         </div>

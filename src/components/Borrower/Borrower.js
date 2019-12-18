@@ -9,30 +9,10 @@ import { inject, observer} from 'mobx-react';
 class Borrower extends Component {
     render() {
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
-        const keys=['amount','interest','purpose','period','amount_paid','remaining_amount','status']
-        // const rows=this.props.userStore.openLoans
-        // this.props.userStore.getData()
-        let user = this.props.userStore.user        
-        
-        let rows = [{
-            amount: 5000,
-            interest: 9.9,
-            purpose: "Coding Bootcamp",
-            period: 24,
-            amount_paid: 700,
-            remaining_amount: 4300,
-            status: "OK"
-        },
-        {
-            amount: 3000,
-            interest: 5,
-            purpose: "Investment",
-            period: 12,
-            amount_paid: 500,
-            remaining_amount: 2500,
-            status: "OK"
-        }]
-
+        const keys=['amount','interest','purpose','period','amountPaid','remainingAmount','status']
+        const rows= this.props.userStore.openLoans
+        console.log(rows)
+        let user = this.props.userStore.user     
         return (
             <div>
                 <h2>Borrower</h2>
@@ -40,7 +20,7 @@ class Borrower extends Component {
                 <div id="infos">
                     <div className="info">Amount remained to pay: {user.remainingAmount}$</div>
                     <div className="info">Mothly payment: {user.monthlyPayment}</div>
-                    <div className="info">Open loans: {user.openLoans}</div>
+                    <div className="info">Open loans </div>
                     <Link to="/newLoan"><button className="circle">New Loan</button></Link>
                 </div>
                 <DynamicTable head={header} keys={keys} rows={rows}/>

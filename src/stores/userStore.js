@@ -7,12 +7,28 @@ export class UserStore {
   @observable user = []
   @observable openLoans = []
   @observable path
-  @action getData = async (username) => {
-
-    let data = await axios.get(`/userData/:${username}`);
+  @action getData = async () => {
+    let data = await axios.get(dataRoute);
+    data = data.data
+    console.log(data)
     this.user = data;
+    if(this.user.openLoans){
+      for(let loan of this.user.openLoans){
+        loan.remainingAmount = loan.amount - loan.amountPaid
+        let nextMonth = String(parseInt(loan.dateOfIssuance.charAt(6))+1)
+        loan.nextPayment = loan.dateOfIssuance.replace(loan.dateOfIssuance.charAt(6),nextMonth)
+      }
+      this.openLoans = this.user.openLoans
+    }
 
-    //   this.user = {
+  @action setPath() {
+    if (this.uesr.type === "b")
+      this.path = "/giveLoan"
+    else
+      this.path = "/takeLoan"
+  }
+  
+        //   this.user = {
     //     "userID":1,
     //     "username": "Rachel",
     //     "noOfLoans":3,
@@ -67,16 +83,6 @@ export class UserStore {
     // ]
 
     //   console.log(this.user)
-
-  };
-
-  @action setPath() {
-    if (this.uesr.type === "b")
-      this.path = "/give-loan"
-    else
-      this.path = "/take-loan"
-  }
-
 }
 
 export default UserStore;
