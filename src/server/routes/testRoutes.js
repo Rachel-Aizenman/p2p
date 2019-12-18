@@ -13,13 +13,9 @@ async function addLoan() {
   
 }
 
-//     let { loanID, lenderID, borrowerID } = {"loanID":1,"lenderID":3,"borrowerID":2}
+router.put('/transaction', async function (req, res) {
+   console.log(req.body)
+  })
 
-
-// query=`SELECT * FROM user`
-//     // query = `INSERT INTO loan_lender
-//     // VALUES(${loanID},${borrowerID},${lenderID})`;
-//     await sequelize.query(query);
-// }
 
 addLoan()

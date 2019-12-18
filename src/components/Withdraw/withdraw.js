@@ -10,9 +10,10 @@ class Withdraw extends Component {
     withdraw  = () => {
        const user = this.props.userStore.user.username
        const withdrawal = {
-           amount: this.props.inputStore.withdrawInput,
+           amount:  - this.props.inputStore.withdrawInput,
            user: user
        }
+       console.log(withdrawal)
   axios.put('https://localhost:3001/transaction', withdrawal)
 
     }
