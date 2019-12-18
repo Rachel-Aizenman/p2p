@@ -22,10 +22,11 @@ export class UserStore {
     }
     this.openLoans = [{
       "username":  "shooobert",
-      "period": 2400,
+      "period": 24,
       "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
+      "amount": 452,
+      "interest": 5,
+      "funded": 82,
       "remaining amount": 4300,
       "status": "OK",
       "issuance date": "15-09-19",
@@ -33,10 +34,11 @@ export class UserStore {
     },
     {
       "username":  "dudi",
-      "period": 2400,
+      "period": 24,
       "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
+      "amount": 1345,
+      "interest": 6,
+      "funded": 70,
       "remaining amount": 4300,
       "status": "OK",
       "issuance date": "15-09-19",
@@ -44,14 +46,15 @@ export class UserStore {
     },
     {
       "username":  "rachel",
-      "period": 2400,
+      "period": 12,
       "purpose": "coding bootcamp",
-      "amount": 500,
-      "interest": 500,
+      "amount": 934,
+      "interest": 5,
+      "funded": 90,
       "remaining amount": 4300,
       "status": "OK",
       "issuance date": "15-09-19",
-      "next payment": "15-01-20"
+      "next payment": "15-01-20",
     }
   
   ]
