@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject } from "mobx-react";
-import Slider from './Slider'
+import Slider from '../Slider'
 import axios from 'axios';
 
 @inject('userStore')
