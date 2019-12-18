@@ -11,6 +11,7 @@ class Lender extends Component {
 
   render() {
     this.props.userStore.getData()
+    console.log(this.props.userStore.user.userID)
 
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest (%)', 'Remaining Amount ($)', 'Status', 'Issuance Date', 'Next Payment', 'Give Loan']
     const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remaining amount', 'status', 'issuance date', 'next payment', 'give loan']
@@ -56,7 +57,7 @@ class Lender extends Component {
       <div>
         <NavBar />
         <InfoContainer />
-        <DynamicTable head={header} keys={keys} rows={rows} />
+        <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.userStore.user.userID}/>
       </div>
 
     )

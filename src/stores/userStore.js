@@ -62,7 +62,6 @@ export class UserStore {
     }
   ]
 
-    console.log(this.user)
 
 
     // let data = await axios.get(dataRoute);
