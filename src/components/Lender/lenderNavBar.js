@@ -1,9 +1,12 @@
+
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { inject } from "mobx-react";
 
+
 @inject("userStore")
 class navBar extends Component {
+
   render() {
     return (
       <div className="nav-bar">
@@ -19,6 +22,7 @@ class navBar extends Component {
       </div>
     );
   }
+
 }
 
 export default navBar;
