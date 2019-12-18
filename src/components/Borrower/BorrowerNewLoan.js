@@ -29,7 +29,7 @@ class BorrowerNewLoan extends Component {
 
     render() {
         return (
-            <div id="new-loan" style={{textAlign: 'center'}}>
+            <div id="new-loan">
                 <div>
                     <Slider title={"Amount"} max={70000} name='amount' handleInput={this.props.inputStore.handleInput}/>
                     <Slider title={"Period (m)"} max={60} name='period' handleInput={this.props.inputStore.handleInput}/>

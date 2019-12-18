@@ -12,11 +12,11 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles({
     table: {
         minWidth: 250,
-        color: "white",
+        // color: "white",
     },
     TableCell: {
         root: {
-            color: "white"
+            // color: "white"
         }
     }
 });
