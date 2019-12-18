@@ -34,7 +34,7 @@ export class Borrower extends Component {
                     <div className="info">Amount remained to pay: 3000$</div>
                     <div className="info">Mothly payment: 500$</div>
                     <div className="info">Open loans: 3</div>
-                    <Router><Link to="/newLoan"><button className="circle">New Loan</button></Link></Router>
+                    <Link to="/newLoan"><button className="circle">New Loan</button></Link>
                 </div>
                 <DynamicTable head={header} keys={keys} rows={rows}/>
 
