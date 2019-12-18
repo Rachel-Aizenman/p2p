@@ -4,6 +4,16 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 const moment = require("moment");
 
+router.put('/transaction', function (req, res) {
+  let username =  req.body.username
+  let availableMoney = req.body.availableMoney
+
+  let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`
+  sequelize.query(update_query)
+
+  res.end()
+})
+
 router.post("/addLoan", async function(req, res) {
   let loan = req.body.loan;
   let amount = loan.amount;

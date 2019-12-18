@@ -1,5 +1,6 @@
 import { observable, action, computed } from "mobx";
 const default_color = "#39D1B4";
+
 export class InputStore {
     @observable name
     @observable id
@@ -11,7 +12,9 @@ export class InputStore {
     @observable payment
     @observable color = default_color
     @observable withdrawInput
+    @observable uesrname
     @observable purpose
+    
     @action handleInput = (param, value) => {
         this[param] = value
     }
