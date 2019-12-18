@@ -24,51 +24,104 @@ router.post("/addLoan", async function (req, res) {
 
 // userdata
 
-"userID": 1,
-  "username": "Rachel",
-    "noOfLoans": 3,
-      "monthlyPayment": 500, // borrower - sum payments
-        "total worth": 5000, // lender - sum loans
-          "remaining amount": 6,
-            "open loans": 4, // open loans - all loans with user's name
-              "available cash": 6000, // lender available cash (user) 
-                "average return": 7.8, // lender - weighted average interest rate
-                  "next payment": "15-02-19" // open loans 
+      // "monthlyPayment": 500, // borrower - sum payments
+      // "available cash": 6000, // lender available cash (user) 
+      
+      //     "remaining amount": 6,
+      //       "open loans": 4, // open loans - all loans with user's name
+      //           "average return": 7.8, // lender - weighted average interest rate
+      //             "next payment": "15-02-19" // open loans 
 
-router.get("/userData/:userID", async function (req, res) {
+router.get("/userData/:username", async function (req, res) {
+  const username = req.params.username
+  const [userID,type,availableCash] = getUserInfo(username)
+  const [noOfLoans,totalWorth] = overallLoanData(userID,type)
+  const [remainingAmount,interest]=remainingAmountAndInterest(totalWorth)
+  const openLoans = getOpenLoans(userID)
   
-  //get user name
-
-  //calculate num of loans
-
+  
+  // "monthlyPayment":500,
+  // "open loans": 4,
+  // "available cash": 6000,
+  // "next payment": "15-02-19"
+  
   // monthly payment
 
-  //total worth
+  
+  
+  // available cash - get from user table
 
-  // remaining amount 
+})
 
-  // 
-  let userName = req.params.userName;
-  query = `SELECT * FROM user WHERE userName = '${userName}'`;
-  let user = await sequelize.query(query);
-  user = user[0][0];
+function getUserInfo(username) {
+  const query = `SELECT id type FROM user WHERE username='${username}'`
+  let result = await sequelize.query(query)
+  result = result[0][0]
+  return [result.id,result.type,result.availableCash]
+}
+function getOpenLoans(userID){
+  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
+  let openLoans = await sequelize.query(query);
+  return openLoans[0];
+}
+function overallLoanData(userID,userType) {
+  const typeColumn = userType === "l" ? 'lender' : 'borrower'
+  let query = `SELECT count(*) AS noOfLoans, SUM(loan.amount) AS totalWorth
+  FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
+  WHERE ${typeColumn}=${userID}`
+  let result = await sequelize.query(query)
+  result= rseult[0][0]
+  return [result.noOfLoans,result.totalWorth]
+}
 
-  if (user.type === "l") {
-    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
-    let openLoans = await sequelize.query(query);
-    openLoans = openLoans[0];
-    user = [user];
-    user.push(openLoans);
-    res.send(user);
-  } else {
-    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} AND loanID=loan.id `;
-    let openLoans = await sequelize.query(query);
-    openLoans = openLoans[0];
-    user = [user];
-    user.push(openLoans);
-    res.send(user);
-  }
-});
+//average return - calculates routes
+function remainingAmountAndInterest(userID,totalWorth){
+  const typeColumn = userType === "l" ? 'lender' : 'borrower'
+  const typeColumn = userType === "l" ? 'lender' : 'borrower'
+  let query = `SELECT amount, interest, amountPaid  
+  FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
+  WHERE loan_lender.${typeColumn}=${userID}`
+  let result = await sequelize.query(query)
+  result=result[0]
+
+ let fundAndInterest=0
+ let totalAmountPaid=0
+ let returnFactor
+ for (let loan of loans){
+   returnFactor=1+loan.interest/100
+   fundAndInterest+=loan.amount*returnFactor
+   totalAmountPaid+=loan.amountPaid
+ }
+ const remainingAmount=fundAndInterest-totalAmountPaid;
+ const averageInterest=fundAndInterest/totalWorth
+ return [remainingAmount,averageInterest]
+  // amount
+  console.log(result)
+ return result
+}
+
+
+// let userName = req.params.userName;
+// query = `SELECT * FROM user WHERE userName = '${userName}'`;
+// let user = await sequelize.query(query);
+// user = user[0][0];
+
+// if (user.type === "l") {
+//   query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
+//   let openLoans = await sequelize.query(query);
+//   openLoans = openLoans[0];
+//   user = [user];
+//   user.push(openLoans);
+//   res.send(user);
+// } else {
+//   query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} AND loanID=loan.id `;
+//   let openLoans = await sequelize.query(query);
+//   openLoans = openLoans[0];
+//   user = [user];
+//   user.push(openLoans);
+//   res.send(user);
+// }
+
 
 // fund loan fix !!!! -
 
