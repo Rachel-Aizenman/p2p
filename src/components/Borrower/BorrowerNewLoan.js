@@ -23,7 +23,7 @@ class BorrowerNewLoan extends Component {
             monthlyPayment: this.props.inputStore.payment
         }
         const userName = this.props.userStore.user.username
-        // axios.post(`/addLoan/${userName}`, loan)
+        axios.post(`/addLoan/${userName}`, loan)
         console.log(loan)
     }
 

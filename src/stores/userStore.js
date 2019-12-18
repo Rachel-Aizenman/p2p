@@ -20,6 +20,7 @@ export class UserStore {
       "average return": 7.8,
       "next payment": "15-02-19"
     }
+
     this.openLoans = [{
       "id": "5df8ddf394e5d85a35ac7830",
       "username":  "shooobert",
@@ -62,6 +63,7 @@ export class UserStore {
   ]
 
     console.log(this.user)
+
 
     // let data = await axios.get(dataRoute);
     // data = data.data[0];
