@@ -8,7 +8,6 @@ class InfoContainer extends Component {
   render() {
     const user = this.props.userStore.user;
     return (
-
         <div id="info-container" style={{ display: "flex" }}>
           <div
             id="protfolio-value"

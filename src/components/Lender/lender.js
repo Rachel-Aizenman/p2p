@@ -9,12 +9,9 @@ import TableCell from '@material-ui/core/TableCell';
 @inject('userStore')
 @observer
 class Lender extends Component {
-  async componentWillMount(){
-    await this.props.userStore.getData()
-  }
   render() {
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest (%)', 'Remaining Amount ($)', 'Status', 'Issuance Date', 'Next Payment', 'Give Loan']
-    const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remaining amount', 'status', 'issuance date', 'next payment', 'give loan']
+    const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remainingAmount', 'status', 'dateOfIssuance', 'nextPayment', 'give loan']
     const rows = this.props.userStore.openLoans
     const button = <TableCell><button>+</button></TableCell>
     return (

@@ -74,19 +74,16 @@ function getNextPayment(openLoans) {
       nextPayment = moment(`${closestDay}-${month}-${year}`);
     else if (month < 12) nextPayment = moment(`${min}-${month + 1}-${year}`);
     else nextPayment = moment(`${min}-01-${year + 1}`);
-
-    return nextPayment;
+    return nextPayment._i;
   }
 
 
-async function getUserInfo(username) {
-  const query = `SELECT id, type, availableMoney FROM user WHERE username='${username}'`;
-  let result = await sequelize.query(query);
-  result = result[0][0];
-  return [result.id, result.type, result.availableMoney];
-}
+
 async function getOpenLoans(userID) {
-  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${userID} AND loanID=loan.id`;
+  query = `SELECT * 
+  FROM loan_lender,loan,user 
+  WHERE loan_lender.lender = ${userID} 
+  AND loanID=loan.id AND loan_lender.borrower = user.id`;
   let openLoans = await sequelize.query(query);
   return openLoans[0];
 }
@@ -96,21 +93,16 @@ async function getOpenLoans(userID) {
 
 
 async function getUserInfo(username) {
-  const query = `SELECT id ,type FROM user WHERE username='${username}'`
+  const query = `SELECT id ,type,availableMoney FROM user WHERE username='${username}'`
   let result = await sequelize.query(query)
   result = result[0][0]
-  return [result.id,result.type,result.availableCash]
+  return [result.id,result.type,result.availableMoney]
 }
-async function getOpenLoans(userID){
-  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${userID} AND loanID=loan.id `;
-  let openLoans = await sequelize.query(query);
-  return openLoans[0];
-}
+
 async function overallLoanData(userID,userType) {
   const typeColumn = userType === "l" ? 'lender' : 'borrower'
   let query = `SELECT count(*) AS noOfLoans, SUM(loan.amount) AS totalWorth
-  FROM loan_lender 
-  INNER JOIN loan ON loan_lender.loanID=loan.id
+  FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
   WHERE ${typeColumn}=${userID}`;
   let result = await sequelize.query(query);
   result = result[0][0];
@@ -121,7 +113,6 @@ async function overallLoanData(userID,userType) {
 
 async function remainingAmountAndInterest(userID, totalWorth, userType) {
   const typeColumn = userType === "l" ? "lender" : "borrower";
-
   let query = `SELECT amount, interest, amountPaid  
   FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
   WHERE loan_lender.${typeColumn}=${userID}`;
