@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react";
 import InfoContainer from "./DepositInfoContainer";
 import DepositReport from "./DepositReport";
 
-@inject("userStore")
+@inject("UserStore")
 @observer
 class Deposit extends Component {
   render() {

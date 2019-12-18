@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-@inject("userStore")
+@inject("UserStore")
 @observer
 class InfoContainer extends Component {
   render() {
-    const userStore = this.props.userStore;
+    const UserStore = this.props.UserStore;
     return (
       <div>
         <div
@@ -18,7 +18,7 @@ class InfoContainer extends Component {
             margin: "10px"
           }}
         >
-          <p>Portfolio Value: ${userStore.user.length}</p>
+          <p>Portfolio Value: ${UserStore.user.length}</p>
         </div>
         <div
           id="protfolio-value"
@@ -32,7 +32,7 @@ class InfoContainer extends Component {
             position: "relative"
           }}
         >
-          <p>Available Cash: ${userStore.user.length}</p>
+          <p>Available Cash: ${UserStore.user.length}</p>
         </div>
       </div>
     );

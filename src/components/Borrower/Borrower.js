@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import DynamicTable from '../DynamicTable'
 import { inject, observer} from 'mobx-react';
 
-@inject('userStore')
+@inject('UserStore')
 @observer
 class Borrower extends Component {
     render() {
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
         const keys=['amount','interest','purpose','period','amountPaid','remainingAmount','status']
-        const rows= this.props.userStore.openLoans
+        const rows= this.props.UserStore.openLoans
         console.log(rows)
-        let user = this.props.userStore.user     
+        let user = this.props.UserStore.user     
         return (
             <div>
                 <h2>Borrower</h2>
