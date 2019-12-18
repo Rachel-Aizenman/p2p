@@ -29,7 +29,7 @@ class App extends Component {
             <hr />
           
           </header>
-          <Route path="/" exact render={()=><DynamicTable/>}/>
+          {/* <Route path="/" exact render={()=><DynamicTable/>}/> */}
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
           <Route path="/take-loan" exact render={() => <Borrower />} />
