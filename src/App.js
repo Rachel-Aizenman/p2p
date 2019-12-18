@@ -17,25 +17,30 @@ class App extends Component {
       <Router>
         <div className="App">
           <header>
+            <Link to="/"> 
             <h1>PayPi</h1>
-            <Link className="nav-btn" to="/">
-              <button>Home</button>
             </Link>
-            <Link className="nav-btn" to="/take-loan">
-              <button>Loan</button>
-            </Link>
-            <Link className="nav-btn" to="/give-loan">
-              <button>Lend</button>
-            </Link>
-            <hr />
+            <div className="nav-bar">
+              <Link className="nav-btn" to="/">
+                <button>Home<hr /></button>
+              </Link>
+
+              <Link className="nav-btn" to="/takeLoan">
+                <button>Loan<hr /></button>
+              </Link>
+              <Link className="nav-btn" to="/giveloan">
+                <button>Lend<hr /></button>
+              </Link>
+            </div>
           </header>
+          
           <Route path="/" exact render={()=><HomeMarket/>}/>
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
           <Route path="/takeLoan" exact render={() => <Borrower />} />
           <Route path="/giveLoan" exact render={() => <Lender />} />
           <Route path="/deposit" exact render={() => <Deposit />} />
-          <Route path='/withdraw' exact render={() => <Withdraw/>}/>
+          <Route path='/withdraw' exact render={() => <Withdraw />} />
         </div>
       </Router>
     );

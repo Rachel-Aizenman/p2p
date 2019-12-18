@@ -8,6 +8,7 @@ class InfoContainer extends Component {
   render() {
     const user = this.props.userStore.user;
     return (
+
         <div id="info-container" style={{ display: "flex" }}>
           <div
             id="protfolio-value"
@@ -64,7 +65,15 @@ class InfoContainer extends Component {
               Add Investment!
             </button>
           </Link>
-        </div>
+
+        <br />
+        <Link to={"/market"}>
+          <button
+            id="add-investment">
+            Add Investment
+            </button>
+        </Link>
+      </div>
     );
   }
 }

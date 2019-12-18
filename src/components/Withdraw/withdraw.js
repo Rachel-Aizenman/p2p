@@ -47,7 +47,7 @@ class Withdraw extends Component {
         >
           Available Cash: ${this.props.userStore.user.length}
         </div>
-
+          <div>
         <div
           className="explanation"
           style={{
@@ -56,7 +56,7 @@ class Withdraw extends Component {
             position: "inline-block",
             padding: "15px"
           }}
-        >
+        ></div>
           The poem "Jabberwocky" in Lewis Carroll's Through the Looking Glass is
           perhaps the most famous example of gibberish. Lewis Carroll, whose
           real name was actually Charles Lutwidge Dodgson, was famed for his

@@ -10,13 +10,16 @@ class NavBar extends Component {
     return (
       <div className="nav-bar">
         <Link to={"/deposit"}>
-          <button>Deposit</button>
+          <button>Deposit<hr/></button>
         </Link>
+
         <Link to={"/market"}>
           <button>Add Loan</button>
+
+
         </Link>
         <Link to={"/withdraw"}>
-          <button>Withdraw</button>
+          <button>Withdraw<hr/></button>
         </Link>
       </div>
     );
