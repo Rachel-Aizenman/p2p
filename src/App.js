@@ -9,9 +9,18 @@ import Deposit from './components/Deposit/deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/Borrower/BorrowerNewLoan';
 import Market from './components/Market/Market'
+import { inject } from "mobx-react";
+
 
 @observer
+@inject('inputStore')
 class App extends Component {
+  handleInput = e => {
+    const name = e.target.name
+    const value = e.target.value
+    this.props.inputStore.handleInput(name, value)
+    
+  }
   render() {
     return (
       <Router>
@@ -33,8 +42,8 @@ class App extends Component {
               </Link>
             </div>
           </header>
-          
-          <input placeholder='username here'/>
+
+          <input placeholder='username here' name='login' onChange={this.handleInput}/>
 
           <Route path="/" exact render={() => <HomeMarket />} />
           <Route path="/market" exact render={() => <Market />} />
