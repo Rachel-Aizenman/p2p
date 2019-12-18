@@ -36,7 +36,7 @@ class BorrowerNewLoan extends Component {
     this.props.UserStore.getData();
     const loan = {
 
-      userName : this.props.userStore.user.username,
+      userName : this.props.UserStore.user.username,
       purpose: this.props.inputStore.purpose,
       amount: this.props.inputStore.amount,
       period: this.props.inputStore.period,
