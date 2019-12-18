@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import { observer, inject } from "mobx-react";
-
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/Lender/Lender'
 import Borrower from './components/Borrower/Borrower'
@@ -55,9 +53,9 @@ class App extends Component {
 
 
           <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
-          <Link to={this.props.UserStore.path}>
+          {/* <Link to={this.props.UserStore.path}>
             <button id="log-in-button" onClick={this.handleClick}>Log-in</button>
-          </Link>
+          </Link> */}
          
 
             

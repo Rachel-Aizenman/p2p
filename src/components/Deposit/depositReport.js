@@ -4,8 +4,7 @@ import axios from "axios";
 
 @inject('userStore')
 @observer
-class depositeReport extends Component {
-
+class DepositReport extends Component {
     deposit = () => {
         this.props.userStore.getData()
         let availableMoney = this.props.userStore.user["available cash"]

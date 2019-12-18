@@ -20,7 +20,7 @@ export class UserStore {
       }
       this.openLoans = this.user.openLoans
     }
-
+  }
   @action setPath() {
     if (this.uesr.type === "b")
       this.path = "/giveLoan"
