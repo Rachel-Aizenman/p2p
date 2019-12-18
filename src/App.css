@@ -1,6 +1,10 @@
-
 button {
-  color: black!important;
+  color: white;
+  border: none;
+  background: none;
+  font-weight: 800;
+  font-size: larger;
+  cursor: pointer;
 }
 
 .App-logo {
@@ -19,10 +23,39 @@ header {
   color: white;
 }
 
+h1 {
+  color: #ffffff;
+  text-shadow: 3px 5px black;
+}
+
+a {
+  text-decoration: none;
+}
+
 .App-link {
   color: #09d3ac;
 }
 
-.MuiPaper-root {
-  background-color: #282c34!important;
+#new-loan {
+  align-self: center;
+}
+
+header {
+  width: 70vw;
+  margin: 0 auto;
+  display: flex;
+}
+
+.nav-bar {
+  padding-left: 75px;
+  align-self: center;
+  display: inline;
+}
+
+.nav-btn {
+  cursor: pointer;
+}
+
+.MuiTableCell-head{
+  color: white
 }
