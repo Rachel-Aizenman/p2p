@@ -32,8 +32,9 @@ class App extends Component {
                 <button>Lend<hr /></button>
               </Link>
             </div>
+            
           </header>
-
+          
           <Route path="/" exact render={() => <HomeMarket />} />
           <Route path="/market" exact render={() => <Market />} />
           <Route path="/newLoan" exact render={() => <BorrowerNewLoan />} />

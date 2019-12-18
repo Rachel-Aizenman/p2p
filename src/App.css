@@ -56,6 +56,35 @@ header {
   cursor: pointer;
 }
 
-.MuiTableCell-head{
+.MuiTableCell-head {
   color: white
+}
+
+#info-container {
+  display: flex;
+  align-items: center;
+}
+
+#dashboard-item {
+  border-radius: 15px;
+  border: 5px solid #263f44;
+  display: inline-block;
+  margin: 10px;
+  width: 200px;
+}
+
+#add-investment {
+  border-radius: 15px;
+  border: 5px solid darkgreen;
+  display: inline-block;
+  margin: 10px;
+  width: 200px;
+}
+
+.invest-btn {
+  color: black;
+}
+
+.invest-btn:hover {
+  color: rgb(49, 153, 58);
 }
