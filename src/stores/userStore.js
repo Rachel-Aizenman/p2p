@@ -7,6 +7,7 @@ export class UserStore {
   @observable user = [] 
   @observable openLoans = []
   @action getData = async () => {
+
     let data = await axios.get(dataRoute);
     console.log(data)
     data = data.data
@@ -14,6 +15,7 @@ export class UserStore {
     this.user = data;
     if(this.user.openLoans){
       this.openLoans = this.user.openLoans
+
     }
   };
 }
