@@ -4,6 +4,9 @@ import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/Lender/lender'
 import Borrower from './components/Borrower/Borrower'
+import DynamicTable from './components/DynamicTable'
+import Withdraw from './components/Withdraw/withdraw'
+import Deposit from './components/Deposit/deposit'
 
 @observer
 class App extends Component {

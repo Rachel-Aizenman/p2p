@@ -3,6 +3,7 @@ import './BorrowerNewLoan.css'
 import Slider from './Slider'
 const axios = require('axios')
 
+@inject('inputStore')
 class BorrowerNewLoan extends Component {
     constructor(props) {
         super(props);
