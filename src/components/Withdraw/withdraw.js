@@ -3,17 +3,15 @@ import { inject } from "mobx-react";
 import Slider from '../Slider'
 import axios from 'axios';
 
-@inject('userStore')
+@inject('userStore', 'inputStore')
 class Withdraw extends Component {
     withdraw  = () => {
-       const amount = document.getElementById('slider').value
        const user = this.props.userStore.user.username
        const withdrawal = {
-           amount: amount,
+           amount: this.props.inputStore.withdrawInput,
            user: user
        }
-       console.log(amount)
-    //    axios.put('https://localhost:3001/transaction', withdrawal)
+  axios.put('https://localhost:3001/transaction', withdrawal)
     }
     render() {
         this.props.userStore.getData()
@@ -32,7 +30,7 @@ class Withdraw extends Component {
                     To speak the language, you break each word down into its syllables. Each syllable will usually have a vowel sound. You then add otha-g before each vowel sound. Some examples of Gibberish words (and their English translations) include:
             </div>
             <div id='slider'>
-            <Slider/>
+            <Slider name='withdrawInput' handleInput={this.props.inputStore.handleInput}/>
              </div>
             <button onClick={this.withdraw}>Withdraw</button>
 
