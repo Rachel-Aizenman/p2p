@@ -6,7 +6,7 @@ import { inject, observer} from 'mobx-react';
 
 @inject('UserStore')
 @observer
-class Borrower extends Component {
+class Borrower extends Component {git
     render() {
         const header = ["Amount", "Interest", "Purpose", "Period (m)", "Amount Paid", "Remaining Amount", "Status"]
         const keys=['amount','interest','purpose','period','amountPaid','remainingAmount','status']
