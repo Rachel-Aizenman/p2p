@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {UserStore} from './stores/userStore'
+import {UserStore} from './stores/UserStore'
 import {Provider} from 'mobx-react'
-import {InputStore} from './stores/inputStore'
+import {InputStore} from './stores/InputStore'
 
 let userStore = new UserStore()
 let inputStore = new InputStore()

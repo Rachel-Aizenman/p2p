@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { observer, inject } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Lender from './components/Lender/lender'
+import Lender from './components/Lender/Lender'
 import Borrower from './components/Borrower/Borrower'
-import Withdraw from './components/Withdraw/withdraw'
-import Deposit from './components/Deposit/deposit'
+import Withdraw from './components/Withdraw/Withdraw'
+import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
-import BorrowerNewLoan from './components/Borrower/BorrowerNewLoan';
+import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
 import Axios from 'axios';
 import UserStore from './stores/userStore';
@@ -40,10 +40,10 @@ class App extends Component {
                 <button>Home<hr /></button>
               </Link>
 
-              <Link className="nav-btn" to="/take-loan">
+              <Link className="nav-btn" to="/takeLoan">
                 <button>Loan<hr /></button>
               </Link>
-              <Link className="nav-btn" to="/give-loan">
+              <Link className="nav-btn" to="/giveloan">
                 <button>Lend<hr /></button>
               </Link>
             </div>
@@ -58,6 +58,7 @@ class App extends Component {
           <Route path="/newLoan" exact render={() => <BorrowerNewLoan />} />
           <Route path="/take-loan" exact render={() => <Borrower />} />
           <Route path="/give-loan" exact render={() => <Lender />} />
+
           <Route path="/deposit" exact render={() => <Deposit />} />
           <Route path='/withdraw' exact render={() => <Withdraw />} />
         </div>

@@ -39,7 +39,7 @@ export default function SimpleTable(props) {
                     {props.rows.map(row => (
                         <TableRow key={row.name}>
                             {props.keys.map(c => <TableCell align="left">{row[c]}</TableCell>)}
-                            {props.market ? <TableCell><button id={row.id} onClick={handleClick}>aaa</button></TableCell> : null}
+                            {props.market ? <TableCell><button className="invest-btn" id={row.id} onClick={handleClick}>&#9547;</button></TableCell> : null}
                         </TableRow>
 
                     ))}
