@@ -1,23 +1,71 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { inject } from "mobx-react";
+import { observer, inject } from "mobx-react";
 
 @inject("userStore")
-class infoContainer extends Component {
+@observer
+class InfoContainer extends Component {
   render() {
     const user = this.props.userStore.user;
-
     return (
-      <div id="info-container" style={{}}>
-        <div id="dashboard-item">
-            <div>Portfolio Value: {user["total worth"]}</div>
+
+        <div id="info-container" style={{ display: "flex" }}>
+          <div
+            id="protfolio-value"
+            style={{
+              borderRadius: "50%",
+              border: "10px solid red",
+              height: "150px",
+              width: "150px",
+              display: "inline-block",
+              margin: "10px"
+            }}
+          >
+            <div className="info-data">
+              <div>Portfolio Value:</div> <div>{user.totalWorth}</div>
+            </div>
           </div>
-        <div id="dashboard-item" >
-          Available Cash: {user["available cash"]}
-        </div>
-        <div id="dashboard-item">
-          Annual Return: {user["average return"]}
-        </div>
+          <div
+            id="available-cash"
+            style={{
+              borderRadius: "50%",
+              border: "10px solid red",
+              height: "150px",
+              width: "150px",
+              display: "inline-block",
+              margin: "10px"
+            }}
+          >
+            Available Cash: {user.availableCash}
+          </div>
+          <div
+            id="available-cash"
+            style={{
+              borderRadius: "50%",
+              border: "10px solid red",
+              height: "150px",
+              width: "150px",
+              display: "inline-block",
+              margin: "10px"
+            }}
+          >
+            Annual Return: {user.averageReturn}
+          </div>
+          <br />
+          <Link to={"/market"}>
+            <button
+              id="add-investment"
+              style={{
+                border: "10px solid green",
+                height: "75px",
+                display: "inline-block",
+                margin: "10px"
+              }}
+            >
+              Add Investment!
+            </button>
+          </Link>
+
         <br />
         <Link to={"/market"}>
           <button
@@ -30,4 +78,4 @@ class infoContainer extends Component {
   }
 }
 
-export default infoContainer;
+export default InfoContainer;
