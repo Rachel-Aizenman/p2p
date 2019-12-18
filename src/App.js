@@ -53,9 +53,9 @@ class App extends Component {
 
 
           <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
-          {/* <Link to={this.props.UserStore.path}>
+          <Link to={this.props.UserStore.path}>
             <button id="log-in-button" onClick={this.handleClick}>Log-in</button>
-          </Link> */}
+          </Link>
          
 
             

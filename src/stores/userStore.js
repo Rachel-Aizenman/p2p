@@ -10,7 +10,6 @@ export class UserStore {
   @action getData = async () => {
     let data = await axios.get(dataRoute);
     data = data.data
-    console.log(data)
     this.user = data;
     if(this.user.openLoans){
       for(let loan of this.user.openLoans){
@@ -22,7 +21,7 @@ export class UserStore {
     }
   }
   @action setPath() {
-    if (this.uesr.type === "b")
+    if (this.user.type === "b")
       this.path = "/giveLoan"
     else
       this.path = "/takeLoan"
