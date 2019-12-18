@@ -7,7 +7,7 @@ export class InputStore {
     @observable payment
     @observable withdrawInput
     @action handleInput = (param, value) => {
-        console.log('here')
+        console.log(value)
         this[param] = value
     }
 }
