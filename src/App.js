@@ -9,23 +9,21 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
-import Axios from 'axios';
-// import UserStore from './stores/UserStore';
+import { inject } from "mobx-react";
+
+
 
 @inject('InputStore', 'UserStore')
 @observer
+@inject('inputStore')
 class App extends Component {
-  handleClick = async () => {
-    const InputStore = this.props.InputStore
-    const UserStore = this.props.UserStore
-    const username = InputStore.username
-    await UserStore.loadData(username)
-    UserStore.setPath()
-  }
+
   handleInput = e => {
     const name = e.target.name
     const value = e.target.value
-    this.props.InputStore(name, value)
+    this.props.inputStore.handleInput(name, value)
+    
+
   }
   render() {
     return (
@@ -48,6 +46,7 @@ class App extends Component {
               </Link>
             </div>
           </header>
+
 
           <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
           <Link to={this.props.UserStore.path}>

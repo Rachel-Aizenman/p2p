@@ -15,6 +15,7 @@ export class InputStore {
     @observable uesrname
     @observable purpose
     
+
     @action handleInput = (param, value) => {
         this[param] = value
     }
