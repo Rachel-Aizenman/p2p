@@ -22,7 +22,7 @@ class Lender extends Component {
         <h2>Lender</h2>
         <NavBar />
         <InfoContainer />
-        <DynamicTable head={header} keys={keys} rows={rows} />
+        <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.userStore.user.userID}/>
       </div>
     )
   }
