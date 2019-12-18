@@ -3,9 +3,7 @@ import './App.css';
 import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Lender from './components/Lender/lender'
-import DynamicTable from './components/DynamicTable'
 import Borrower from './components/Borrower/Borrower'
-
 
 @observer
 class App extends Component {
@@ -29,6 +27,8 @@ class App extends Component {
           <Route path="/" exact render={()=><DynamicTable/>}/>
           <Route path="/take-loan" exact render={() => <Borrower />} />
           <Route path="/give-loan" exact render={() => <Lender />} />
+          <Route path="/deposit" exact render={() => <Deposit />} />
+          <Route path='/withdraw' exact render={() => <Withdraw/>}/>
         </div>
       </Router>
     );
