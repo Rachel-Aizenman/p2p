@@ -31,9 +31,9 @@ router.post("/addLoan", async function(req, res) {
       //           "average return": 7.8, // lender - weighted average interest rate
       //             "next payment": "15-02-19" // open loans 
 
-      router.get('/transaction', (req, res)=> {
-        console.log("Hi")
-        res.send('hi')
+  router.put('/transaction', (req, res)=> {
+        console.log(req.body)
+        res.send(req.body)
        })
     
 
