@@ -20,6 +20,9 @@ export class UserStore {
       "average return": 7.8,
       "next payment": "15-02-19"
     }
+<<<<<<< HEAD
+    
+=======
     this.openLoans = [{
 
       "remaining amount": 4300,
@@ -43,6 +46,7 @@ export class UserStore {
     }
   
   ]
+>>>>>>> cf1c0c6df27ab09bd45eba1d157e3a7edcc098d9
 
     console.log(this.user)
 
