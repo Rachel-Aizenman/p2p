@@ -27,7 +27,6 @@ export default function SimpleTable(props) {
     const classes = useStyles();
     return (
         <TableContainer id='dynamic-table' component={Paper}>
-            <h3>Browse Loan Requests:</h3>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
