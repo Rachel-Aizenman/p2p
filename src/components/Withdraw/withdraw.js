@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
 import Slider from '../Slider'
@@ -5,8 +6,35 @@ import axios from 'axios';
 import NavBar from '../Lender/lenderNavBar'
 
 @inject('userStore', 'inputStore')
+
 @observer
 class Withdraw extends Component {
+  withdraw = () => {
+    const user = this.props.userStore.user.username;
+    const withdrawal = {
+      amount: -this.props.inputStore.withdrawInput,
+      user: user
+    };
+    axios.put("https://localhost:3001/transaction", withdrawal);
+  };
+  render() {
+    this.props.userStore.getData();
+    return (
+      <div>
+        <NavBar />
+        <div
+          id="available-cash"
+          style={{
+            borderRadius: "50%",
+            border: "10px solid red",
+            height: "150px",
+            width: "150px",
+            display: "inline-block",
+            margin: "10px"
+          }}
+        >
+          Portfolio Value:
+        </div>
 
     withdraw  = () => {
        const user = this.props.userStore.user.username

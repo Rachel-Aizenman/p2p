@@ -7,22 +7,33 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 // import { white } from 'material-ui/styles/colors';
 
 const useStyles = makeStyles({
     table: {
         minWidth: 250,
-        color: "white",
+        // color: "white",
     },
     TableCell: {
         root: {
-            color: "white"
+            // color: "white"
         }
     }
 });
-const handleClick = (e) => {
-  const selectedInvest = [e.target.id]
-  console.log(selectedInvest)
+
+const handleClick = async(e) => {
+
+    const loanId = e.target.id
+  const userId = e.target.name
+  const borrowerId =  e.target.value
+  const loanInfo = {
+      loanID: loanId,
+      userID: userId,
+      borrowerName: borrowerId
+  }
+  console.log(loanInfo)
+  await axios.put('/fundLoan', loanInfo)
 }
 
 export default function SimpleTable(props) {
@@ -37,9 +48,9 @@ export default function SimpleTable(props) {
                 </TableHead>
                 <TableBody>
                     {props.rows.map(row => (
-                        <TableRow key={row.name}>
+                        <TableRow key={row.username}>
                             {props.keys.map(c => <TableCell align="left">{row[c]}</TableCell>)}
-                            {props.market ? <TableCell><button id={row.id} onClick={handleClick}>aaa</button></TableCell> : null}
+                            {props.market ? <TableCell><button id={row.id} name={props.userID} value={row.username} onClick={handleClick}>aaa</button></TableCell> : null}
                         </TableRow>
 
                     ))}

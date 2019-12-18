@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { inject } from "mobx-react";
-import axios from 'axios';
-
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import axios from "axios";
 
 @inject('userStore')
+@observer
 class depositeReport extends Component {
 
     deposit = () => {
@@ -41,9 +41,8 @@ class depositeReport extends Component {
                 {/* Date: <input type='date' id='date'/> */}
                 <br/>
                 <button onClick={this.deposit}>Report Deposit</button>
-
-            </div>
-        )
-    }
+          </div>
+    );
+  }
 }
-export default depositeReport;
+export default DepositReport;
