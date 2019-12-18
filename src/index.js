@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {UserStore} from './stores/UserStore'
-import {Provider} from 'mobx-react'
 import {InputStore} from './stores/InputStore'
+import {Provider} from 'mobx-react'
 
 let userStore = new UserStore()
 let inputStore = new InputStore()

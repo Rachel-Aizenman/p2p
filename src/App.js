@@ -10,7 +10,7 @@ import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
 import Axios from 'axios';
-import UserStore from './stores/userStore';
+// import UserStore from './stores/UserStore';
 
 @inject('InputStore', 'UserStore')
 @observer
