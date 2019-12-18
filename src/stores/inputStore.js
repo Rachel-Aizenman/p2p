@@ -1,5 +1,6 @@
 import { observable, action, computed } from "mobx";
 const default_color = "#39D1B4";
+
 export class InputStore {
     @observable name
     @observable id
