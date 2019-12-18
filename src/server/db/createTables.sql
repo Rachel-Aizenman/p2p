@@ -3,7 +3,7 @@ USE p2p;
 create TABLE user(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30),
-    paswword VARCHAR(10),
+    password VARCHAR(10),
     type VARCHAR(1),
     availableMoney INT
 );
