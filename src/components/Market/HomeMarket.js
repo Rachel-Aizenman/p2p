@@ -4,18 +4,17 @@ import { inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
 @inject('userStore')
-class Market extends Component {
+class HomeMarket extends Component {
 
   render() {
     this.props.userStore.getData()
-    const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)', 'Invest']
+    const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']
     const keys = ['username', 'period', 'purpose', 'amount', 'funded', 'interest', ]
     const rows = this.props.userStore.openLoans
     return (
       <div>
-        <h3>Browse Loan Requests:</h3>
-        <NavBar />
-        <DynamicTable head={header} keys={keys} rows={rows} market={true}/>
+        <h3>Currently Available Loan requests</h3>
+        <DynamicTable head={header} keys={keys} rows={rows} />
       </div>
     )
   }
@@ -23,4 +22,4 @@ class Market extends Component {
 
 
 
-export default Market;
+export default HomeMarket;

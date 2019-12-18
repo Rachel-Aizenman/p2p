@@ -10,7 +10,7 @@ class navBar extends Component {
         <Link to={"/deposit"}>
           <button>Deposit</button>
         </Link>
-        <Link to={"/newLoan"}>
+        <Link to={"/Market"}>
           <button>Add Loan</button>
         </Link>
         <Link to={"/withdraw"}>
