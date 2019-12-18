@@ -23,41 +23,76 @@ router.post("/addLoan", async function(req, res) {
 
 // userdata
 
-      // "monthlyPayment": 500, // borrower - sum payments
-      // "available cash": 6000, // lender available cash (user) 
-      
-      //     "remaining amount": 6,
-      //       "open loans": 4, // open loans - all loans with user's name
-      //           "average return": 7.8, // lender - weighted average interest rate
-      //             "next payment": "15-02-19" // open loans 
 
-  router.put('/transaction', (req, res)=> {
-        console.log(req.body)
-        res.send(req.body)
-       })
-    
 
-router.get("/userData/:username", async function (req, res) {
-  const username = req.params.username
-  const [userID,type,availableCash] = getUserInfo(username)
-  const [noOfLoans,totalWorth] = overallLoanData(userID,type)
-  const [remainingAmount,interest]=remainingAmountAndInterest(totalWorth)
-  const openLoans = getOpenLoans(userID)
-  
- 
-  
-  // "monthlyPayment":500,
-  // "open loans": 4,
-  // "available cash": 6000,
-  // "next payment": "15-02-19"
-  
-  // monthly payment
+router.get("/userData/:username", async function(req, res) {
+  const username = req.params.username;
+  const [userID, type, availableCash] = await getUserInfo(username);
+  const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
+  const [remainingAmount, interest] = await remainingAmountAndInterest(
+    userID,
+    totalWorth,
+    type
+  );
+  const openLoans = await getOpenLoans(userID);
+  let monthlyPayment = 0;
+  openLoans.forEach(l => (monthlyPayment += l.monthlyPayment));
+  const nextPayment = getNextPayment(openLoans);
+  const user = {
+    userID,
+    username,
+    noOfLoans,
+    monthlyPayment,
+    "total worth": totalWorth,
+    "remaining amount": remainingAmount,
+    "open loans": openLoans,
+    "available cash": availableCash,
+    "average return": interest,
+    "next payment": nextPayment
+  };
+  res.send(user);
 
-  
-  
-  // available cash - get from user table
+  function getNextPayment(openLoans) {
+    const today = moment();
+    const date = parseInt(today.format("DD"));
+    const month = parseInt(today.format("MM"));
+    const year = parseInt(today.format("YYYY"));
 
-})
+    let closestDay = date;
+    let min = date;
+
+    for (let loan of openLoans) {
+      dateData = loan.issuanceDate;
+      currentDay = moment(dateData).format("DD");
+      if (currentDay > date && currentDay < closestDay) closestDay = currentDay;
+      if (currentDay < min) min = currentDay;
+    }
+
+    let nextPayment;
+    if (closestDay > date)
+      nextPayment = moment(`${closestDay}-${month}-${year}`);
+    else if (month < 12) nextPayment = moment(`${min}-${month + 1}-${year}`);
+    else nextPayment = moment(`${min}-01-${year + 1}`);
+
+    return nextPayment;
+  }
+});
+
+async function getUserInfo(username) {
+  const query = `SELECT id, type, availableMoney FROM user WHERE username='${username}'`;
+  let result = await sequelize.query(query);
+  result = result[0][0];
+  return [result.id, result.type, result.availableMoney];
+}
+async function getOpenLoans(userID) {
+  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${userID} AND loanID=loan.id`;
+  let openLoans = await sequelize.query(query);
+  return openLoans[0];
+}
+
+
+
+
 
 async function getUserInfo(username) {
   const query = `SELECT id type FROM user WHERE username='${username}'`
@@ -73,102 +108,36 @@ async function getOpenLoans(userID){
 async function overallLoanData(userID,userType) {
   const typeColumn = userType === "l" ? 'lender' : 'borrower'
   let query = `SELECT count(*) AS noOfLoans, SUM(loan.amount) AS totalWorth
-  FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
-  WHERE ${typeColumn}=${userID}`
-  let result = await sequelize.query(query)
-  result= rseult[0][0]
-  return [result.noOfLoans,result.totalWorth]
+  FROM loan_lender 
+  INNER JOIN loan ON loan_lender.loanID=loan.id
+  WHERE ${typeColumn}=${userID}`;
+  let result = await sequelize.query(query);
+  result = result[0][0];
+  return [result.noOfLoans, result.totalWorth];
 }
 
 //average return - calculates routes
-async function remainingAmountAndInterest(userID,totalWorth){
-  const typeColumn = userType === "l" ? 'lender' : 'borrower'
+
+async function remainingAmountAndInterest(userID, totalWorth, userType) {
+  const typeColumn = userType === "l" ? "lender" : "borrower";
+
   let query = `SELECT amount, interest, amountPaid  
   FROM loan_lender INNER JOIN loan ON loan_lender.loanID=loan.id
-  WHERE loan_lender.${typeColumn}=${userID}`
-  let result = await sequelize.query(query)
-  result=result[0]
-
- let fundAndInterest=0
- let totalAmountPaid=0
- let returnFactor
- for (let loan of loans){
-   returnFactor=1+loan.interest/100
-   fundAndInterest+=loan.amount*returnFactor
-   totalAmountPaid+=loan.amountPaid
- }
- const remainingAmount=fundAndInterest-totalAmountPaid;
- const averageInterest=fundAndInterest/totalWorth
- return [remainingAmount,averageInterest]
-  // amount
-  console.log(result)
- return result
-}
-
-
-// let userName = req.params.userName;
-// query = `SELECT * FROM user WHERE userName = '${userName}'`;
-// let user = await sequelize.query(query);
-// user = user[0][0];
-
-// if (user.type === "l") {
-//   query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
-//   let openLoans = await sequelize.query(query);
-//   openLoans = openLoans[0];
-//   user = [user];
-//   user.push(openLoans);
-//   res.send(user);
-// } else {
-//   query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} AND loanID=loan.id `;
-//   let openLoans = await sequelize.query(query);
-//   openLoans = openLoans[0];
-//   user = [user];
-//   user.push(openLoans);
-//   res.send(user);
-// }
-
-
-// "userID": 1,
-//   "username": "Rachel",
-//     "noOfLoans": 3, - Borrower
-//       "monthlyPayment": 500, // borrower - sum payments
-//         "total worth": 5000, // lender - sum loans
-//           "remaining amount": 6,
-//             "open loans": 4, // open loans - all loans with user's name
-//               "available cash": 6000, // lender available cash (user)
-//                 "average return": 7.8, // lender - weighted average interest rate
-//                   "next payment": "15-02-19" // open loans
-
-router.get("/userData/:userName", async function(req, res) {
-  // remaining amount
-
-  //
-  let userName = req.params.userName;
-  query = `SELECT * FROM user WHERE userName = '${userName}'`;
-  let user = await sequelize.query(query);
-  user = user[0][0];
-  if (user.type === "l") {
-    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} OR loan_lender.lender = ${user.id} AND loanID=loan.id `;
-    let openLoans = await sequelize.query(query);
-    openLoans = openLoans[0];
-    let numOfLoans = openLoans.length;
-    let monthlyPayment;
-    let totalWorh;
-    let remainingAmount;
-    openLoans.forEach(p => (monthlyPayment = +(p.amount * p.interest)));
-    user = [user];
-    user.push(openLoans);
-    res.send(user);
-  } else {
-    query = `SELECT * FROM loan,loan_lender WHERE loan_lender.borrower = ${user.id} AND loanID=loan.id `;
-    let openLoans = await sequelize.query(query);
-    openLoans = openLoans[0];
-    user = [user];
-    user.push(openLoans);
-    res.send(user);
+  WHERE loan_lender.${typeColumn}=${userID}`;
+  let result = await sequelize.query(query);
+  result = result[0];
+  let fundAndInterest = 0;
+  let totalAmountPaid = 0;
+  let returnFactor;
+  for (let loan of result) {
+    returnFactor = 1 + loan.interest / 100;
+    fundAndInterest += loan.amount * returnFactor;
+    totalAmountPaid += loan.amountPaid;
   }
-});
-
+  const remainingAmount = fundAndInterest - totalAmountPaid;
+  const averageInterest = fundAndInterest / totalWorth;
+  return [remainingAmount, averageInterest];
+}
 
 // fund loan fix !!!! -
 

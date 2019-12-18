@@ -20,9 +20,59 @@ export class UserStore {
       "average return": 7.8,
       "next payment": "15-02-19"
     }
+<<<<<<< HEAD
     
     this.openLoans = []
   
+=======
+
+    this.openLoans = [{
+
+        "id": "5df8ddf3gart6ergdfgsreww23",
+        "username":  "Shoobert",
+        "period": 12,
+        "purpose": "coding bootcamp",
+        "amount": 934,
+        "interest": 5,
+        "funded": 90,
+        "remaining amount": 4300,
+        "status": "OK",
+        "issuance date": "15-09-19",
+        "next payment": "15-01-20",
+      },
+      {
+
+        "id": "5df8ddf3gart6ergdfgsreww23",
+        "username":  "Dudi",
+        "period": 12,
+        "purpose": "coding bootcamp",
+        "amount": 934,
+        "interest": 5,
+        "funded": 90,
+        "remaining amount": 4300,
+        "status": "OK",
+        "issuance date": "15-09-19",
+        "next payment": "15-01-20",
+      },
+    {
+
+      "id": "5df8ddf3gart6ergdfgsreww23",
+      "username":  "rachel",
+      "period": 12,
+      "purpose": "coding bootcamp",
+      "amount": 934,
+      "interest": 5,
+      "funded": 90,
+      "remaining amount": 4300,
+      "status": "OK",
+      "issuance date": "15-09-19",
+      "next payment": "15-01-20",
+    }
+  
+  ]
+
+    console.log(this.user)
+>>>>>>> fd54c8e2f3384edccd475e410940b048813a2c7c
 
     // let data = await axios.get(dataRoute);
     // data = data.data[0];
