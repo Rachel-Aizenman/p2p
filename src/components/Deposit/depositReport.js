@@ -6,13 +6,14 @@ import axios from 'axios';
 class depositeReport extends Component {
     deposit = () => {
         const deposit = {
-            name: document.getElementById('date').value,
+            name: document.getElementById('name').value,
             id: document.getElementById('id').value,
             account: document.getElementById('account').value,
             deposit: document.getElementById('deposit').value,
             amount: document.getElementById('amount').value,
             date: document.getElementById('date').value
         }
+        console.log(deposit)
         axios('https://localhost:3001/transaction', deposit)
     }
     

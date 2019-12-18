@@ -14,16 +14,18 @@ const useStyles = makeStyles({
         minWidth: 250,
         color: "white",
     },
-    TableCell:{
-        root:{
-            color:"white"
+    TableCell: {
+        root: {
+            color: "white"
         }
     }
 });
-
+const handleClick = (e) => {
+  const selectedInvest = [e.target.id]
+  console.log(selectedInvest)
+}
 
 export default function SimpleTable(props) {
-    console.log(props)
     const classes = useStyles();
     return (
         <TableContainer id='dynamic-table' component={Paper}>
@@ -37,7 +39,9 @@ export default function SimpleTable(props) {
                     {props.rows.map(row => (
                         <TableRow key={row.name}>
                             {props.keys.map(c => <TableCell align="left">{row[c]}</TableCell>)}
+                            {props.market ? <TableCell><button id={row.id} onClick={handleClick}>aaa</button></TableCell> : null}
                         </TableRow>
+
                     ))}
                 </TableBody>
             </Table>

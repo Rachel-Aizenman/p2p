@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { inject } from "mobx-react";
-import InfoContainer from './depositeInfoContainer'
-import DepositeReport from './depositeReport'
+import InfoContainer from './depositInfoContainer'
+import DepositeReport from './depositReport'
 
 @inject('userStore')
 class deposite extends Component {
