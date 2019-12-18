@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { inject } from "mobx-react";
+import { observer, inject } from "mobx-react";
 
 @inject("userStore")
-class infoContainer extends Component {
+@observer
+class InfoContainer extends Component {
   render() {
     const user = this.props.userStore.user;
-
     return (
         <div id="info-container" style={{ display: "flex" }}>
           <div
@@ -21,7 +21,7 @@ class infoContainer extends Component {
             }}
           >
             <div className="info-data">
-              <div>Portfolio Value:</div> <div>{user["total worth"]}</div>
+              <div>Portfolio Value:</div> <div>{user.totalWorth}</div>
             </div>
           </div>
           <div
@@ -35,7 +35,7 @@ class infoContainer extends Component {
               margin: "10px"
             }}
           >
-            Available Cash: {user["available cash"]}
+            Available Cash: {user.availableCash}
           </div>
           <div
             id="available-cash"
@@ -48,7 +48,7 @@ class infoContainer extends Component {
               margin: "10px"
             }}
           >
-            Annual Return: {user["average return"]}
+            Annual Return: {user.averageReturn}
           </div>
           <br />
           <Link to={"/market"}>
@@ -69,4 +69,4 @@ class infoContainer extends Component {
   }
 }
 
-export default infoContainer;
+export default InfoContainer;

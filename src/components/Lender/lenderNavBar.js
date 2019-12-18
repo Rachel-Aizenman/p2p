@@ -1,19 +1,18 @@
-
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { inject } from "mobx-react";
+import { observer, inject } from "mobx-react";
 
 
 @inject("userStore")
-class navBar extends Component {
-
+@observer
+class NavBar extends Component {
   render() {
     return (
       <div className="nav-bar">
         <Link to={"/deposit"}>
           <button>Deposit</button>
         </Link>
-        <Link to={"/Market"}>
+        <Link to={"/market"}>
           <button>Add Loan</button>
         </Link>
         <Link to={"/withdraw"}>
@@ -25,4 +24,4 @@ class navBar extends Component {
 
 }
 
-export default navBar;
+export default NavBar;

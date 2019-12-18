@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import NavBar from '../Lender/lenderNavBar'
-import { inject } from "mobx-react";
+import NavBar from '../Lender/LenderNavBar'
+import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
 @inject('userStore')
+@observer
 class Market extends Component {
 
   render() {
