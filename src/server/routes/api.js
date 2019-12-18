@@ -4,6 +4,16 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 const moment = require("moment");
 
+router.put('/transaction', function (req, res) {
+  let username =  req.body.username
+  let availableMoney = req.body.availableMoney
+
+  let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`
+  sequelize.query(update_query)
+
+  res.end()
+})
+
 router.post("/addLoan", async function(req, res) {
   let loan = req.body.loan;
   let amount = loan.amount;
@@ -47,20 +57,21 @@ router.get("/userData/:username", async function(req, res) {
   openLoans.forEach(l => (monthlyPayment += l.monthlyPayment));
   const nextPayment = getNextPayment(openLoans);
   const user = {
-    userID,
-    username,
-    noOfLoans,
-    monthlyPayment,
-    "total worth": totalWorth,
-    "remaining amount": remainingAmount,
-    "open loans": openLoans,
-    "available cash": availableCash,
-    "average return": interest,
-    "next payment": nextPayment
+    userID:userID,
+    username:username,
+    noOfLoans:noOfLoans,
+    monthlyPayment:monthlyPayment,
+    totalWorth: totalWorth,
+    remainingAmount: remainingAmount,
+    openLoans: openLoans,
+    availableCash: availableCash,
+    interest: interest,
+    nextPayment: nextPayment
   };
   res.send(user);
+})
 
-  function getNextPayment(openLoans) {
+function getNextPayment(openLoans) {
     const today = moment();
     const date = parseInt(today.format("DD"));
     const month = parseInt(today.format("MM"));
@@ -84,7 +95,7 @@ router.get("/userData/:username", async function(req, res) {
 
     return nextPayment;
   }
-});
+
 
 async function getUserInfo(username) {
   const query = `SELECT id, type, availableMoney FROM user WHERE username='${username}'`;
@@ -103,13 +114,13 @@ async function getOpenLoans(userID) {
 
 
 async function getUserInfo(username) {
-  const query = `SELECT id type FROM user WHERE username='${username}'`
+  const query = `SELECT id ,type FROM user WHERE username='${username}'`
   let result = await sequelize.query(query)
   result = result[0][0]
   return [result.id,result.type,result.availableCash]
 }
 async function getOpenLoans(userID){
-  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${user.id} AND loanID=loan.id `;
+  query = `SELECT * FROM loan,loan_lender WHERE loan_lender.lender = ${userID} AND loanID=loan.id `;
   let openLoans = await sequelize.query(query);
   return openLoans[0];
 }

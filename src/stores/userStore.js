@@ -1,11 +1,13 @@
 import { observable, action, computed } from "mobx";
 import axios from "axios";
-// const dataRoute = "http://localhost:3001/userData";
-import data from '../../src/data.json'
+const dataRoute = "http://localhost:3001/userData/Zimmerman";
+
 
 export class UserStore {
-  @observable user = [] 
+  @observable user = []
   @observable openLoans = []
+  @observable path
+  @action getData = async (username) => {
 
   @action getData = async (user) => {
   //   this.user = {
@@ -64,7 +66,16 @@ export class UserStore {
 
     let data = await axios.get(`https://localhost:3001/userData/${user}`);    
     this.user = data;
+
   };
+
+  @action setPath() {
+    if (this.uesr.type === "b")
+      this.path = "/give-loan"
+    else
+      this.path = "/take-loan"
+  }
+
 }
 
 export default UserStore;

@@ -2,6 +2,7 @@ let users = require("./users.json");
 let loans = require("./loans.json");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
+
 async function fillUsers() {
   let userName, password, type, availableMoney;
   try {
@@ -11,17 +12,19 @@ async function fillUsers() {
       type = user.type;
       availableMoney = user.availableMoney;
       query = `INSERT INTO user
-               VALUES(null,'${userName}','${type}',${availableMoney},'${password}')`;
+               VALUES(null,'${userName}','${password}','${type}',${availableMoney})`;
       await sequelize.query(query);
     }
   } catch (e) {
     console.log(e);
   }
 }
+
 // fillUsers();
 // query = `SELECT * FROM user`
 // sequelize.query(query).then(function(result,metadata){console.log(result[0])
 // })
+
 async function fillLoans() {
   let amount,
     interest,
@@ -41,8 +44,7 @@ async function fillLoans() {
       status = loan.status;
       dateOfIssuance = loan.dateOfIssuance;
       percentage = loan.percentage;
-      query = `INSERT INTO loan
-                 VALUES(null,${amount},${interest},'${purpose}',${period},${amountPaid},'${status}','${dateOfIssuance}',1,10)`;
+      query = `INSERT INTO loan VALUES(null,'${amount}','${interest}','${purpose}','${period}','${amountPaid}','${status}','${dateOfIssuance}','${percentage}')`;
     await sequelize.query(query);
     }
   } catch (e) {

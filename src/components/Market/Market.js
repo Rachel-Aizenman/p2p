@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from '../Lender/lenderNavBar'
-import { inject, observer } from "mobx-react";
+import NavBar from '../Lender/LenderNavBar'
+import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
 @inject('userStore')
@@ -59,7 +59,7 @@ class Market extends Component {
       <div>
         <h3>Browse Loan Requests:</h3>
         <NavBar />
-        <DynamicTable head={header} keys={keys} rows={rows} market={true}/>
+        <DynamicTable head={header} keys={keys} rows={rows} market={true} userID={this.props.userStore.user.userID}/>
       </div>
     )
   }
