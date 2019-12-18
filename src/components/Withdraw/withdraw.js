@@ -14,7 +14,7 @@ class Withdraw extends Component {
            user: user
        }
        console.log(withdrawal)
-  axios.put('https://localhost:3001/transaction', withdrawal)
+  axios.put('http://localhost:3001/transaction', withdrawal)
 
     }
     render() {
