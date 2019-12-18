@@ -1,12 +1,14 @@
 -- -- create DATABASE p2p;
 USE p2p;
+
 -- create TABLE user(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     username VARCHAR(30),
---     paswword VARCHAR(10),
+--     paswword VARCHAR(60),
 --     type VARCHAR(1),
 --     availableMoney INT
 -- );
+
 -- create TABLE loan(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     amount int,
@@ -18,6 +20,7 @@ USE p2p;
 --     dateOfIssuance Date,
 --     percentage int
 -- );
+
 -- create TABLE loan_lender(
 --     loanID INT,
 --     borrower INT,
@@ -31,5 +34,9 @@ USE p2p;
 -- ALTER TABLE loan
 -- ADD monthlyPayment INT;
 
-ALTER TABLE user
-ADD password varchar(60)
+-- ALTER TABLE user
+-- ADD password varchar(60)
+
+-- DROP TABLE loan_lender;
+-- DROP TABLE loan;
+-- DROP TABLE user;

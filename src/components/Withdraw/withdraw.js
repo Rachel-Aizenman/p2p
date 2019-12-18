@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import Slider from '../Slider'
 import axios from 'axios';
 import NavBar from '../Lender/lenderNavBar'
 
 @inject('userStore', 'inputStore')
+@observer
 class Withdraw extends Component {
 
     withdraw  = () => {
        const user = this.props.userStore.user.username
+       const availableMoney=this.props.userStore.user["available cash"]
        const withdrawal = {
-           amount:  - this.props.inputStore.withdrawInput,
-           user: user
+            availableMoney:  availableMoney - this.props.inputStore.withdrawInput,
+           username: user
        }
        console.log(withdrawal)
   axios.put('http://localhost:3001/transaction', withdrawal)
