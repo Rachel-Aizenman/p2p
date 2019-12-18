@@ -35,7 +35,7 @@ class Borrower extends Component {
 
         return (
             <div>
-                <h1>Borrower</h1>
+                <h2>Borrower</h2>
                 <div><span className="header">Hello User</span> <span className="header">Status: OK</span></div>
                 <div id="infos">
                     <div className="info">Amount remained to pay: {user.remainingAmount}$</div>

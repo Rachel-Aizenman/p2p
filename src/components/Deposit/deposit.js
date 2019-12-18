@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import InfoContainer from "./DepositInfoContainer";
@@ -56,6 +57,7 @@ class Deposit extends Component {
       </div>
     );
   }
+
 }
 
 export default Deposit;

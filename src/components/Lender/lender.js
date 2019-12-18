@@ -19,6 +19,7 @@ class Lender extends Component {
     const button = <TableCell><button>+</button></TableCell>
     return (
       <div>
+        <h2>Lender</h2>
         <NavBar />
         <InfoContainer />
         <DynamicTable head={header} keys={keys} rows={rows} />
