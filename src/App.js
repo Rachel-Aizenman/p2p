@@ -16,6 +16,7 @@ import Login from './components/Login'
 class App extends Component {
    async componentWillMount(){
     await this.props.UserStore.getData()
+    await this.props.UserStore.getNewLoans()
    }
 
   render() {

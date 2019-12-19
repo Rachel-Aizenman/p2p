@@ -32,19 +32,18 @@ class BorrowerNewLoan extends Component {
     this.props.InputStore.handleInput(name, value);
   };
 
-  handleClick = () => {
-    this.props.UserStore.getData();
+  handleClick = async () => {
+    await this.props.UserStore.getData();
     const loan = {
-
       userName : this.props.UserStore.user.username,
-      purpose: this.props.inputStore.purpose,
-      amount: this.props.inputStore.amount,
-      period: this.props.inputStore.period,
-      interest: this.props.inputStore.interest,
-      monthlyPayment: this.props.inputStore.payment
+      purpose: this.props.InputStore.purpose,
+      amount: this.props.InputStore.amount,
+      period: this.props.InputStore.period,
+      interest: this.props.InputStore.interest,
+      monthlyPayment: this.props.InputStore.payment
     };
-    axios.post(postRoute, loan);
-
+    await axios.post(postRoute, loan);
+    await this.props.UserStore.getNewLoans();
   };
 
   changeColor = e => {
