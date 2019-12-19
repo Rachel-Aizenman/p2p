@@ -11,8 +11,9 @@ import './Home.css'
 class HomeMarket extends Component {
   render() {
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']
-    const keys = ['username', 'period', 'purpose', 'amount', 'funded', 'interest',]
-    const rows = this.props.UserStore.openLoans
+
+    const keys = ['borrowerName', 'period', 'purpose', 'amount','percentage','interest']
+    const rows = this.props.UserStore.newLoans
     return (
       <div>
           <div className="nav-bar">

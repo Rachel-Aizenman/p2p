@@ -2,5 +2,5 @@ USE p2p;
 
 
 
-DROP TABLE loan
-
+ALTER TABLE loan
+ADD borrowerName VARCHAR(50);
