@@ -9,6 +9,7 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
+import Login from './components/Login'
 
 @inject("UserStore", "InputStore")
 @observer
@@ -16,18 +17,7 @@ class App extends Component {
    async componentWillMount(){
     await this.props.UserStore.getData()
    }
-  handleClick = async () => {
-    const InputStore = this.props.InputStore
-    const UserStore = this.props.UserStore
-    const username = InputStore.username
-    await UserStore.loadData(username)
-    UserStore.setPath()
-  }
-  handleInput = e => {
-    const name = e.target.name
-    const value = e.target.value
-    this.props.InputStore(name, value)
-  }
+
   render() {
     return (
       <Router>
@@ -49,10 +39,9 @@ class App extends Component {
               </Link>
             </div>
           </header>
-          <span>username </span><input name="username" id="username-input" onChange={this.handleInput}></input>
-          {/* <Link to={this.props.UserStore.path}>
-            <button id="log-in-button" onClick={this.handleClick}>Log-in</button>
-          </Link> */}
+         
+          
+          <Route path="/" exact render={()=><Login/>}/>
           <Route path="/" exact render={()=><HomeMarket/>}/>
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>

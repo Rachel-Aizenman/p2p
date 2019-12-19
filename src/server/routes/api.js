@@ -45,6 +45,7 @@ router.post("/addLoan/", async function(req, res) {
 
 router.get("/userData/:username", async function(req, res) {
   const username = req.params.username;
+  console.log(username)
   const [userID, type, availableCash] = await getUserInfo(username);
   const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
   const [remainingAmount, interest] = await remainingAmountAndInterest(
