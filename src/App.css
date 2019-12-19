@@ -5,6 +5,7 @@ button {
   font-weight: 800;
   font-size: larger;
   cursor: pointer;
+  
 }
 
 .App-logo {
@@ -104,4 +105,3 @@ header {
 #deposite-container{
   align-items: center;
 }
- 

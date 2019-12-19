@@ -9,6 +9,7 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
+import Welcome from './Welcome/Welcome'
 import Login from './components/Login'
 
 @inject("UserStore", "InputStore")
@@ -22,35 +23,14 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <header>
-            <Link to="/">
-              <h1>PayPi</h1>
-            </Link>
-            <div className="nav-bar">
-              <Link className="nav-btn" to="/">
-                <button>Home<hr /></button>
-              </Link>
-
-              <Link className="nav-btn" to="/takeLoan">
-                <button>Loan<hr /></button>
-              </Link>
-              <Link className="nav-btn" to="/giveLoan">
-                <button>Lend<hr /></button>
-              </Link>
-            </div>
-          </header>
-         
-          
-          <Route path="/" exact render={()=><Login/>}/>
-          <Route path="/" exact render={()=><HomeMarket/>}/>
+          <Route path="/" exact render={()=><Welcome/>}/>
+          <Route path="/home" exact render={()=><HomeMarket/>}/>
           <Route path="/market" exact render={()=><Market/>}/>
           <Route path="/newLoan" exact render={()=><BorrowerNewLoan/>}/>
           <Route path="/takeLoan" exact render={() => <Borrower />} />
           <Route path="/giveLoan" exact render={() => <Lender />} />
           <Route path="/deposit" exact render={() => <Deposit />} />
           <Route path='/withdraw' exact render={() => <Withdraw />} />
-        </div>
       </Router>
     );
   }
