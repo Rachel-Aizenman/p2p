@@ -44,7 +44,8 @@ async function fillLoans() {
       status = loan.status;
       dateOfIssuance = loan.dateOfIssuance;
       percentage = loan.percentage;
-      query = `INSERT INTO loan VALUES(null,'${amount}','${interest}','${purpose}','${period}','${amountPaid}','${status}','${dateOfIssuance}','${percentage}')`;
+      query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},${amountPaid},'${status}','${dateOfIssuance}',${percentage},10)`;
+    
     await sequelize.query(query);
     }
   } catch (e) {

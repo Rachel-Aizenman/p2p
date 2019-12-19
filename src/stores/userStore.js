@@ -1,16 +1,23 @@
 import { observable, action, computed } from "mobx";
 import axios from "axios";
-const dataRoute = "http://localhost:3001/userData/Zimmerman";
+
+const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
 
+
+
+
+
 export class UserStore {
-  @observable user = [];
-  @observable openLoans = [];
-  @observable newLoans = [];
-  @observable path;
-  @action getData = async () => {
-    let data = await axios.get(dataRoute);
-    data = data.data;
+  @observable user = []
+  @observable openLoans = []
+  @observable newLoans = []
+  @observable path
+  @action getData = async (username) => {
+    console.log(dataRoute + username)
+    let data = await axios.get(dataRoute + username);
+    data = data.data
+
     this.user = data;
     if (this.user.openLoans) {
       for (let loan of this.user.openLoans) {
