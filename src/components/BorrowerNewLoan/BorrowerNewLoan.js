@@ -23,8 +23,8 @@ const purposes = [
 const default_color = "#39D1B4";
 const selected_color = "#FFD712";
 
-@observer
 @inject("UserStore", "InputStore")
+@observer
 class BorrowerNewLoan extends Component {
   handleInputChange = e => {
     const value = e.target.value;
@@ -33,9 +33,8 @@ class BorrowerNewLoan extends Component {
   };
 
   handleClick = async () => {
-    await this.props.UserStore.getData();
     const loan = {
-      userName : this.props.UserStore.user.username,
+      userName : this.props.InputStore.username,
       purpose: this.props.InputStore.purpose,
       amount: this.props.InputStore.amount,
       period: this.props.InputStore.period,
@@ -43,6 +42,7 @@ class BorrowerNewLoan extends Component {
       monthlyPayment: this.props.InputStore.payment
     };
     await axios.post(postRoute, loan);
+    await this.props.UserStore.getData(this.props.InputStore.username);
     await this.props.UserStore.getNewLoans();
   };
 

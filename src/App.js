@@ -9,17 +9,15 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
-import Welcome from './Welcome/Welcome'
+import Welcome from './components/Welcome/Welcome'
 import Login from './components/Login'
 
 @inject("UserStore", "InputStore")
 @observer
 class App extends Component {
-   async componentWillMount(){
-    await this.props.UserStore.getData()
-    await this.props.UserStore.getNewLoans()
-   }
-
+  componentWillMount(){
+    this.props.UserStore.getNewLoans()
+  }
   render() {
     return (
       <Router>

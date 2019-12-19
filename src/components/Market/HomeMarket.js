@@ -6,12 +6,15 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import './Home.css'
 
-@inject('UserStore')
+@inject('UserStore','InputStore')
 @observer
 class HomeMarket extends Component {
+  async componentDidMount(){
+    await this.props.UserStore.getData(this.props.InputStore.username)
+    await this.props.UserStore.getNewLoans()
+  }
   render() {
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']
-
     const keys = ['borrowerName', 'period', 'purpose', 'amount','percentage','interest']
     const rows = this.props.UserStore.newLoans
     return (

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import DynamicTable from '../DynamicTable'
 import { inject, observer} from 'mobx-react';
 
-@inject('UserStore')
+@inject('UserStore','InputStore')
 @observer
 class Borrower extends Component {
     render() {
