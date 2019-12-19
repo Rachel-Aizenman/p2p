@@ -33,7 +33,6 @@ const handleClick = async(e,getData) => {
       borrowerName: borrowerName
   }
   await axios.post(fundRoute, loanInfo)
-  console.log(getData)
   getData()
 }
 

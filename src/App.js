@@ -15,11 +15,9 @@ import Login from './components/Login'
 @inject("UserStore", "InputStore")
 @observer
 class App extends Component {
-   async componentWillMount(){
-    await this.props.UserStore.getData()
-    await this.props.UserStore.getNewLoans()
-   }
-
+  componentWillMount(){
+    this.props.UserStore.getNewLoans()
+  }
   render() {
     return (
       <Router>

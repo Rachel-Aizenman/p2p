@@ -5,7 +5,7 @@ import DynamicTable from '../DynamicTable'
 import { inject, observer} from 'mobx-react';
 import NavBar from '../navBar/NavBar'
 
-@inject('UserStore')
+@inject('UserStore','InputStore')
 @observer
 class Borrower extends Component {
     render() {

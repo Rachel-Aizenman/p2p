@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 @inject('UserStore', 'InputStore')
 class Login extends Component {
-
     render() {
         return (
             <div>

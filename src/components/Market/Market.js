@@ -3,15 +3,14 @@ import NavBar from '../Lender/LenderNavBar'
 import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
-@inject('UserStore')
+@inject('UserStore','InputStore')
 @observer
 class Market extends Component {
-  getData = ()=>{
+  getData = () =>{
+    this.props.UserStore.getData(this.props.InputStore.username)
     this.props.UserStore.getNewLoans()
-    this.props.UserStore.getData()
   }
   render() {
-    const getData = this.props.UserStore.getData
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)', 'Invest']
     const keys = ['borrowerName', 'period', 'purpose', 'amount','percentage','interest']
     const rows = this.props.UserStore.newLoans
@@ -19,7 +18,7 @@ class Market extends Component {
       <div>
         <h3>Browse Loan Requests:</h3>
         <NavBar />
-        <DynamicTable head={header} keys={keys} rows={rows} getData={this.getData} market={true} userID={this.props.UserStore.user.userID}/>
+        <DynamicTable head={header} keys={keys} rows={rows} getData={this.getData} name={this.props.UserStore.user.username} market={true} userID={this.props.UserStore.user.userID}/>
       </div>
     )
   }

@@ -10,10 +10,8 @@ export class UserStore {
   @observable newLoans = []
   @observable path
   @action getData = async (username) => {
-    console.log(dataRoute + username)
     let data = await axios.get(dataRoute + username);
     data = data.data
-
     this.user = data;
     if (this.user.openLoans) {
       for (let loan of this.user.openLoans) {
@@ -29,6 +27,7 @@ export class UserStore {
   };
   @action getNewLoans = async () => {
     let data = await axios.get(newLoansRoute);
+    console.log(data)
     if (data) {
       data = data.data;
       this.newLoans = data;
