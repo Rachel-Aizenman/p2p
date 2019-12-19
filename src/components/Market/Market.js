@@ -6,9 +6,11 @@ import DynamicTable from '../DynamicTable'
 @inject('UserStore','InputStore')
 @observer
 class Market extends Component {
-
+  getData = () =>{
+    this.props.UserStore.getData(this.props.InputStore.username)
+    this.props.UserStore.getNewLoans()
+  }
   render() {
-    const getData = this.props.UserStore.getData
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)', 'Invest']
     const keys = ['borrowerName', 'period', 'purpose', 'amount','percentage','interest']
     const rows = this.props.UserStore.newLoans

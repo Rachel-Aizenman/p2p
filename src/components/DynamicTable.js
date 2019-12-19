@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     }
 });
 
-const handleClick = async(e) => {
+const handleClick = async(e,getData) => {
   const loanId = e.target.id
   const userId = e.target.name
   const borrowerName =  e.target.value
@@ -33,6 +33,7 @@ const handleClick = async(e) => {
       borrowerName: borrowerName
   }
   await axios.post(fundRoute, loanInfo)
+  getData()
 }
 
 export default function SimpleTable(props) {
@@ -49,7 +50,7 @@ export default function SimpleTable(props) {
                     {props.rows.map(row => (
                         <TableRow key={row.username}>
                             {props.keys.map(c => <TableCell align="left">{row[c]}</TableCell>)}
-                            {props.market ? <TableCell><button id={row.id} name={props.userID} value={row.borrowerName} onClick={e=>handleClick(e)}>Select</button></TableCell> : null}
+                            {props.market ? <TableCell><button id={row.id} name={props.userID} value={row.borrowerName} onClick={e=>handleClick(e,props.getData)}>Select</button></TableCell> : null}
                         </TableRow>
                     ))}
                 </TableBody>
