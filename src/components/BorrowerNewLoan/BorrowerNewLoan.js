@@ -97,7 +97,7 @@ class BorrowerNewLoan extends Component {
             <label>Monthly Payment:</label>
             <input name="payment" onChange={this.handleInputChange} />
           </div>
-          <button onClick={this.handleClick} id="submit-new-loan">
+          <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit
           </button>
         </div>

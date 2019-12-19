@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './LenderNavBar'
+import LenderNavBar from './LenderNavBar'
+import NavBar from '../navBar/NavBar'
 import { observer, inject } from "mobx-react";
 import InfoContainer from './LenderInfoContainer';
 import DynamicTable from '../DynamicTable'
@@ -16,8 +17,9 @@ class Lender extends Component {
     const button = <TableCell><button>+</button></TableCell>
     return (
       <div>
+        <NavBar/>
         <h2>Lender</h2>
-        <NavBar />
+        <LenderNavBar />
         <InfoContainer />
         <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID}/>
       </div>

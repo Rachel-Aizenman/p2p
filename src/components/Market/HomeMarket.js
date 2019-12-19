@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import NavBar from '../Lender/LenderNavBar'
+import LenderNavBar from '../Lender/LenderNavBar'
 import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import NavBar from '../navBar/NavBar'
 
 import './Home.css'
 
@@ -14,11 +15,14 @@ class HomeMarket extends Component {
     await this.props.UserStore.getNewLoans()
   }
   render() {
+
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']
     const keys = ['borrowerName', 'period', 'purpose', 'amount','percentage','interest']
     const rows = this.props.UserStore.newLoans
-    return (
-      <div>
+      <div> 
+             <div>
+            <NavBar/>
+          </div>
           <div className="nav-bar">
             <Link className="nav-btn" to="/">
               <button>Home<hr /></button>
