@@ -9,7 +9,7 @@ import Deposit from './components/Deposit/Deposit'
 import HomeMarket from './components/Market/HomeMarket'
 import BorrowerNewLoan from './components/BorrowerNewLoan/BorrowerNewLoan';
 import Market from './components/Market/Market'
-import Welcome from './Welcome/Welcome'
+import Welcome from './components/Welcome/Welcome'
 import Login from './components/Login'
 
 @inject("UserStore", "InputStore")

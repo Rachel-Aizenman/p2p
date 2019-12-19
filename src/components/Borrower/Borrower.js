@@ -3,6 +3,7 @@ import './Borrower.css'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import DynamicTable from '../DynamicTable'
 import { inject, observer} from 'mobx-react';
+import NavBar from '../navBar/NavBar'
 
 @inject('UserStore')
 @observer
@@ -14,6 +15,7 @@ class Borrower extends Component {
         let user = this.props.UserStore.user     
         return (
             <div>
+                         <NavBar/>
                 <h2>Borrower</h2>
                 <div><span className="header">Hello User</span> <span className="header">Status: OK</span></div>
                 <div id="infos">

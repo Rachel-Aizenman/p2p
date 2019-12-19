@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
+// import './LenderInfoContainer.css'
 
 @inject("UserStore")
 @observer
@@ -52,7 +53,8 @@ class InfoContainer extends Component {
           </div>
           <br />
           <Link to={"/market"}>
-            <button
+          <div class="button__wrapper">
+          <div className='pulsing'
               id="add-investment"
               style={{
                 border: "10px solid green",
@@ -62,7 +64,9 @@ class InfoContainer extends Component {
               }}
             >
               Add Investment!
-            </button>
+            </div>      <button>Click Me!</button>
+    </div>
+            
           </Link>
       </div>
     );

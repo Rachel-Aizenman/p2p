@@ -4,10 +4,6 @@ import axios from "axios";
 const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
 
-
-
-
-
 export class UserStore {
   @observable user = []
   @observable openLoans = []
