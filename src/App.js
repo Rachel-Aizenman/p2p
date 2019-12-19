@@ -15,6 +15,7 @@ import Market from './components/Market/Market'
 class App extends Component {
    async componentWillMount(){
     await this.props.UserStore.getData()
+    await this.props.UserStore.getNewLoans()
    }
   handleClick = async () => {
     const InputStore = this.props.InputStore
