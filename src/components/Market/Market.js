@@ -8,6 +8,7 @@ import DynamicTable from '../DynamicTable'
 class Market extends Component {
   getData = ()=>{
     this.props.UserStore.getNewLoans()
+    this.props.UserStore.getData()
   }
   render() {
     const getData = this.props.UserStore.getData
