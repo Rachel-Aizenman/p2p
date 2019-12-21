@@ -26,6 +26,29 @@ const selected_color = "#FFD712";
 @inject("UserStore", "InputStore")
 @observer
 class BorrowerNewLoan extends Component {
+
+  componentDidMount(){
+    const handleInput=this.props.InputStore.handleInput
+   handleInput("purpose","a")
+   handleInput("amount",10) 
+   handleInput("period",10) 
+   handleInput("interest",10) 
+  }
+  
+  
+  getMonthlyPayment=()=>{
+    const InputStore=this.props.InputStore
+    const amount=InputStore.amount
+    const period=InputStore.period
+    const interest=InputStore.interest
+    
+    const interestFactor=1+interest/100
+    let monthlyPayment=(amount/period)*interestFactor
+    monthlyPayment=Math.round(monthlyPayment)
+    return monthlyPayment
+    
+  }
+  
   handleInputChange = e => {
     const InputStore = this.props.InputStore;
     const value = e.target.value;
@@ -99,7 +122,7 @@ class BorrowerNewLoan extends Component {
           </div>
           <div>
             <label>Monthly Payment:</label>
-            <input name="payment" onChange={this.handleInputChange} />
+            <span>{this.getMonthlyPayment()}</span>
           </div>
           <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit

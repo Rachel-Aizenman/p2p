@@ -5,7 +5,8 @@ import { observer, inject } from "mobx-react";
 import InfoContainer from './LenderInfoContainer';
 import DynamicTable from '../DynamicTable'
 import TableCell from '@material-ui/core/TableCell';
-
+import PieChart from '../PieChart'
+import VerticalBarChart from '../VerticalBarChart'
 @inject('UserStore')
 @observer
 class Lender extends Component {
@@ -16,11 +17,25 @@ class Lender extends Component {
     const button = <TableCell><button>+</button></TableCell>
     return (
       <div>
-        <NavBar/>
+        <NavBar />
         <h2>Lender</h2>
         <LenderNavBar />
         <InfoContainer />
-        <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID}/>
+        <div>
+          <PieChart />
+          <PieChart />
+          <VerticalBarChart />
+        </div>
+
+        <div>
+          <ul>Closest payments:
+            <li>22-12-19</li>
+            <li>25-12-19</li>
+            <li>30-12-19</li>
+          </ul>
+        </div>
+
+        <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID} />
       </div>
     )
   }

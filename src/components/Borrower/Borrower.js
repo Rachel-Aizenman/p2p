@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import DynamicTable from "../DynamicTable";
 import { inject, observer } from "mobx-react";
 import NavBar from "../navBar/NavBar";
-
+import PieChart from '../PieChart'
 @inject("UserStore", "InputStore")
 @observer
 class Borrower extends Component {
-  git;
+  
   render() {
     const header = [
       "Amount",
@@ -49,6 +49,10 @@ class Borrower extends Component {
           </Link>
         </div>
         <DynamicTable head={header} keys={keys} rows={rows} />
+        <div>
+          <PieChart/>
+        </div>
+        
       </div>
     );
   }
