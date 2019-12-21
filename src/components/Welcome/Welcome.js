@@ -40,6 +40,11 @@ class Welcome extends Component {
                   Login
                 </div>
               </Link>
+              <Link to="/signUp">
+                <div class="btn">
+                  Sign Up
+                </div>
+              </Link>
             </div>
           </div>
         </section>

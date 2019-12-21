@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./BorrowerNewLoan.css";
 import Slider from "../Slider";
 import { observer, inject } from "mobx-react";
-const postRoute = "http://localhost:3001/addLoan/"
 const axios = require("axios");
+const newLoanRoute = "http://localhost:3001/addLoan/"
 
 const color = "color";
 const purpose = "purpose";
@@ -27,30 +27,34 @@ const selected_color = "#FFD712";
 @observer
 class BorrowerNewLoan extends Component {
   handleInputChange = e => {
+    const InputStore = this.props.InputStore;
     const value = e.target.value;
     const name = e.target.name;
-    this.props.InputStore.handleInput(name, value);
+    InputStore.handleInput(name, value);
   };
 
   handleClick = async () => {
+    const InputStore = this.props.InputStore;
+    const UserStore = this.props.UserStore;
     const loan = {
-      userName : this.props.InputStore.username,
-      purpose: this.props.InputStore.purpose,
-      amount: this.props.InputStore.amount,
-      period: this.props.InputStore.period,
-      interest: this.props.InputStore.interest,
-      monthlyPayment: this.props.InputStore.payment
+      userName : InputStore.username,
+      purpose: InputStore.purpose,
+      amount: InputStore.amount,
+      period: InputStore.period,
+      interest: InputStore.interest,
+      monthlyPayment: InputStore.payment
     };
-    await axios.post(postRoute, loan);
-    await this.props.UserStore.getData(this.props.InputStore.username);
-    await this.props.UserStore.getNewLoans();
+    await axios.post(newLoanRoute, loan);
+    await UserStore.getData(InputStore.username);
+    await UserStore.getNewLoans();
   };
 
   changeColor = e => {
+    const InputStore = this.props.InputStore;
     const newColor =
-    this.props.InputStore.color == default_color ? selected_color : default_color;
-    this.props.InputStore.handleInput(purpose, e.currentTarget.textContent)
-    this.props.InputStore.handleInput(color, newColor)
+    InputStore.color == default_color ? selected_color : default_color;
+    InputStore.handleInput(purpose, e.currentTarget.textContent)
+    InputStore.handleInput(color, newColor)
   };
 
   render() {
