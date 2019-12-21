@@ -33,7 +33,7 @@ router.get("/newLoans", async function (req, res) { // market
 
 router.post("/fundLoan", async function (req, res) { // lender
   let { loanID, userID, borrowerName } = req.body;
-  let borrowerID = getBorrowerID(borrowerName)
+  let borrowerID = await getBorrowerID(borrowerName)
   await connectBorrowerAndLender(loanID, userID, borrowerID)
   await updateLoanStatus(loanID)
   res.end();

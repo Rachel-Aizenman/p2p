@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./BorrowerNewLoan.css";
 import Slider from "../Slider";
+import { BrowserRouter as Router, Route, Redirect,Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 const axios = require("axios");
 const newLoanRoute = "http://localhost:3001/addLoan/"
@@ -59,7 +60,7 @@ class BorrowerNewLoan extends Component {
     console.log(loan)
     await axios.post(newLoanRoute, loan);
     await UserStore.getData(InputStore.username);
-    await UserStore.getNewLoans();
+    await UserStore.getNewLoans(); 
   };
 
   changeColor = e => {
@@ -114,9 +115,11 @@ class BorrowerNewLoan extends Component {
             <label>Monthly Payment:</label>
             <span>{this.props.InputStore.monthlyPayment}</span>
           </div>
+          <Link to = "/takeLoan">
           <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit
           </button>
+          </Link>
         </div>
       </div>
     );
