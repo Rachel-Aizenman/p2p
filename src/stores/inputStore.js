@@ -6,10 +6,9 @@ export class InputStore {
     @observable id
     @observable account
     @observable deposit
-    @observable amount 
+    @observable amount
     @observable period
     @observable interest
-    @observable payment
     @observable color = default_color
     @observable withdrawInput
     @observable purpose
@@ -17,7 +16,19 @@ export class InputStore {
     @observable password
     @observable type
     @observable availableMoney
-    
+
+    @computed get monthlyPayment() {
+        const amount = this.amount
+        const period = this.period
+        const interest = this.interest
+
+        const interestFactor = 1 + interest / 100
+        let monthlyPayment = (amount / period) * interestFactor
+        monthlyPayment = Math.round(monthlyPayment)
+        return monthlyPayment
+    }
+
+
     @action handleInput = (param, value) => {
         this[param] = value
     }

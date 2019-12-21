@@ -36,18 +36,7 @@ class BorrowerNewLoan extends Component {
   }
   
   
-  getMonthlyPayment=()=>{
-    const InputStore=this.props.InputStore
-    const amount=InputStore.amount
-    const period=InputStore.period
-    const interest=InputStore.interest
-    
-    const interestFactor=1+interest/100
-    let monthlyPayment=(amount/period)*interestFactor
-    monthlyPayment=Math.round(monthlyPayment)
-    return monthlyPayment
-    
-  }
+  
   
   handleInputChange = e => {
     const InputStore = this.props.InputStore;
@@ -65,8 +54,9 @@ class BorrowerNewLoan extends Component {
       amount: InputStore.amount,
       period: InputStore.period,
       interest: InputStore.interest,
-      monthlyPayment: InputStore.payment
+      monthlyPayment: InputStore.monthlyPayment
     };
+    console.log(loan)
     await axios.post(newLoanRoute, loan);
     await UserStore.getData(InputStore.username);
     await UserStore.getNewLoans();
@@ -122,7 +112,7 @@ class BorrowerNewLoan extends Component {
           </div>
           <div>
             <label>Monthly Payment:</label>
-            <span>{this.getMonthlyPayment()}</span>
+            <span>{this.props.InputStore.monthlyPayment}</span>
           </div>
           <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit
