@@ -10,9 +10,11 @@ function getMonthlyPayment(openLoans) {
 
 async function getOpenLoans(userID) {
     query = `SELECT * 
-    FROM loan_lender,loan,user 
-    WHERE loan_lender.lender = ${userID} 
-    AND loanID=loan.id AND loan_lender.borrower = user.id`;
+    FROM loan_lender
+    INNER JOIN loan ON loan.id=loan_lender.loanID
+    INNER JOIN user ON user.id=${userID}
+    WHERE loan_lender.lender = ${userID} OR loan_lender.borrower = ${userID} 
+    AND loan_lender.percentage=1`;
     let openLoans = await sequelize.query(query);
     return openLoans[0];
 }

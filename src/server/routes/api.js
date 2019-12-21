@@ -49,7 +49,7 @@ router.get("/userData/:username", async function (req, res) { // store
   const nextPayment = getNextPayment(openLoans);
   const user = {
     userID, username, noOfLoans, monthlyPayment, totalWorth,
-    remainingAmount, openLoans, availableCash, interest, nextPayment
+    remainingAmount, openLoans, availableCash, interest, nextPayment,type
   };
   res.send(user);
 })

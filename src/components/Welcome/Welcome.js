@@ -15,6 +15,7 @@ class Welcome extends Component {
     const username = InputStore.username;
     await UserStore.getData(username);
     await UserStore.setPath();
+    console.log(this.props.UserStore.path)
   };
   handleInput = e => {
     const name = e.target.name;
