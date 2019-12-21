@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
-
+const moment =require('moment')
 function getMonthlyPayment(openLoans) {
     let monthlyPayment = 0;
     for (loan of openLoans)
@@ -27,23 +27,25 @@ async function getUserInfo(username) {
 async function overallLoanData(userID, userType) {
     const typeColumn = userType === "l" ? 'lender' : 'borrower'
     let query = `SELECT count(*) AS noOfLoans, SUM(loan.amount) AS totalWorth
-                FROM loan_lender
-                INNER JOIN loan ON loan_lender.loanID=loan.id
-                WHERE ${typeColumn}=${userID}`;
+    FROM loan_lender
+    INNER JOIN loan ON loan_lender.loanID=loan.id
+    WHERE ${typeColumn}=${userID}`;
     let result = await sequelize.query(query);
     result = result[0][0];
+    if(!result.totalWorth)
+        result.totalWorth=0
     return [result.noOfLoans, result.totalWorth];
 }
 
 async function remainingAmountAndInterest(userID, totalWorth, userType) {
-    loansData = getLoansData(userID, userType)
-    [fundAndInterest, totalAmountPaid] = getTotalPayments(loansData)
+    loansData =await getLoansData(userID, userType)
+    const [fundAndInterest, totalAmountPaid] = getTotalPayments(loansData)
     const remainingAmount = fundAndInterest - totalAmountPaid;
     const averageInterest = fundAndInterest / totalWorth;
     return [remainingAmount, averageInterest];
 }
 
-async function getLoansData() {
+async function getLoansData(userID,userType) {
     const typeColumn = userType === "l" ? "lender" : "borrower";
     let query = `SELECT amount, interest, amountPaid  
                  FROM loan_lender
@@ -80,9 +82,9 @@ function getNextPayment(openLoans) {
 
     let nextPayment;
     if (closestDay > date)
-        nextPayment = moment(`${closestDay}-${month}-${year}`);
-    else if (month < 12) nextPayment = moment(`${min}-${month + 1}-${year}`);
-    else nextPayment = moment(`${min}-01-${year + 1}`);
+        nextPayment = moment(`${year}-${month}-${closestDay}`);
+    else if (month < 12) nextPayment = moment(`${year}-${month + 1}-${min}`);
+    else nextPayment = moment(`${year + 1}-01-${min}`);
     return nextPayment._i;
 }
 

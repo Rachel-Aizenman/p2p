@@ -25,6 +25,7 @@ export class UserStore {
       this.openLoans = this.user.openLoans
     }
   };
+
   @action getNewLoans = async () => {
     let data = await axios.get(newLoansRoute);
     console.log(data)
@@ -34,7 +35,7 @@ export class UserStore {
     }
   };
   @action setPath() {
-    if (this.user.type === "b") this.path = "/giveLoan";
+    if (this.user.type === "l") { this.path = "/giveLoan" }
     else this.path = "/takeLoan";
   }
 

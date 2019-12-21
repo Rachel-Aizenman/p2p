@@ -10,10 +10,10 @@ import './Home.css'
 @inject('UserStore', 'InputStore')
 @observer
 class HomeMarket extends Component {
-  async componentDidMount() {
-    await this.props.UserStore.getData(this.props.InputStore.username)
-    await this.props.UserStore.getNewLoans()
-  }
+  // async componentDidMount() {
+  //   await this.props.UserStore.getData(this.props.InputStore.username)
+  //   await this.props.UserStore.getNewLoans()
+  // }
   render() {
 
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']

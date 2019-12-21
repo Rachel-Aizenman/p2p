@@ -26,6 +26,6 @@ async function fillLoan_Lender() {
     return result[0][0].id;
   }
   fillLoan_Lender();
-  // query = `SELECT * FROM loan_lender`
-  // sequelize.query(query).then(function(result,metadata){console.log(result[0])
-  // })
+  query = `SELECT * FROM loan_lender`
+  sequelize.query(query).then(function(result,metadata){console.log(result[0])
+  })
