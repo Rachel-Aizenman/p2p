@@ -43,7 +43,7 @@ async function remainingAmountAndInterest(userID, totalWorth, userType) {
     return [remainingAmount, averageInterest];
 }
 
-function getLoansData() {
+async function getLoansData() {
     const typeColumn = userType === "l" ? "lender" : "borrower";
     let query = `SELECT amount, interest, amountPaid  
                  FROM loan_lender
@@ -84,26 +84,24 @@ function getNextPayment(openLoans) {
     else if (month < 12) nextPayment = moment(`${min}-${month + 1}-${year}`);
     else nextPayment = moment(`${min}-01-${year + 1}`);
     return nextPayment._i;
-
-    function getBorrowerID(borrowerName) {
-        query = `SELECT id FROM user WHERE username='${borrowerName}'`
-        let borrowerID = await sequelize.query(query)
-        return borrowerID[0][0].id
-    }
-
-    function connectBorrowerAndLender(loanID, userID, borrowerID) {
-        query = `INSERT INTO loan_lender
-        VALUES(${loanID},${borrowerID},${userID},1)`;
-        sequelize.query(query)
-    }
-
-    function updateLoanStatus(loanID) {
-        query = `UPDATE loan SET percentage = 1 WHERE loan.id =${loanID}`
-        sequelize.query(query);
-    }
-
 }
 
+async function getBorrowerID(borrowerName) {
+    query = `SELECT id FROM user WHERE username='${borrowerName}'`
+    let borrowerID = await sequelize.query(query)
+    return borrowerID[0][0].id
+}
+
+async function connectBorrowerAndLender(loanID, userID, borrowerID) {
+    query = `INSERT INTO loan_lender
+    VALUES(${loanID},${borrowerID},${userID},1)`;
+    sequelize.query(query)
+}
+
+async function updateLoanStatus(loanID) {
+    query = `UPDATE loan SET percentage = 1 WHERE loan.id =${loanID}`
+    sequelize.query(query);
+}
 
 module.exports = { getMonthlyPayment, getNextPayment, getOpenLoans, getUserInfo, overallLoanData,
      remainingAmountAndInterest,getBorrowerID,connectBorrowerAndLender,updateLoanStatus }
