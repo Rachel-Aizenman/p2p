@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-import { observer,inject } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-import "./Welcome.css";
+import "../Welcome/Welcome.css";
 
 @inject("UserStore", "InputStore")
 @observer
-class Welcome extends Component {
-  componentDidMount(){
-    this.props.UserStore.getData(this.props.InputStore.username)
-  }
+class SignUp extends Component {
   handleClick = async () => {
     const InputStore = this.props.InputStore;
     const UserStore = this.props.UserStore;
@@ -32,20 +28,32 @@ class Welcome extends Component {
             <div class="content">
               <h1>Peer 2 Peer</h1>
               <FontAwesomeIcon icon={faHandshake} />
+              <h3>Please Input Valid Username,Password,Type Of Client And Available Money</h3>
               <input
                 className="input"
                 name="username"
                 onChange={this.handleInput}
               />
+              <input
+                className="input"
+                name="password"
+                onChange={this.handleInput}
+              />
+              <input
+                className="input"
+                name="type"
+                onChange={this.handleInput}
+              />
+              <input
+                className="input"
+                name="availableMoney"
+                onChange={this.handleInput}
+              />
+              <h3>Are You A Borrower Or A Lender?</h3>
+              <div class="btn">Borrower</div>
+              <div class="btn">Lender</div>
               <Link to="/home">
-                <div class="btn" onClick={this.handleClick}>
-                  Login
-                </div>
-              </Link>
-              <Link to="/signUp">
-                <div class="btn">
-                  Sign Up
-                </div>
+                <div class="btn">Create Account</div>
               </Link>
             </div>
           </div>
@@ -54,5 +62,4 @@ class Welcome extends Component {
     );
   }
 }
-export default Welcome;
-
+export default SignUp;

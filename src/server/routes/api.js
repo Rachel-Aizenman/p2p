@@ -57,7 +57,7 @@ router.get("/userData/:username", async function (req, res) { // store
 router.post("/newUser", async function (req, res) { // login
   let user = req.body.user;
   query = `INSERT INTO user
-           VALUES('${user.userName}','${user.password}','${uesr.type}', ${user.availableCash})`;
+           VALUES(null,'${user.userName}','${user.password}','${uesr.type}', ${user.availableCash})`;
   await sequelize.query(query);
   res.end();
 });
