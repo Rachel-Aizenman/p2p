@@ -52,7 +52,7 @@ async function fillLoans() {
     console.log(e);
   }
 }
-// fillLoans();
+fillLoans();
 // query = `SELECT * FROM loan`
 // sequelize.query(query).then(function(result,metadata){console.log(result[0])
 // })

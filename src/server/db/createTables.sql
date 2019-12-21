@@ -18,21 +18,22 @@ USE p2p;
 --     amountPaid int,
 --     status varchar(20),
 --     dateOfIssuance Date,
---     percentage int
+--     percentage int,
+--     monthlyPayment INT
 -- );
 
--- create TABLE loan_lender(
---     loanID INT,
---     borrower INT,
---     lender INT,
---     percentage INT,
---     FOREIGN KEY (loanID) REFERENCES loan(id),
---     FOREIGN KEY (borrower) REFERENCES user(id),
---     FOREIGN KEY (lender) REFERENCES user(id)
--- );
+create TABLE loan_lender(
+    loanID INT,
+    borrower INT,
+    lender INT,
+    percentage INT,
+    FOREIGN KEY (loanID) REFERENCES loan(id),
+    FOREIGN KEY (borrower) REFERENCES user(id),
+    FOREIGN KEY (lender) REFERENCES user(id)
+);
 
 -- ALTER TABLE loan
--- ADD monthlyPayment INT;
+-- ADD userName varchar(20);
 
 -- ALTER TABLE user
 -- ADD password varchar(60)
@@ -40,3 +41,4 @@ USE p2p;
 -- DROP TABLE loan_lender;
 -- DROP TABLE loan;
 -- DROP TABLE user;
+
