@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root:@localhost/p2p");
-const moment =require('moment')
+const moment = require('moment')
 function getMonthlyPayment(openLoans) {
     let monthlyPayment = 0;
     for (loan of openLoans)
@@ -32,20 +32,20 @@ async function overallLoanData(userID, userType) {
     WHERE ${typeColumn}=${userID}`;
     let result = await sequelize.query(query);
     result = result[0][0];
-    if(!result.totalWorth)
-        result.totalWorth=0
+    if (!result.totalWorth)
+        result.totalWorth = 0
     return [result.noOfLoans, result.totalWorth];
 }
 
 async function remainingAmountAndInterest(userID, totalWorth, userType) {
-    loansData =await getLoansData(userID, userType)
+    loansData = await getLoansData(userID, userType)
     const [fundAndInterest, totalAmountPaid] = getTotalPayments(loansData)
     const remainingAmount = fundAndInterest - totalAmountPaid;
     const averageInterest = fundAndInterest / totalWorth;
     return [remainingAmount, averageInterest];
 }
 
-async function getLoansData(userID,userType) {
+async function getLoansData(userID, userType) {
     const typeColumn = userType === "l" ? "lender" : "borrower";
     let query = `SELECT amount, interest, amountPaid  
                  FROM loan_lender
@@ -105,5 +105,14 @@ async function updateLoanStatus(loanID) {
     sequelize.query(query);
 }
 
-module.exports = { getMonthlyPayment, getNextPayment, getOpenLoans, getUserInfo, overallLoanData,
-     remainingAmountAndInterest,getBorrowerID,connectBorrowerAndLender,updateLoanStatus }
+async function getLoansByCategory(){
+    query=`SELECT count(*) AS count, sum(amount) AS total amount
+    FROM loan
+    INNER JOIN loan_lender ON loan.id=loan_lendr=loanID
+    GROUP BY purpose`
+    
+}
+module.exports = {
+    getMonthlyPayment, getNextPayment, getOpenLoans, getUserInfo, overallLoanData,
+    remainingAmountAndInterest, getBorrowerID, connectBorrowerAndLender, updateLoanStatus
+}
