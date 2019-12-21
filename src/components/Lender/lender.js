@@ -6,7 +6,6 @@ import InfoContainer from './LenderInfoContainer';
 import DynamicTable from '../DynamicTable'
 import TableCell from '@material-ui/core/TableCell';
 
-
 @inject('UserStore')
 @observer
 class Lender extends Component {

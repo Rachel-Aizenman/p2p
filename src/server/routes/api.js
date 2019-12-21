@@ -45,11 +45,11 @@ router.get("/userData/:username", async function (req, res) { // store
   const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
   const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
   const openLoans = await getOpenLoans(userID);
-  const monthlyPayment = getMonthlyPayment(openloans)
+  const monthlyPayment = getMonthlyPayment(openLoans)
   const nextPayment = getNextPayment(openLoans);
   const user = {
     userID, username, noOfLoans, monthlyPayment, totalWorth,
-    remainingAmount, openLoans, availableCash, interest, nextPayment
+    remainingAmount, openLoans, availableCash, interest, nextPayment,type
   };
   res.send(user);
 })
