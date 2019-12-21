@@ -4,22 +4,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "../Welcome/Welcome.css";
+const axios = require("axios");
+const newUserRoute = "http://localhost:3001/newUser/"
+const type = "type";
 
 @inject("UserStore", "InputStore")
 @observer
 class SignUp extends Component {
-  handleClick = async () => {
+  handleClick = async e => {
     const InputStore = this.props.InputStore;
-    const UserStore = this.props.UserStore;
-    const username = InputStore.username;
-    await UserStore.getData(username);
-    UserStore.setPath();
+    InputStore.handleInput(type, e.target.name);
   };
+
   handleInput = e => {
+    const InputStore = this.props.InputStore;
     const name = e.target.name;
     const value = e.target.value;
-    this.props.InputStore.handleInput(name, value);
+    InputStore.handleInput(name, value);
   };
+  createNewUser = async () => {
+    const InputStore = this.props.InputStore;
+    const UserStore = this.props.UserStore;
+    const user = {
+      userName : InputStore.username,
+      password: InputStore.password,
+      availableMoney: InputStore.availableMoney,
+      type: InputStore.type
+    };
+    await axios.post(newUserRoute, user);
+    await UserStore.getData(InputStore.username);
+    await UserStore.getNewLoans();
+  };
+
   render() {
     return (
       <div class="body">
@@ -28,32 +44,39 @@ class SignUp extends Component {
             <div class="content">
               <h1>Peer 2 Peer</h1>
               <FontAwesomeIcon icon={faHandshake} />
-              <h3>Please Input Valid Username,Password,Type Of Client And Available Money</h3>
+              <h4>
+                Please Input Valid Username,Password,Available Money And Type Of
+                Client{" "}
+              </h4>
+              <p>Username</p>
               <input
                 className="input"
                 name="username"
                 onChange={this.handleInput}
               />
+              <p>Password</p>
               <input
                 className="input"
                 name="password"
                 onChange={this.handleInput}
               />
-              <input
-                className="input"
-                name="type"
-                onChange={this.handleInput}
-              />
+              <p>Available Money</p>
               <input
                 className="input"
                 name="availableMoney"
                 onChange={this.handleInput}
               />
               <h3>Are You A Borrower Or A Lender?</h3>
-              <div class="btn">Borrower</div>
-              <div class="btn">Lender</div>
-              <Link to="/home">
-                <div class="btn">Create Account</div>
+              <div>
+                <button name="b" onClick={this.handleClick} class="btn">
+                  Borrower
+                </button>
+                <button name="l" onClick={this.handleClick} class="btn">
+                  Lender
+                </button>
+              </div>
+              <Link to="/">
+                <div onClick = {this.createNewUser} class="btn">Create Account</div>
               </Link>
             </div>
           </div>

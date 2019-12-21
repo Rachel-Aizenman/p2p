@@ -54,16 +54,17 @@
   }
 
 .btn{
-    margin-top: 30px;
+  margin: 20px;
   border-radius: 5px;
   font-family:'Oswald', sans-serif;
   color: white;
   font-size: 135%;
   padding: 10px 20px;
-  border: solid #eee 3px;
+  border: solid #eee 5px;
   text-transform: uppercase;
   text-decoration: none;
-  width: 100px;
+  text-justify: center;
+  width: 200px;
 }
 
 .input{
@@ -110,5 +111,5 @@ p{
     margin-top: 0px;
     font-size: 130px;
     color: white;
-
 }
+
