@@ -12,8 +12,7 @@ router.put('/transaction', function (req, res) {
   res.end()
 })
 
-router.post("/addLoan/", async function(req, res) {
-  console.log(req.body)
+router.post("/addLoan", async function(req, res) {
   let loan = req.body;
   let userName = loan.userName
   let amount = loan.amount;
@@ -25,16 +24,7 @@ router.post("/addLoan/", async function(req, res) {
 
   // purpose should be added in loan screen !!!!!!
   // until then change field to mock data in order to solve bug
-
-  query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},0,'ok','${issuanceDate}',0,${monthlyPayment})`;
-  await sequelize.query(query);
-  let userID = await getUserInfo(userName)
-  userID = userID[0]
-  query = `SELECT COUNT(*) AS count FROM loan`;
-  let loanID = await sequelize.query(query);
-  loanID = loanID[0][0].count
-  query = `INSERT INTO loan_lender
-  VALUES(${loanID},${userID},null,1)`;
+  query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},0,'pending','${issuanceDate}',0,${monthlyPayment},'${userName}')`;
   await sequelize.query(query);
   res.end();
 });
@@ -45,6 +35,7 @@ router.post("/addLoan/", async function(req, res) {
 
 router.get("/userData/:username", async function(req, res) {
   const username = req.params.username;
+  console.log(username)
   const [userID, type, availableCash] = await getUserInfo(username);
   const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
   const [remainingAmount, interest] = await remainingAmountAndInterest(
@@ -106,7 +97,13 @@ async function getOpenLoans(userID) {
   return openLoans[0];
 }
 
-
+router.get("/newLoans", async function(req, res) {
+  query = `SELECT * 
+  FROM loan 
+  WHERE percentage < 1`;
+  let newLoans = await sequelize.query(query);
+  res.send(newLoans[0])
+})
 
 
 
@@ -158,11 +155,17 @@ async function remainingAmountAndInterest(userID, totalWorth, userType) {
 // loadnID lenderID and BORROWERID should all be arrays.
 // PLEASE VERIFY THAT THE INSERTION SHOULD BE IN A LOOP
 router.post("/fundLoan", async function(req, res) {
-  let { loanID, lenderID, borrowerID } = req.body.loan;
+  let { loanID, userID, borrowerName } = req.body;
+  console.log(req.body)
+  query = `SELECT id FROM user WHERE username='${borrowerName}'`
+  let borrowerID = await sequelize.query(query)
+  borrowerID = borrowerID[0][0].id
   query = `INSERT INTO loan_lender
-  VALUES(${loanID},${borrowerID},${lenderID},1)`;
+  VALUES(${loanID},${borrowerID},${userID},1)`;
+  await sequelize.query(query)
+  query = `UPDATE loan SET percentage = 1 WHERE loan.id =${loanID}`
   await sequelize.query(query);
-  res.send(loan);
+  res.end();
 });
 
 // new User - OK

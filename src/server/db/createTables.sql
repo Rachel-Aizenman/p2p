@@ -1,4 +1,4 @@
--- -- create DATABASE p2p;
+-- create DATABASE p2p;
 USE p2p;
 
 -- create TABLE user(

@@ -23,8 +23,8 @@ const purposes = [
 const default_color = "#39D1B4";
 const selected_color = "#FFD712";
 
-@observer
 @inject("UserStore", "InputStore")
+@observer
 class BorrowerNewLoan extends Component {
   handleInputChange = e => {
     const value = e.target.value;
@@ -32,19 +32,18 @@ class BorrowerNewLoan extends Component {
     this.props.InputStore.handleInput(name, value);
   };
 
-  handleClick = () => {
-    this.props.UserStore.getData();
+  handleClick = async () => {
     const loan = {
-
-      userName : this.props.UserStore.user.username,
-      purpose: this.props.inputStore.purpose,
-      amount: this.props.inputStore.amount,
-      period: this.props.inputStore.period,
-      interest: this.props.inputStore.interest,
-      monthlyPayment: this.props.inputStore.payment
+      userName : this.props.InputStore.username,
+      purpose: this.props.InputStore.purpose,
+      amount: this.props.InputStore.amount,
+      period: this.props.InputStore.period,
+      interest: this.props.InputStore.interest,
+      monthlyPayment: this.props.InputStore.payment
     };
-    axios.post(postRoute, loan);
-
+    await axios.post(postRoute, loan);
+    await this.props.UserStore.getData(this.props.InputStore.username);
+    await this.props.UserStore.getNewLoans();
   };
 
   changeColor = e => {
@@ -98,7 +97,7 @@ class BorrowerNewLoan extends Component {
             <label>Monthly Payment:</label>
             <input name="payment" onChange={this.handleInputChange} />
           </div>
-          <button onClick={this.handleClick} id="submit-new-loan">
+          <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit
           </button>
         </div>

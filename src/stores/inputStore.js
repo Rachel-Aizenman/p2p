@@ -12,7 +12,7 @@ export class InputStore {
     @observable payment
     @observable color = default_color
     @observable withdrawInput
-    @observable uesrname
+    @observable username
     @observable purpose
     
     @action handleInput = (param, value) => {
