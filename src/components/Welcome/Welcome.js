@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { observer,inject } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -9,7 +9,6 @@ import "./Welcome.css";
 @inject("UserStore", "InputStore")
 @observer
 class Welcome extends Component {
-
   handleClick = async () => {
     const InputStore = this.props.InputStore;
     const UserStore = this.props.UserStore;
@@ -35,15 +34,11 @@ class Welcome extends Component {
                 name="username"
                 onChange={this.handleInput}
               />
-              <Link to={this.props.UserStore.path}>
-                <div class="btn" onClick={this.handleClick}>
-                  Login
-                </div>
-              </Link>
+              <div class="btn" onClick={this.handleClick}>
+                <Link to={this.props.UserStore.path}>Login</Link>
+              </div>
               <Link to="/signUp">
-                <div class="btn">
-                  Sign Up
-                </div>
+                <div class="btn">Sign Up</div>
               </Link>
             </div>
           </div>
@@ -53,4 +48,3 @@ class Welcome extends Component {
   }
 }
 export default Welcome;
-

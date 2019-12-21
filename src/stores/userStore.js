@@ -1,6 +1,5 @@
 import { observable, action, computed } from "mobx";
 import axios from "axios";
-
 const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
 
@@ -8,7 +7,7 @@ export class UserStore {
   @observable user = []
   @observable openLoans = []
   @observable newLoans = []
-  @observable path
+  @observable path 
   @action getData = async (username) => {
     let data = await axios.get(dataRoute + username);
     data = data.data

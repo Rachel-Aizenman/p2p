@@ -22,10 +22,11 @@ router.post("/addLoan", async function(req, res) {
   let monthlyPayment = loan.monthlyPayment
   const issuanceDate = moment().format("YYYY-MM-DD"); // how to enter dates to sql DB - Dudi PLEASE CHECK THAT!
 
-  // purpose should be added in loan screen !!!!!!
-  // until then change field to mock data in order to solve bug
-  query = `INSERT INTO loan VALUES(null,${amount},${interest},'${purpose}',${period},0,'pending','${issuanceDate}',0,${monthlyPayment},'${userName}')`;
-  await sequelize.query(query);
+router.post("/fundLoan", async function (req, res) { // lender
+  let { loanID, userID, borrowerName } = req.body;
+  let borrowerID = await getBorrowerID(borrowerName)
+  await connectBorrowerAndLender(loanID, userID, borrowerID)
+  await updateLoanStatus(loanID)
   res.end();
 });
 

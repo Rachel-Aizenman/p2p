@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./BorrowerNewLoan.css";
 import Slider from "../Slider";
+import { BrowserRouter as Router, Route, Redirect,Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 const axios = require("axios");
 const newLoanRoute = "http://localhost:3001/addLoan/"
@@ -36,18 +37,7 @@ class BorrowerNewLoan extends Component {
   }
   
   
-  getMonthlyPayment=()=>{
-    const InputStore=this.props.InputStore
-    const amount=InputStore.amount
-    const period=InputStore.period
-    const interest=InputStore.interest
-    
-    const interestFactor=1+interest/100
-    let monthlyPayment=(amount/period)*interestFactor
-    monthlyPayment=Math.round(monthlyPayment)
-    return monthlyPayment
-    
-  }
+  
   
   handleInputChange = e => {
     const InputStore = this.props.InputStore;
@@ -65,11 +55,12 @@ class BorrowerNewLoan extends Component {
       amount: InputStore.amount,
       period: InputStore.period,
       interest: InputStore.interest,
-      monthlyPayment: InputStore.payment
+      monthlyPayment: InputStore.monthlyPayment
     };
+    console.log(loan)
     await axios.post(newLoanRoute, loan);
     await UserStore.getData(InputStore.username);
-    await UserStore.getNewLoans();
+    await UserStore.getNewLoans(); 
   };
 
   changeColor = e => {
@@ -122,11 +113,13 @@ class BorrowerNewLoan extends Component {
           </div>
           <div>
             <label>Monthly Payment:</label>
-            <span>{this.getMonthlyPayment()}</span>
+            <span>{this.props.InputStore.monthlyPayment}</span>
           </div>
+          <Link to = "/takeLoan">
           <button className='' onClick={this.handleClick} id="submit-new-loan">
             Submit
           </button>
+          </Link>
         </div>
       </div>
     );
