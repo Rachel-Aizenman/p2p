@@ -1,0 +1,30 @@
+#info-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+div{
+    background-color: whitesmoke;
+}
+
+#recharts{
+    display: flex;
+    justify-content: center;
+}
+
+.available-cash{
+    display: flex;
+}
+h2{
+    display: flex;
+    justify-content: center;
+
+}
+.nav-bar{
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+}
+.nav-bar>button{
+    color: black;
+}

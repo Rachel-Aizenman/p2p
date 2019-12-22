@@ -1,10 +1,15 @@
-
+body{
+  font-family: 'Raleway', sans-serif;
+}
 #submit-new-loan{
     font-size: large;
   }
   
   #new-loan{
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    margin: 75px;
   }
   
   #loan-inputs{
@@ -16,23 +21,23 @@
     display: inline-block;
     margin: 5px;
     background-color: darkslategray;
-    width:100px;
+    width:200px;
     height:50px;
+    border-radius: 50px;
   }
 
   .purpose:hover {
     background-color: dimgrey;
   }
 
-  .purpose:active {
+  .purpose:focus {
     background-color: yellow;
   }
 
   #purposes{
     display: flex;
-    width: 50vw;
     flex-wrap: wrap;
-    justify-self: center;
+    align-items: center;
+    justify-content: center;
   }
 
-  

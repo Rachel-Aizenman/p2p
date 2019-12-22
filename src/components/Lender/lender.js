@@ -7,6 +7,8 @@ import DynamicTable from '../DynamicTable'
 import TableCell from '@material-ui/core/TableCell';
 import PieChart from '../PieChart'
 import VerticalBarChart from '../VerticalBarChart'
+import "./Lender.css";
+
 @inject('UserStore')
 @observer
 class Lender extends Component {
@@ -21,7 +23,7 @@ class Lender extends Component {
         <h2>Lender</h2>
         <LenderNavBar />
         <InfoContainer />
-        <div>
+        <div id="recharts">
           <PieChart />
           <PieChart />
           <VerticalBarChart />

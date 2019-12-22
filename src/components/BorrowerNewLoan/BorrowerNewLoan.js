@@ -63,12 +63,9 @@ class BorrowerNewLoan extends Component {
     await UserStore.getNewLoans(); 
   };
 
-  changeColor = e => {
+  handlePurpose = e => {
     const InputStore = this.props.InputStore;
-    const newColor =
-    InputStore.color == default_color ? selected_color : default_color;
     InputStore.handleInput(purpose, e.currentTarget.textContent)
-    InputStore.handleInput(color, newColor)
   };
 
   render() {
@@ -78,16 +75,15 @@ class BorrowerNewLoan extends Component {
         <div>Select purpose:</div>
         <div id="purposes">
           {purposes.map(p => (
-            <div
+            <button
               name="purpose"
               id={purposes.indexOf(p)}
               className="purpose"
               value={p}
-              onClick={this.changeColor.bind(this)}
-              style={{ background: this.props.InputStore.color }}
+              onClick={this.handlePurpose}
             >
               {p}
-            </div>
+            </button>
           ))}
         </div>
         <div id="new-loan" style={{ textAlign: "center" }}>
