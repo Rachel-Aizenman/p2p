@@ -26,13 +26,23 @@ router.post("/addLoan", async function (req, res) {
   res.end();
 });
 
-router.put("/transaction", function (req, res) {
-  let username = req.body.username;
+router.put("/transaction", async function (req, res) {
+
+  let deposit = {
+    username: document.getElementById('name').value,
+    id: document.getElementById('id').value,
+    deposit: document.getElementById('deposit').value,
+    availableMoney: availableMoney + Number(amount),
+    date: document.getElementById('date').value
+}
+  const username = req.body.username;
+  const idNumber=req.body.idNumber;
+  const deposit=req.body
   let availableMoney = req.body.availableMoney;
-  let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`;
-  sequelize.query(update_query);
-  // add money to user
-  // add registry to transaction DB
+  let updateQuery = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`;
+  sequelize.query(updateQuery);
+  let insertQuery=`INSERT INTO transaction VALUES(null,'${username}','${idNumber}','${deposityBy}','${amount}','${date}')`
+  sequelize.query(insertQuery);
   res.end();
 });
 
