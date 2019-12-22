@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 
 import "./Welcome.css";
 
@@ -14,15 +19,21 @@ class Welcome extends Component {
     const UserStore = this.props.UserStore;
     const username = InputStore.username;
     await UserStore.getData(username);
-    await UserStore.setPath();
-    console.log(this.props.UserStore.path)
+    this.props.UserStore.path  = true
+    this.props.UserStore.path  = false
   };
-  handleInput = e => {
+  handleInput = async e => {
     const name = e.target.name;
     const value = e.target.value;
     this.props.InputStore.handleInput(name, value);
   };
   render() {
+    let path = this.props.UserStore.path 
+    let type = this.props.UserStore.user.type;
+    if (path) {
+      if (type === "l") return <Redirect to={"/giveLoan"} />;
+      if (type === "b") return <Redirect to={"/takeLoan"} />;
+    }
     return (
       <div class="body">
         <section class="intro">
@@ -35,8 +46,8 @@ class Welcome extends Component {
                 name="username"
                 onChange={this.handleInput}
               />
-              <div class="btn" onClick={this.handleClick}>
-                <Link to={this.props.UserStore.path}>Login</Link>
+              <div id="login" class="btn" onClick={this.handleClick}>
+                Login
               </div>
               <Link to="/signUp">
                 <div class="btn">Sign Up</div>

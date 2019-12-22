@@ -4,13 +4,13 @@ const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
 
 export class UserStore {
-  @observable user = []
-  @observable openLoans = []
-  @observable newLoans = []
-  @observable path 
-  @action getData = async (username) => {
+  @observable user = [];
+  @observable openLoans = [];
+  @observable newLoans = [];
+  @observable path;
+  @action getData = async username => {
     let data = await axios.get(dataRoute + username);
-    data = data.data
+    data = data.data;
     this.user = data;
     if (this.user.openLoans) {
       for (let loan of this.user.openLoans) {
@@ -21,21 +21,25 @@ export class UserStore {
           nextMonth
         );
       }
-      this.openLoans = this.user.openLoans
+      this.openLoans = this.user.openLoans;
     }
   };
 
   @action getNewLoans = async () => {
     let data = await axios.get(newLoansRoute);
-    console.log(data)
+    console.log(data);
     if (data) {
       data = data.data;
       this.newLoans = data;
     }
   };
   @action setPath() {
-    if (this.user.type === "l") { this.path = "/giveLoan" }
-    else this.path = "/takeLoan";
+    if (this.user.type === "l") {
+      this.path = "/giveLoan";
+    }
+    if (this.user.type === "b") {
+      this.path = "/takeLoan";
+    }
   }
 
   //   this.user = {
