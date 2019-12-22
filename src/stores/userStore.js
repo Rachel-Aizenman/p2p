@@ -5,13 +5,18 @@ const newLoansRoute = "http://localhost:3001/newLoans";
 
 export class UserStore {
   @observable user = [];
+  @observable validUser;
   @observable openLoans = [];
   @observable newLoans = [];
   @observable path;
   @action getData = async username => {
     let data = await axios.get(dataRoute + username);
     data = data.data;
-    this.user = data;
+    if (typeof data === "string") {
+      alert("Invalid Username!");
+    } else {
+      this.user = data;
+    }
     if (this.user.openLoans) {
       for (let loan of this.user.openLoans) {
         loan.remainingAmount = loan.amount - loan.amountPaid;
