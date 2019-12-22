@@ -30,6 +30,9 @@ class Borrower extends Component {
     ];
     const rows = this.props.UserStore.openLoans;
     let user = this.props.UserStore.user;
+    let loansByCategoryByNumber=user.chartsData.loansByCategoryByNumber
+    let loansByCategoryByValue=user.chartsData.loansByCategoryByValue
+    loansByCategoryByValue.forEach(l=>l.value=parseInt(l.value))
     return (
       <div>
         <NavBar />
@@ -50,7 +53,11 @@ class Borrower extends Component {
         </div>
         <DynamicTable head={header} keys={keys} rows={rows} />
         <div>
-          <PieChart/>
+           {/*loans by purpose by number  */}
+          <PieChart data={loansByCategoryByNumber}/>
+            {/*loans by purpose by value  */}
+          <PieChart data={loansByCategoryByValue}/>
+
         </div>
         
       </div>
