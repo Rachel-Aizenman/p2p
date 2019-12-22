@@ -53,9 +53,7 @@ class Borrower extends Component {
         </div>
         <DynamicTable head={header} keys={keys} rows={rows} />
         <div>
-           {/*loans by purpose by number  */}
           <PieChart data={loansByCategoryByNumber}/>
-            {/*loans by purpose by value  */}
           <PieChart data={loansByCategoryByValue}/>
 
         </div>

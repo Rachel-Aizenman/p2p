@@ -18,7 +18,6 @@ const {
 } = require("./helpers");
 
 router.post("/addLoan", async function (req, res) {
-  // borrower
   let loan = req.body;
   const issuanceDate = moment().format("YYYY-MM-DD");
   query = `INSERT INTO loan VALUES(null,${loan.amount},${loan.interest},'${loan.purpose}',${loan.period},
@@ -28,16 +27,16 @@ router.post("/addLoan", async function (req, res) {
 });
 
 router.put("/transaction", function (req, res) {
-  // lender
   let username = req.body.username;
   let availableMoney = req.body.availableMoney;
   let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`;
   sequelize.query(update_query);
+  // add money to user
+  // add registry to transaction DB
   res.end();
 });
 
 router.get("/newLoans", async function (req, res) {
-  // market
   query = `SELECT * 
           FROM loan 
           WHERE percentage < 1`;
@@ -46,7 +45,6 @@ router.get("/newLoans", async function (req, res) {
 });
 
 router.post("/fundLoan", async function (req, res) {
-  // lender
   let { loanID, userID, borrowerName } = req.body;
   let borrowerID = await getBorrowerID(borrowerName);
   await connectBorrowerAndLender(loanID, userID, borrowerID);
@@ -55,9 +53,8 @@ router.post("/fundLoan", async function (req, res) {
 });
 
 router.get("/userData/:username", async function (req, res) {
-  // store
   const username = req.params.username;
-  // try {
+  try {
     const [userID, type, availableCash] = await getUserInfo(username);
     const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
     const [remainingAmount, interest] = await remainingAmountAndInterest(
@@ -94,9 +91,9 @@ router.get("/userData/:username", async function (req, res) {
     };
 
     res.send(user);
-  // } catch (e) {
-    // res.send(e.message);
-  // }
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
 router.post("/newUser", async function (req, res) {

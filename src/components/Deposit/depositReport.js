@@ -13,12 +13,10 @@ class DepositReport extends Component {
         let deposit = {
             username: document.getElementById('name').value,
             id: document.getElementById('id').value,
-            account: document.getElementById('account').value,
             deposit: document.getElementById('deposit').value,
             availableMoney: availableMoney + Number(amount),
             date: document.getElementById('date').value
         }
-        console.log(deposit)
         axios.put('http://localhost:3001/transaction', deposit)
     }
 
@@ -28,7 +26,6 @@ class DepositReport extends Component {
                 Name:
                 <input id='name' /> <br />
                 ID: <input id='id' /> <br />
-                Account Number: <input id='account' />  <br />
                 Deposit by: <select id='deposit-by' >
                     <option>Internet</option>
                     <option>Credit card</option>

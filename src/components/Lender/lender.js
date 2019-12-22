@@ -17,6 +17,12 @@ class Lender extends Component {
     const keys = ['borrowerName', 'period', 'purpose', 'amount', 'interest', 'remainingAmount', 'status', 'dateOfIssuance']
     const rows = this.props.UserStore.openLoans
     const button = <TableCell><button>+</button></TableCell>
+    let user = this.props.UserStore.user;
+    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber
+    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue
+    let loansByMonthByNumber = user.chartsData.loansByMonthByNumber
+    let loansByMonthByValue = user.chartsData.loansByMonthByValue
+    loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
     return (
       <div>
         <NavBar />
@@ -24,9 +30,11 @@ class Lender extends Component {
         <LenderNavBar />
         <InfoContainer />
         <div id="recharts">
-          <PieChart />
-          <PieChart />
-          <VerticalBarChart />
+          <PieChart data={loansByCategoryByNumber} />
+          <PieChart data={loansByCategoryByValue} />
+          <VerticalBarChart data={loansByMonthByNumber}/>
+          <VerticalBarChart data={loansByMonthByValue}/>
+
         </div>
 
         <div>
