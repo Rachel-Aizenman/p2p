@@ -14,13 +14,21 @@ import "./Welcome.css";
 @inject("UserStore", "InputStore")
 @observer
 class Welcome extends Component {
+
+  componentDidMount(){
+    const InputStore = this.props.InputStore;
+    const UserStore = this.props.UserStore;
+    UserStore.user = []
+    InputStore.username = null
+  }
+
   handleClick = async () => {
     const InputStore = this.props.InputStore;
     const UserStore = this.props.UserStore;
     const username = InputStore.username;
     await UserStore.getData(username);
-    this.props.UserStore.path  = true
-    this.props.UserStore.path  = false
+    UserStore.path = true;
+    UserStore.path = false;
   };
   handleInput = async e => {
     const name = e.target.name;
@@ -28,7 +36,7 @@ class Welcome extends Component {
     this.props.InputStore.handleInput(name, value);
   };
   render() {
-    let path = this.props.UserStore.path 
+    let path = this.props.UserStore.path;
     let type = this.props.UserStore.user.type;
     if (path) {
       if (type === "l") return <Redirect to={"/giveLoan"} />;
