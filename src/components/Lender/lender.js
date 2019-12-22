@@ -12,7 +12,7 @@ import VerticalBarChart from '../VerticalBarChart'
 class Lender extends Component {
   render() {
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount', 'Interest (%)', 'Remaining Amount ($)', 'Status', 'Issuance Date']
-    const keys = ['username', 'period', 'purpose', 'amount', 'interest', 'remainingAmount', 'status', 'dateOfIssuance']
+    const keys = ['borrowerName', 'period', 'purpose', 'amount', 'interest', 'remainingAmount', 'status', 'dateOfIssuance']
     const rows = this.props.UserStore.openLoans
     const button = <TableCell><button>+</button></TableCell>
     return (

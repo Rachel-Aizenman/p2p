@@ -103,7 +103,7 @@ async function connectBorrowerAndLender(loanID, userID, borrowerID) {
 }
 
 async function updateLoanStatus(loanID) {
-    query = `UPDATE loan SET percentage = 1 WHERE loan.id =${loanID}`
+    query = `UPDATE loan SET percentage = 1,status = "OK" WHERE loan.id =${loanID}`
     sequelize.query(query);
 }
 
