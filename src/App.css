@@ -1,3 +1,6 @@
+
+
+
 button {
   color: white;
   border: none;
@@ -5,7 +8,6 @@ button {
   font-weight: 800;
   font-size: larger;
   cursor: pointer;
-  
 }
 
 .App-logo {
@@ -21,7 +23,9 @@ header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: 'Raleway', sans-serif;
   color: white;
+  font-family: 'Raleway', sans-serif;
 }
 
 h1 {

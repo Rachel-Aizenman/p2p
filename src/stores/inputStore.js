@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 const default_color = "#39D1B4";
-
+const selected_color = "#FFD712";
 export class InputStore {
     @observable name
     @observable id
@@ -9,7 +9,8 @@ export class InputStore {
     @observable amount
     @observable period
     @observable interest
-    @observable color = default_color
+    @observable defaultColor = default_color
+    @observable newColor = selected_color
     @observable withdrawInput
     @observable purpose
     @observable username
