@@ -112,8 +112,9 @@ async function getLoansByCategory(){
     FROM loan
     INNER JOIN loan_lender ON loan.id=loan_lendr=loanID
     GROUP BY purpose`
-    
 }
+
+
 module.exports = {
     getMonthlyPayment, getNextPayment, getOpenLoans, getUserInfo, overallLoanData,
     remainingAmountAndInterest, getBorrowerID, connectBorrowerAndLender, updateLoanStatus
