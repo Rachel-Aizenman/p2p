@@ -17,9 +17,10 @@ class NavBar extends Component {
       <ul>
         <Link to='/takeLoan'><li><a href="#" class="nav-link">Loan</a></li></Link>
 
-        <Link to='/'><li><a href="#" class="nav-link">Log Out</a></li></Link>
-
         <Link to='giveLoan'><li><a href="#" class="nav-link">Lend</a></li></Link>
+
+        <Link to='/'><li><a href="#" class="nav-link">Log Out</a></li></Link>
+        
 
       </ul>
     </div>

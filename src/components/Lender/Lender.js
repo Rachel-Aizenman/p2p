@@ -24,9 +24,9 @@ class Lender extends Component {
     let loansByMonthByValue = user.chartsData.loansByMonthByValue
     loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
     return (
-      <div>
+      <div className='body'>
         <NavBar />
-        <h2>Lender</h2>
+        {/* <h2>Lender</h2> */}
         <LenderNavBar />
         <InfoContainer />
         <div id="recharts">
@@ -46,6 +46,9 @@ class Lender extends Component {
 
         <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID} />
       </div>
+
+     
+      
     )
   }
 }

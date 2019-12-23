@@ -24,6 +24,7 @@ class NavBar extends Component {
             <hr />
           </button>
         </Link>
+        
       </div>
     );
   }

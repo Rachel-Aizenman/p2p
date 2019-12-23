@@ -5,6 +5,8 @@ import DynamicTable from "../DynamicTable";
 import { inject, observer } from "mobx-react";
 import NavBar from "../navBar/NavBar";
 import PieChart from '../PieChart'
+
+import './Borrower.css'
 @inject("UserStore", "InputStore")
 @observer
 class Borrower extends Component {
@@ -45,12 +47,13 @@ class Borrower extends Component {
           <div className="info">
             Amount remained to pay: {Math.round(user.remainingAmount)} $
           </div>
-          <div className="info">Mothly payment: {user.monthlyPayment}</div>
+          <div className="info">Monthly payment: {user.monthlyPayment}</div>
           <div className="info">Open loans </div>
           <Link to="/newLoan">
-            <button className="circle">New Loan</button>
+            <button className="btn">New Loan</button>
           </Link>
         </div>
+        <PieChart/>
         <DynamicTable head={header} keys={keys} rows={rows} />
         <div>
           <PieChart data={loansByCategoryByNumber}/>
