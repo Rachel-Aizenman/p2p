@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LenderNavBar from './LenderNavBar'
 import NavBar from '../navBar/NavBar'
 import { observer, inject } from "mobx-react";
 import InfoContainer from './LenderInfoContainer';
@@ -27,13 +26,12 @@ class Lender extends Component {
       <div className='body'>
         <NavBar />
         {/* <h2>Lender</h2> */}
-        <LenderNavBar />
         <InfoContainer />
         <div id="recharts">
           <PieChart data={loansByCategoryByNumber} />
-          <PieChart data={loansByCategoryByValue} />
           <VerticalBarChart data={loansByMonthByNumber} />
           <VerticalBarChart data={loansByMonthByValue} />
+          <PieChart data={loansByCategoryByValue} />
 
         </div>
 

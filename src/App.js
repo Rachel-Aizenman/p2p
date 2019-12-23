@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+// import "./App.css";
 import { observer, inject } from "mobx-react";
 import { BrowserRouter as Router, Route, Redirect,Link } from "react-router-dom";
 import Lender from "./components/Lender/Lender";

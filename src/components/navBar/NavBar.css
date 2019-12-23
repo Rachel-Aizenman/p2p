@@ -15,15 +15,15 @@ html, body, div, p, ul, li {
     justify-content: center;
   }
   
-  .nav li {
+  .nav-link {
     display: inline-block;
     list-style: none;
     height: 60px; /* should be the same as line-height */
     line-height: 60px; /* should be the same as height */
-    padding: 0 10vw; /* "0" sets top and bottom padding to none */
+    padding: 0 5vw; /* "0" sets top and bottom padding to none */
   }
   
-  .nav li:hover {
+  .nav-link:hover {
     background: red;
     transition: background .3s;
   }

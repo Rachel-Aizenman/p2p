@@ -24,18 +24,53 @@ class DepositReport extends Component {
 
     render() {
         return (
-            <div class='deposite-report' style={{ backgroundColor: 'grey', position: 'inline-block', width: '300px', margin: '30px', textAlign: 'center', padding: '15px' }}>
-                Name:
-                <input id='name' /> <br />
-                ID: <input id='id' /> <br />
-                Deposit by: <select id='deposit-by' >
+            <div class='deposite-report' >
+                {/* Name:
+                <input id='name' /> <br /> */}
+                {/* ID: <input id='id' /> <br /> */}
+                {/* Deposit by: <select id='deposit-by' >
+                    <option>Internet</option>
+                    <option>Credit card</option>
+                    <option>Bank transfer</option>
+                </select>  <br /> */}
+                {/* Amount: <input type="number" id='amount' />$  <br /> */}
+                {/* Date: <input type='date' id='date' /> <br />
+                <button onClick={this.deposit}>Report Deposit</button> */}
+              
+<div><form method="post" action="/" id="form" className="validate">
+  <div className="form-field">
+    <label> Name </label>
+    <input id="name" />
+  </div>
+  <div className="form-field">
+    <label>ID</label>
+    <input id='id' />
+  </div> 
+  <div className="form-field">
+    <label>Deposit By</label>
+  <select id='deposit-by' >
                     <option>Internet</option>
                     <option>Credit card</option>
                     <option>Bank transfer</option>
                 </select>  <br />
-                Amount: <input type="number" id='amount' />$  <br />
-                Date: <input type='date' id='date' /> <br />
-                <button onClick={this.deposit}>Report Deposit</button>
+  </div>
+  
+  <div className="form-field">
+    <label for="email-input">Amount</label>
+    <input type="number" id='amount'/>
+  </div>
+
+  <div className="form-field">
+    <label>Date</label>
+    <input type="date" id='date'/>
+  </div>
+  <div className="form-field">
+  <label></label>
+    <input className="submit" value="Report Deposit"  onClick={this.deposit}/>             
+
+  </div>
+</form>
+</div>                
             </div>
         );
     }

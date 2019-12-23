@@ -10,7 +10,7 @@ import './Borrower.css'
 @inject("UserStore", "InputStore")
 @observer
 class Borrower extends Component {
-  
+
   render() {
     const header = [
       "Amount",
@@ -32,35 +32,39 @@ class Borrower extends Component {
     ];
     const rows = this.props.UserStore.openLoans;
     let user = this.props.UserStore.user;
-    let loansByCategoryByNumber=user.chartsData.loansByCategoryByNumber
-    let loansByCategoryByValue=user.chartsData.loansByCategoryByValue
-    loansByCategoryByValue.forEach(l=>l.value=parseInt(l.value))
+    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber
+    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue
+    loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
     return (
       <div>
         <NavBar />
-        <h2>Borrower</h2>
-        <div>
-          <span className="header">Hello User</span>{" "}
+        {/* <h2>Borrower</h2> */}
+        <div id="status-container">
+          <span className="header">Hello {user.username}</span>{" "}
+        {/* <Link to="/newLoan">
+          <button className="btn">New Loan</button>
+        </Link> */}
           <span className="header">Status: OK</span>
         </div>
-        <div id="infos">
-          <div className="info">
-            Amount remained to pay: {Math.round(user.remainingAmount)} $
-          </div>
-          <div className="info">Monthly payment: {user.monthlyPayment}</div>
-          <div className="info">Open loans </div>
-          <Link to="/newLoan">
-            <button className="btn">New Loan</button>
-          </Link>
-        </div>
-        <PieChart/>
-        <DynamicTable head={header} keys={keys} rows={rows} />
+
         <div>
-          <PieChart data={loansByCategoryByNumber}/>
-          <PieChart data={loansByCategoryByValue}/>
+          <div id="charts-container">
+            <PieChart data={loansByCategoryByNumber} />
+            <div id="infos">
+              <div className="info" id="amount-remained">
+                Amount remained to pay: {Math.round(user.remainingAmount)} $
+            </div>
+              <div className="info">Monthly payment: {user.monthlyPayment}</div>
+              <div className="info">Open loans </div>
+
+            </div>
+            <PieChart data={loansByCategoryByValue} />
+          </div>
+
+          <DynamicTable head={header} keys={keys} rows={rows} />
 
         </div>
-        
+
       </div>
     );
   }

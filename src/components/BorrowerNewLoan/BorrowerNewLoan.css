@@ -9,7 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 75px;
+    margin: 5vh;
   }
   
   #loan-inputs{
@@ -20,10 +20,12 @@ body{
   .purpose{
     display: inline-block;
     margin: 5px;
-    background-color: darkslategray;
+    background-color: lightblue;
     width:200px;
     height:50px;
     border-radius: 50px;
+    font-family: 'Raleway', sans-serif;
+    font-size:larger
   }
 
   .purpose:hover {
@@ -39,5 +41,14 @@ body{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width:80%;
+    margin-left:10vw;
+    margin-top:5vh;
   }
 
+
+#slider-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}

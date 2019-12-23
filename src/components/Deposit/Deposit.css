@@ -1,0 +1,70 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-image: url("https://fonts.googleapis.com/css?family=Raleway")
+
+}
+
+
+.info{
+    display: inline-block;
+    margin: 20px;
+    border-radius: 5px;
+    font-family:'Oswald', sans-serif;
+    color: rgb(19, 4, 4);
+    font-size: 135%;
+    padding: 7px 0px;
+    border: solid #eee 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-justify: center;
+    width: 200px;
+}
+  
+  #form {
+    max-width: 700px;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  .form-field {
+    display: flex;
+    margin: 0 0 1rem 0;
+  }
+  label, input {
+    width: 70%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+    font-size: 1.1rem;
+  }
+  label {
+    text-align: right;
+    width: 30%;
+  }
+
+  input, option{
+    border: 2px solid #aaa;
+    border-radius: 2px;
+  }
+  
+  .deposit-container{
+    /* width: 200px;
+    height: 200px;
+    line-height: 200px;
+    border-radius: 30%; 
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto 40px;
+    background-color: blue; */
+  }

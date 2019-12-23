@@ -9,7 +9,7 @@ export default class Example extends PureComponent {
   render() {
     const data=this.props.data
     return (
-      <div style={{ width: '40%', height: 300 }}>
+      <div style={{ width: '20%', height: 300 }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} fill="#8884d8" label />

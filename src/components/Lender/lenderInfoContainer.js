@@ -9,37 +9,38 @@ class InfoContainer extends Component {
   render() {
     const user = this.props.UserStore.user;
     return (
-        <div id="info-container" style={{ display: "flex" }}>
-          <div          >
-            <div >
-              <div className="info">Portfolio Value:</div> <div>{user.totalWorth}</div>
+      <div id="info-container" style={{ display: "flex" }}>
+
+
+        <div className="info">
+          Portfolio Value: {user.totalWorth}
+        </div>
+
+
+        <div
+          id="available-cash"
+          className='info'
+        >
+          Available Cash: {user.availableCash}
+        </div>
+
+        <div
+          id="available-cash"
+          className='info'
+        >
+          Annual Return: {user.averageReturn}
+        </div>
+
+        <Link to={"/market"}>
+          <div class="button__wrapper">
+            <div className="add-investment">
+              Add Investment!
             </div>
           </div>
-          
-          <div
-            id="available-cash"
-            className='info'
-          >
-            Available Cash: {user.availableCash}
-          </div>
-          <div
-            id="available-cash"
-            className='info'
-          >
-            Annual Return: {user.averageReturn}
-          </div>
-          <br />
-          
-          <Link to={"/market"}>
-          <div class="button__wrapper">
-          <div className="add-investment">
-              Add Investment!
-            </div>      
-    </div>
-            
-          </Link>
 
-          
+        </Link>
+
+
       </div>
     );
   }
