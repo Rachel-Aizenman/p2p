@@ -3,6 +3,8 @@ import "./BorrowerNewLoan.css";
 import Slider from "../Slider";
 import { BrowserRouter as Router, Route, Redirect,Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
+import NavBar from "../navBar/NavBar";
+
 const axios = require("axios");
 const newLoanRoute = "http://localhost:3001/addLoan/"
 
@@ -88,6 +90,7 @@ class BorrowerNewLoan extends Component {
         </div>
         <div id="new-loan" style={{ textAlign: "center" }}>
           <div>
+            <div id='slider-container'>
             <Slider
               title={"Amount"}
               max={70000}
@@ -106,13 +109,15 @@ class BorrowerNewLoan extends Component {
               name={"interest"}
               handleInput={this.props.InputStore.handleInput}
             />
+            </div>
+            
           </div>
           <div>
-            <label>Monthly Payment:</label>
+            <label id="monthly-payment-l">Monthly Payment:</label>
             <span>{this.props.InputStore.monthlyPayment}</span>
           </div>
           <Link to = "/takeLoan">
-          <button className='' onClick={this.handleClick} id="submit-new-loan">
+          <button className='btn' onClick={this.handleClick} id="submit-new-loan">
             Submit
           </button>
           </Link>

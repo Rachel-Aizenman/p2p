@@ -1,26 +1,31 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway");
+/* @import url("https://fonts.googleapis.com/css?family=Raleway");
 
-@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Oswald"); */
 
 .body{
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-size: cover;
-  background-image: url("https://fonts.googleapis.com/css?family=Raleway")
+  /* background-image: url("https://fonts.googleapis.com/css?family=Raleway") */
+
+
+}
+
+#root{
+  /* height:100vh; */
+  /* background-size: 100%; */
 
 }
 
 .intro {
   height: 100%;
   width: 100%;
-  margin: auoto;
-    /* background-image: 8; */
-  background: url(https://i.picsum.photos/id/439/700/700.jpg);
+  margin: auto;
   display: table;
   top:0;
-  background-size: cover;
+  background-image:url('http://i.picsum.photos/id/439/700/700.jpg'); 
+  background-size: no-repeat contain;
 }
 
 .inner {
@@ -59,6 +64,7 @@
   margin: 20px;
   border-radius: 5px;
   font-family:'Oswald', sans-serif;
+  background-color: rgba(211, 211, 211, 0.075);
   color: white;
   font-size: 135%;
   padding: 7px 0px;
@@ -66,7 +72,8 @@
   text-transform: uppercase;
   text-decoration: none;
   text-justify: center;
-  width: 200px;
+  width: 100px;
+
 }
 
 .input{
@@ -95,24 +102,24 @@ p{
   font-family: sans-serif;
 }
 
-@media only screen and(max-width: 768px){
-  .content h1{
+/* @media only screen and(max-width: 768px){ */
+  /* .content h1{
     font-size: 250%;
-  }
-  .btn{
-    font-size:110%;
-    padding: 7px 15px;
-  }
-  p{
-    font-size: 100%;
-    line-height: 160%;
-  }
-}
+  } */
+  /* .btn{ */
+    /* font-size:110%;
+    padding: 7px 15px; */
+  /* } */
+  /* p{ */
+    /* font-size: 100%;
+    line-height: 160%; */
+  /* } */
+/* } */
 
-.svg-inline--fa{
-    margin-top: 0px;
+ .svg-inline--fa{ 
+     margin-top: 0px;
     font-size: 130px;
-    color: white;
+    color: white; 
 }
 #login{
   cursor: pointer;

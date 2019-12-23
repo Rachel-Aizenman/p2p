@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
 import Slider from '../Slider'
 import axios from 'axios';
-import NavBar from '../Lender/LenderNavBar'
+import NavBar from '../navBar/NavBar'
 import moment from 'moment'
 @inject('UserStore', 'InputStore')
 

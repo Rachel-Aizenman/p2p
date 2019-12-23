@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../Lender/LenderNavBar'
+import NavBar from '../navBar/NavBar'
 import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
 
@@ -16,8 +16,8 @@ class Market extends Component {
     const rows = this.props.UserStore.newLoans
     return (
       <div>
-        <h3>Browse Loan Requests:</h3>
         <NavBar />
+        <h3>Browse Loan Requests:</h3>
         <DynamicTable head={header} keys={keys} rows={rows} getData={this.getData} name={this.props.UserStore.user.username} market={true} userID={this.props.UserStore.user.userID}/>
       </div>
     )

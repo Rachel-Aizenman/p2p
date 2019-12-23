@@ -1,6 +1,7 @@
 .info{
 margin: 15px;
-display: inline; 
+display: inline;
+font-size:20px 
 }
 
 table{
@@ -25,7 +26,7 @@ table, th, td {
 
 .btn{
     display: inline-block;
-    margin: 20px;
+    /* margin: 20px; */
     border-radius: 30px;
     font-family:'Oswald', sans-serif;
     color: rgb(19, 4, 4);
@@ -38,4 +39,31 @@ table, th, td {
     text-decoration: none;
     text-justify: center;
     width: 200px;
+  }
+
+  #status-container{
+      display:flex;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
+      font-size:26px;
+      font-weight:bold;
+      width:90%;
+      margin-left:5%
+  }
+
+  #charts-container{
+      display:flex;
+      justify-content:center;
+    
+  }
+
+  /* #amount-remained{
+      font-size:15px;
+      font-weight:bold;
+  } */
+
+  #infos{
+      display:flex;
+      flex-direction:column;
+      margin:0 10vw 0 10vw;
   }

@@ -6,27 +6,12 @@ import { observer, inject } from "mobx-react";
 @observer
 class NavBar extends Component {
   render() {
-    return (
-      <div className="nav-bar">
-        <Link to={"/deposit"}>
-          <button>
-            Deposit
-            <hr />
-          </button>
-        </Link>
-
-        <Link to={"/market"}>
-          <button>Add Loan</button>
-        </Link>
-        <Link to={"/withdraw"}>
-          <button>
-            Withdraw
-            <hr />
-          </button>
-        </Link>
-        
-      </div>
-    );
+    return (<ul>
+      <Link to='/deposit' className="nav-link">Deposit</Link>
+      <Link to='/withdraw' className="nav-link">Withdraw</Link>
+      <Link to='/market' className="nav-link">Add Loan</Link>
+      <Link to='/' className="nav-link">Log Out</Link>
+    </ul>)
   }
 }
 

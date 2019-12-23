@@ -38,10 +38,10 @@ class Welcome extends Component {
       if (type === "b") return <Redirect to={"/takeLoan"} />;
     }
     return (
-      <div class="body">
-        <section class="intro">
-          <div class="inner">
-            <div class="content">
+      <div className="body">
+        <section className="intro">
+          <div className="inner">
+            <div className="content">
               <h1>Peer 2 Peer</h1>
               <FontAwesomeIcon icon={faHandshake} />
               <input
@@ -49,12 +49,14 @@ class Welcome extends Component {
                 name="username"
                 onChange={this.handleInput}
               />
-              <div id="login" class="btn" onClick={this.handleClick}>
+              <div className='container'>
+              <div id="login" className="btn" onClick={this.handleClick}>
                 Login
               </div>
               <Link to="/signUp">
-                <div class="btn">Sign Up</div>
+                <div className="btn">Sign Up</div>
               </Link>
+              </div>
             </div>
           </div>
         </section>

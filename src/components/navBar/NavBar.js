@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { inject } from "mobx-react";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import DynamicTable from '../DynamicTable'
+import LenderNavBar from '../Lender/LenderNavBar'
+import BorrowerNavBar from '../Borrower/BorrowerNavBar' 
 import './NavBar.css'
 
 
@@ -11,18 +12,15 @@ class NavBar extends Component {
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']
     const keys = ['borrowerName', 'period', 'purpose', 'amount', 'percentage', 'interest']
     const rows = this.props.UserStore.newLoans
+    const type=this.props.UserStore.user.type
     return (
 
-      <div class="nav">
-      <ul>
-        <Link to='/takeLoan'><li><a href="#" class="nav-link">Loan</a></li></Link>
-
-        <Link to='giveLoan'><li><a href="#" class="nav-link">Lend</a></li></Link>
-
-        <Link to='/'><li><a href="#" class="nav-link">Log Out</a></li></Link>
-        
-
-      </ul>
+      <div className="nav">
+      {type==="l"?
+        <LenderNavBar/>
+      :
+      <BorrowerNavBar/>
+      }
     </div>
       // <div>
       //   <div className="nav-bar">
