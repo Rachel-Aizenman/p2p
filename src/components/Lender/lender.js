@@ -31,20 +31,12 @@ class Lender extends Component {
         <InfoContainer />
         <div id="recharts">
           <PieChart data={loansByCategoryByNumber} />
-<<<<<<< HEAD
-          <VerticalBarChart data={loansByMonthByNumber}/>
-          <VerticalBarChart data={loansByMonthByValue}/>
-          <PieChart data={loansByCategoryByValue} />
-
-=======
           <PieChart data={loansByCategoryByValue} />
           <VerticalBarChart data={loansByMonthByNumber}/>
           <VerticalBarChart data={loansByMonthByValue}/>
 
         </div>
->>>>>>> master
 
-        </div>
 
         <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID} />
       </div>
