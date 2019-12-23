@@ -32,11 +32,17 @@ class Lender extends Component {
         <div id="recharts">
           <PieChart data={loansByCategoryByNumber} />
           <PieChart data={loansByCategoryByValue} />
-          <VerticalBarChart data={loansByMonthByNumber}/>
-          <VerticalBarChart data={loansByMonthByValue}/>
+          <VerticalBarChart data={loansByMonthByNumber} />
+          <VerticalBarChart data={loansByMonthByValue} />
 
         </div>
 
+        <div>
+          <ul>Next payments:
+            {user.nextPayments.map(p => <li>{p.paymentDate} {p.username} {p.amount}</li>)}
+
+          </ul>
+        </div>
 
         <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID} />
       </div>

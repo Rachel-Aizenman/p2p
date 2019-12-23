@@ -14,25 +14,27 @@ const {
   connectBorrowerAndLender,
   updateLoanStatus,
   getLoansByCategory,
-  getLoansByIssuanceDate
+  getLoansByIssuanceDate,
+  addTransaction
 } = require("./helpers");
 
 router.post("/addLoan", async function (req, res) {
   let loan = req.body;
   const issuanceDate = moment().format("YYYY-MM-DD");
-  query = `INSERT INTO loan VALUES(null,${loan.amount},${loan.interest},'${loan.purpose}',${loan.period},
+  query = `INSERT INTO loan
+           VALUES(null,${loan.amount},${loan.interest},'${loan.purpose}',${loan.period},
            0,'pending','${issuanceDate}',0,${loan.monthlyPayment},'${loan.userName}')`;
   await sequelize.query(query);
   res.end();
 });
 
-router.put("/transaction", function (req, res) {
-  let username = req.body.username;
-  let availableMoney = req.body.availableMoney;
-  let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`;
-  sequelize.query(update_query);
-  // add money to user
-  // add registry to transaction DB
+router.put("/transaction", async function (req, res) {
+  const { username, availableMoney } = req.body;
+  let query = `UPDATE user
+              SET availableMoney = '${availableMoney}'
+              WHERE username = '${username}'`;
+  sequelize.query(query);
+  await addTransaction(req.body)
   res.end();
 });
 
@@ -54,22 +56,18 @@ router.post("/fundLoan", async function (req, res) {
 
 router.get("/userData/:username", async function (req, res) {
   const username = req.params.username;
-  try {
+  // try {
     const [userID, type, availableCash] = await getUserInfo(username);
     const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
-    const [remainingAmount, interest] = await remainingAmountAndInterest(
-      userID,
-      totalWorth,
-      type
-    );
+    const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
     const openLoans = await getOpenLoans(userID);
     const monthlyPayment = getMonthlyPayment(openLoans);
-    const nextPayment = getNextPayment(openLoans);
-    const [loansByCategoryByNumber,loansByCategoryByValue] =
-    await getLoansByCategory(userID)
-    const [loansByMonthByNumber,loansByMonthByValue]=
-     await getLoansByIssuanceDate(userID)
-    const chartsData={
+    const nextPayments = await getNextPayment(userID);
+    const [loansByCategoryByNumber, loansByCategoryByValue] =
+      await getLoansByCategory(userID)
+    const [loansByMonthByNumber, loansByMonthByValue] =
+      await getLoansByIssuanceDate(userID)
+    const chartsData = {
       loansByCategoryByNumber,
       loansByCategoryByValue,
       loansByMonthByNumber,
@@ -85,19 +83,18 @@ router.get("/userData/:username", async function (req, res) {
       openLoans,
       availableCash,
       interest,
-      nextPayment,
+      nextPayments,
       type,
       chartsData
     };
 
     res.send(user);
-  } catch (e) {
-    res.send(e.message);
-  }
+  // } catch (e) {
+    // res.send(e.message);
+  // }
 });
 
 router.post("/newUser", async function (req, res) {
-  // login
   let user = req.body.user;
   query = `INSERT INTO user
            VALUES('${user.userName}','${user.password}','${uesr.type}', ${user.availableCash})`;
