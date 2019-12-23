@@ -12,11 +12,12 @@ const {
   remainingAmountAndInterest,
   getBorrowerID,
   connectBorrowerAndLender,
-  updateLoanStatus
+  updateLoanStatus,
+  getLoansByCategory,
+  getLoansByIssuanceDate
 } = require("./helpers");
 
-router.post("/addLoan", async function(req, res) {
-  // borrower
+router.post("/addLoan", async function (req, res) {
   let loan = req.body;
   const issuanceDate = moment().format("YYYY-MM-DD");
   query = `INSERT INTO loan VALUES(null,${loan.amount},${loan.interest},'${loan.purpose}',${loan.period},
@@ -25,17 +26,17 @@ router.post("/addLoan", async function(req, res) {
   res.end();
 });
 
-router.put("/transaction", function(req, res) {
-  // lender
+router.put("/transaction", function (req, res) {
   let username = req.body.username;
   let availableMoney = req.body.availableMoney;
   let update_query = `UPDATE user SET availableMoney = '${availableMoney}' WHERE username = '${username}'`;
   sequelize.query(update_query);
+  // add money to user
+  // add registry to transaction DB
   res.end();
 });
 
-router.get("/newLoans", async function(req, res) {
-  // market
+router.get("/newLoans", async function (req, res) {
   query = `SELECT * 
           FROM loan 
           WHERE percentage < 1`;
@@ -43,8 +44,7 @@ router.get("/newLoans", async function(req, res) {
   res.send(newLoans[0]);
 });
 
-router.post("/fundLoan", async function(req, res) {
-  // lender
+router.post("/fundLoan", async function (req, res) {
   let { loanID, userID, borrowerName } = req.body;
   let borrowerID = await getBorrowerID(borrowerName);
   await connectBorrowerAndLender(loanID, userID, borrowerID);
@@ -52,8 +52,7 @@ router.post("/fundLoan", async function(req, res) {
   res.end();
 });
 
-router.get("/userData/:username", async function(req, res) {
-  // store
+router.get("/userData/:username", async function (req, res) {
   const username = req.params.username;
   try {
     const [userID, type, availableCash] = await getUserInfo(username);
@@ -66,6 +65,16 @@ router.get("/userData/:username", async function(req, res) {
     const openLoans = await getOpenLoans(userID);
     const monthlyPayment = getMonthlyPayment(openLoans);
     const nextPayment = getNextPayment(openLoans);
+    const [loansByCategoryByNumber,loansByCategoryByValue] =
+    await getLoansByCategory(userID)
+    const [loansByMonthByNumber,loansByMonthByValue]=
+     await getLoansByIssuanceDate(userID)
+    const chartsData={
+      loansByCategoryByNumber,
+      loansByCategoryByValue,
+      loansByMonthByNumber,
+      loansByMonthByValue
+    }
     const user = {
       userID,
       username,
@@ -77,15 +86,17 @@ router.get("/userData/:username", async function(req, res) {
       availableCash,
       interest,
       nextPayment,
-      type
+      type,
+      chartsData
     };
+
     res.send(user);
   } catch (e) {
     res.send(e.message);
   }
 });
 
-router.post("/newUser", async function(req, res) {
+router.post("/newUser", async function (req, res) {
   // login
   let user = req.body.user;
   query = `INSERT INTO user

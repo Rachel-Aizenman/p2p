@@ -103,19 +103,45 @@ async function connectBorrowerAndLender(loanID, userID, borrowerID) {
 }
 
 async function updateLoanStatus(loanID) {
-    query = `UPDATE loan SET percentage = 1,status = "OK" WHERE loan.id =${loanID}`
+    let query = `UPDATE loan SET percentage = 1,status = "OK" WHERE loan.id =${loanID}`
     sequelize.query(query);
 }
 
-async function getLoansByCategory(){
-    query=`SELECT count(*) AS count, sum(amount) AS total amount
+// borrower and lender pichart
+async function getLoansByCategory(userID) {
+    let query = `SELECT loan.purpose AS purpose, count(*) AS count, sum(loan.amount) AS total_amount
     FROM loan
-    INNER JOIN loan_lender ON loan.id=loan_lendr=loanID
-    GROUP BY purpose`
+    INNER JOIN loan_lender ON loan.id=loan_lender.loanID
+    INNER JOIN user on user.id=${userID}
+    GROUP BY loan.purpose`;
+    let result=await sequelize.query(query);
+    const loansByCategoryByNumber=result[0].map(r=>{return {name:r.purpose,value:r.count}})
+    const loansByCategoryByValue=result[0].map(r=>{return {name:r.purpose,value:r.total_amount}})
+    return [loansByCategoryByNumber,loansByCategoryByValue]
+}
+
+//loans by issuance date
+async function getLoansByIssuanceDate(userID){
+    const date=moment()
+    const lastYear=date.year()-1
+    let month=date.month()+1
+    month=month>12?12:month;
+    const startDate=`${lastYear}-${month}-01`
+    let query = `SELECT MONTH(dateOfIssuance) as month, count(*) AS count, sum(loan.amount) AS total_amount
+    FROM loan
+    INNER JOIN loan_lender ON loan.id=loan_lender.loanID
+    INNER JOIN user ON user.id=${userID}
+    WHERE dateOfIssuance >=${startDate}
+    GROUP BY MONTH(dateOfIssuance)`;
+    let result=await sequelize.query(query);
+    const loansByCategoryByNumber=result[0].map(r=>{return {name:r.month,value:r.count}})
+    const loansByCategoryByValue=result[0].map(r=>{return {name:r.month,value:r.total_amount}})
+    return [loansByCategoryByNumber,loansByCategoryByValue]
 }
 
 
 module.exports = {
     getMonthlyPayment, getNextPayment, getOpenLoans, getUserInfo, overallLoanData,
-    remainingAmountAndInterest, getBorrowerID, connectBorrowerAndLender, updateLoanStatus
+    remainingAmountAndInterest, getBorrowerID, connectBorrowerAndLender, updateLoanStatus,
+    getLoansByCategory,getLoansByIssuanceDate
 }
