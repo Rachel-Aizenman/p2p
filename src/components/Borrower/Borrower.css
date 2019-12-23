@@ -22,3 +22,20 @@ table, th, td {
     height: 5em;
     width: 5em;
 }
+
+.btn{
+    display: inline-block;
+    margin: 20px;
+    border-radius: 30px;
+    font-family:'Oswald', sans-serif;
+    color: rgb(19, 4, 4);
+    font-size: 135%;
+    padding: 7px 0px;
+    background-color: rgba(144, 238, 144, 0.517);
+    text-align: center;
+    border: solid lightgreen 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-justify: center;
+    width: 200px;
+  }

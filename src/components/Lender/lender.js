@@ -18,27 +18,39 @@ class Lender extends Component {
     const rows = this.props.UserStore.openLoans
     const button = <TableCell><button>+</button></TableCell>
     return (
-      <div>
+      <div className='body'>
         <NavBar />
-        <h2>Lender</h2>
+        {/* <h2>Lender</h2> */}
         <LenderNavBar />
         <InfoContainer />
         <div id="recharts">
           <PieChart />
-          <PieChart />
           <VerticalBarChart />
+          <PieChart />
+        </div>
+        {/* <div
+            id="available-cash"
+            className='info'
+          >
+            Available Cash: {user.availableCash}
+          </div> */}
+          <div className=''>
+        <div className='closest-payments'>
+          Closest payments:
+          <div>
+            <br/>22-12-19
+            <br/>25-12-19
+            <br/>30-12-19
+        </div>
+        </div>
         </div>
 
-        <div>
-          <ul>Closest payments:
-            <li>22-12-19</li>
-            <li>25-12-19</li>
-            <li>30-12-19</li>
-          </ul>
-        </div>
 
         <DynamicTable head={header} keys={keys} rows={rows} userID={this.props.UserStore.user.userID} />
       </div>
+
+     
+      
     )
   }
 }

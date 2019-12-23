@@ -28,3 +28,85 @@ h2{
 .nav-bar>button{
     color: black;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+
+.body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-image: url("https://fonts.googleapis.com/css?family=Raleway")
+
+}
+
+
+p{
+  font-size:160%;
+  line-height: 210%;
+  text-align: justify;
+  margin: 3%;
+  font-family: sans-serif;
+}
+
+.info{
+    display: inline-block;
+    margin: 20px;
+    border-radius: 5px;
+    font-family:'Oswald', sans-serif;
+    color: rgb(19, 4, 4);
+    font-size: 135%;
+    padding: 7px 0px;
+    border: solid #eee 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-justify: center;
+    width: 200px;
+}
+
+.body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: url("https://fonts.googleapis.com/css?family=Raleway")
+  
+  }
+
+  .add-investment{
+    display: inline-block;
+    margin: 20px;
+    border-radius: 30px;
+    font-family:'Oswald', sans-serif;
+    color: rgb(19, 4, 4);
+    font-size: 135%;
+    padding: 7px 0px;
+    background-color: rgba(144, 238, 144, 0.517);
+    text-align: center;
+    border: solid lightgreen 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-justify: center;
+    width: 200px;
+  }
+
+  .closest-payments{
+    display: inline-block;
+    margin: 20px;
+    border-radius: 5px;
+    font-family:'Oswald', sans-serif;
+    color: rgb(19, 4, 4);
+    font-size: 135%;
+    padding: 7px 0px;
+    border: solid #eee 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-justify: center;
+    width: 200px;
+  }

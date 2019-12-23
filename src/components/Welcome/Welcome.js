@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "./Welcome.css";
 

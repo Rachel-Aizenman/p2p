@@ -21,6 +21,12 @@ class NavBar extends Component {
 
         <Link to='giveLoan'><li><a href="#" class="nav-link">Lend</a></li></Link>
 
+        <Link to='giveLoan'><li><a href="#" class="nav-link">Lend</a></li></Link> 
+        
+        <Link to='giveLoan'><li><a href="#" class="nav-link">Lend</a></li></Link>
+
+        
+
       </ul>
     </div>
       // <div>

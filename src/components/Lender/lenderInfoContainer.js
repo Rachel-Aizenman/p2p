@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
-// import './LenderInfoContainer.css'
+import './Lender.css'
 
 @inject("UserStore")
 @observer
@@ -10,64 +10,36 @@ class InfoContainer extends Component {
     const user = this.props.UserStore.user;
     return (
         <div id="info-container" style={{ display: "flex" }}>
-          <div
-            id="protfolio-value"
-            style={{
-              borderRadius: "50%",
-              border: "10px solid red",
-              height: "150px",
-              width: "150px",
-              display: "inline-block",
-              margin: "10px"
-            }}
-          >
-            <div className="info-data">
-              <div>Portfolio Value:</div> <div>{user.totalWorth}</div>
+          <div          >
+            <div >
+              <div className="info">Portfolio Value:</div> <div>{user.totalWorth}</div>
             </div>
           </div>
+          
           <div
             id="available-cash"
-            style={{
-              borderRadius: "50%",
-              border: "10px solid red",
-              height: "150px",
-              width: "150px",
-              display: "inline-block",
-              margin: "10px"
-            }}
+            className='info'
           >
             Available Cash: {user.availableCash}
           </div>
           <div
             id="available-cash"
-            style={{
-              borderRadius: "50%",
-              border: "10px solid red",
-              height: "150px",
-              width: "150px",
-              display: "inline-block",
-              margin: "10px"
-            }}
+            className='info'
           >
             Annual Return: {user.averageReturn}
           </div>
           <br />
+          
           <Link to={"/market"}>
           <div class="button__wrapper">
-          <div className='pulsing'
-              id="add-investment"
-              style={{
-                border: "10px solid green",
-                height: "75px",
-                display: "inline-block",
-                margin: "10px"
-              }}
-            >
+          <div className="add-investment">
               Add Investment!
-            </div>      <button>Click Me!</button>
+            </div>      
     </div>
             
           </Link>
+
+          
       </div>
     );
   }
