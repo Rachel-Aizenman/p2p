@@ -13,9 +13,11 @@ class DepositReport extends Component {
         let deposit = {
             username: document.getElementById('name').value,
             id: document.getElementById('id').value,
-            deposit: document.getElementById('deposit').value,
-            availableMoney: availableMoney + Number(amount),
-            date: document.getElementById('date').value
+            depositBy: document.getElementById('deposit-by').value ||"Internet",
+            amount: Number(amount),
+            availableMoney:availableMoney+Number(amount),
+            date: document.getElementById('date').value,
+            action:'deposit'
         }
         axios.put('http://localhost:3001/transaction', deposit)
     }

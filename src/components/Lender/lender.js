@@ -32,16 +32,15 @@ class Lender extends Component {
         <div id="recharts">
           <PieChart data={loansByCategoryByNumber} />
           <PieChart data={loansByCategoryByValue} />
-          <VerticalBarChart data={loansByMonthByNumber}/>
-          <VerticalBarChart data={loansByMonthByValue}/>
+          <VerticalBarChart data={loansByMonthByNumber} />
+          <VerticalBarChart data={loansByMonthByValue} />
 
         </div>
 
         <div>
-          <ul>Closest payments:
-            <li>22-12-19</li>
-            <li>25-12-19</li>
-            <li>30-12-19</li>
+          <ul>Next payments:
+            {user.nextPayments.map(p => <li>{p.paymentDate} {p.username} {p.amount}</li>)}
+
           </ul>
         </div>
 
