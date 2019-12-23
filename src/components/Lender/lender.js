@@ -31,9 +31,9 @@ class Lender extends Component {
         <InfoContainer />
         <div id="recharts">
           <PieChart data={loansByCategoryByNumber} />
-          <PieChart data={loansByCategoryByValue} />
           <VerticalBarChart data={loansByMonthByNumber}/>
           <VerticalBarChart data={loansByMonthByValue}/>
+          <PieChart data={loansByCategoryByValue} />
 
         </div>
 
