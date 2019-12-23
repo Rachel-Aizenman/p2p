@@ -4,16 +4,18 @@ import { inject, observer } from "mobx-react";
 import Slider from '../Slider'
 import axios from 'axios';
 import NavBar from '../Lender/LenderNavBar'
-
+import moment from 'moment'
 @inject('UserStore', 'InputStore')
 
 @observer
 class Withdraw extends Component {
   withdraw = () => {
-    const user = this.props.UserStore.user.username;
+    const username = this.props.UserStore.user.username;
     const withdrawal = {
+      username,
       amount: -this.props.InputStore.withdrawInput,
-      user: user
+      date:moment().format('YYYY-MM-DD'),
+      action:'withdraw'
     };
     axios.put("https://localhost:3001/transaction", withdrawal);
   };
