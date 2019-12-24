@@ -2,12 +2,13 @@ import { observable, action, computed } from "mobx";
 import axios from "axios";
 const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
-
+const adminRoute = "http://localhost:3001/adminData";
 export class UserStore {
   @observable user = [];
   @observable validUser;
   @observable openLoans = [];
   @observable newLoans = [];
+  @observable adminData = [];
   @observable path;
   @action getData = async username => {
     let data = await axios.get(dataRoute + username);
@@ -37,6 +38,14 @@ export class UserStore {
       data = data.data;
       this.newLoans = data;
     }
+  };
+  @action getAdminInfo = async () => {
+    let data = await axios.get(adminRoute);
+    data = data.data;
+    console.log(data);
+    this.adminData.push(data)
+    console.log(this.adminData);
+    
   };
   @action setPath() {
     if (this.user.type === "l") {

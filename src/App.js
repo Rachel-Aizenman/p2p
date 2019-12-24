@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 // import "./App.css";
 import { observer, inject } from "mobx-react";
-import { BrowserRouter as Router, Route, Redirect,Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
 import Lender from "./components/Lender/Lender";
 import Borrower from "./components/Borrower/Borrower";
 import Withdraw from "./components/Withdraw/Withdraw";
@@ -11,8 +16,8 @@ import BorrowerNewLoan from "./components/BorrowerNewLoan/BorrowerNewLoan";
 import Market from "./components/Market/Market";
 import Welcome from "./components/Welcome/Welcome";
 import SignUp from "./components/SignUp/SignUp";
-import About from './components/About/About'
-
+import About from "./components/About/About";
+import Admin from "./components/Admin/Admin"
 
 @inject("UserStore", "InputStore")
 @observer
@@ -32,7 +37,8 @@ class App extends Component {
         <Route path="/giveLoan" exact render={() => <Lender />} />
         <Route path="/deposit" exact render={() => <Deposit />} />
         <Route path="/withdraw" exact render={() => <Withdraw />} />
-    <Route path='/about' exact render={() => <About />}/>
+        <Route path="/a" exact render={() => <Admin />} />
+        <Route path="/about" exact render={() => <About />} />
       </Router>
     );
   }

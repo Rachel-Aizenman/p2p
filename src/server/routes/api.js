@@ -17,6 +17,10 @@ const {
   getLoansByIssuanceDate,
   addTransaction
 } = require("./helpers");
+const {
+  getNumOfUsers,
+  getLoansOverall
+} = require("./analytics");
 
 router.post("/addLoan", async function (req, res) {
   let loan = req.body;
@@ -56,7 +60,7 @@ router.post("/fundLoan", async function (req, res) {
 
 router.get("/userData/:username", async function (req, res) {
   const username = req.params.username;
-  // try {
+  try {
     const [userID, type, availableCash] = await getUserInfo(username);
     const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
     const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
@@ -89,9 +93,9 @@ router.get("/userData/:username", async function (req, res) {
     };
 
     res.send(user);
-  // } catch (e) {
-    // res.send(e.message);
-  // }
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
 router.post("/newUser", async function (req, res) {
@@ -101,5 +105,17 @@ router.post("/newUser", async function (req, res) {
   await sequelize.query(query);
   res.end();
 });
+
+router.get("/adminData",async function (req,res){
+  let [totalUsers,activeLenders,activeBorrowers] = await getNumOfUsers();
+  [totalUsers,activeLenders,activeBorrowers] = [totalUsers[0],activeLenders[0],activeBorrowers[0]]
+  const [count,sum,totalCommission] = await getLoansOverall();
+  const userData = [
+    totalUsers,
+    activeLenders,
+    activeBorrowers
+  ]
+  res.send(userData)
+})
 
 module.exports = router;
