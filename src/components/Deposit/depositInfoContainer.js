@@ -8,13 +8,11 @@ class InfoContainer extends Component {
   render() {
     const UserStore = this.props.UserStore;
     return (
-      <div className='info-container'>
-        <div
-     className='deposit-container'>
+      <div >
+        <div>
           <p>Portfolio Value: ${UserStore.user.length}</p>
         </div>
-        <div
-          className='info-container'>
+        <div>
           <p>Available Cash: ${UserStore.user.length}</p>
         </div>
       </div>

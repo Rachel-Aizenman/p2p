@@ -11,6 +11,7 @@ import BorrowerNewLoan from "./components/BorrowerNewLoan/BorrowerNewLoan";
 import Market from "./components/Market/Market";
 import Welcome from "./components/Welcome/Welcome";
 import SignUp from "./components/SignUp/SignUp";
+import About from './components/About/About'
 
 
 @inject("UserStore", "InputStore")
@@ -31,6 +32,7 @@ class App extends Component {
         <Route path="/giveLoan" exact render={() => <Lender />} />
         <Route path="/deposit" exact render={() => <Deposit />} />
         <Route path="/withdraw" exact render={() => <Withdraw />} />
+    <Route path='/about' exact render={() => <About />}/>
       </Router>
     );
   }

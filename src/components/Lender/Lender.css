@@ -1,8 +1,19 @@
+body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-image: url("https://fonts.googleapis.com/css?family=Raleway")
+}
+
 #info-container{
     display: flex;
     justify-content: center;
     align-content: center;
 }
+
+
 div{
     /* background-color: whitesmoke; */
 }
