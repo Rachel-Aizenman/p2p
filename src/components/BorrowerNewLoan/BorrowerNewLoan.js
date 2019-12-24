@@ -72,6 +72,8 @@ class BorrowerNewLoan extends Component {
 
   render() {
     return (
+      <div>
+      <NavBar/>
       <div id="new-loan">
         <h1>Borrower - New Loan</h1>
         <div>Select purpose:</div>
@@ -122,6 +124,7 @@ class BorrowerNewLoan extends Component {
           </button>
           </Link>
         </div>
+      </div>
       </div>
     );
   }
