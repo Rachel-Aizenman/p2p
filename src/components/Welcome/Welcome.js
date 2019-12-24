@@ -9,12 +9,11 @@ import "./Welcome.css";
 @inject("UserStore", "InputStore")
 @observer
 class Welcome extends Component {
-
-  componentDidMount(){
+  componentDidMount() {
     const InputStore = this.props.InputStore;
     const UserStore = this.props.UserStore;
-    UserStore.user = []
-    InputStore.username = null
+    UserStore.user = [];
+    InputStore.username = null;
   }
 
   handleClick = async () => {
@@ -49,13 +48,13 @@ class Welcome extends Component {
                 name="username"
                 onChange={this.handleInput}
               />
-              <div className='container'>
-              <div id="login" className="btn" onClick={this.handleClick}>
-                Login
-              </div>
-              <Link to="/signUp">
-                <div className="btn">Sign Up</div>
-              </Link>
+              <div className="container">
+                <div id="login" className="btn" onClick={this.handleClick}>
+                  Login
+                </div>
+                <Link to="/signUp">
+                  <div className="btn">Sign Up</div>
+                </Link>
               </div>
             </div>
           </div>
