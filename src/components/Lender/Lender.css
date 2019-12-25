@@ -22,6 +22,33 @@ div{
     display: flex;
     justify-content: center;
 }
+.chart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+#head{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  font-size: 30px;
+  margin: 10px;
+}
+#body{
+  font-weight: 50;
+  font-size: 20px;
+  margin: 10px;
+}
+#payments{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin:10px
+}
 
 #av-cash{
     font-size:100%

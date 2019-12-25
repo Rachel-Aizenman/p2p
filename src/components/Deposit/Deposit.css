@@ -52,3 +52,12 @@ body{
     border: 2px solid #aaa;
     border-radius: 2px;
   }
+  #deposit{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .value{
+    font-size: 25px;
+  }

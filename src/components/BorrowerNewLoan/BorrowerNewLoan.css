@@ -11,7 +11,11 @@ body{
     text-align: center;
     margin: 5vh;
   }
-  
+  #monthly{
+    font-size: 25px;
+    margin: 30px;
+    color: red;
+  }
   #loan-inputs{
     grid-template-columns: repeat(2, 1fr);
     border: 1px black solid;

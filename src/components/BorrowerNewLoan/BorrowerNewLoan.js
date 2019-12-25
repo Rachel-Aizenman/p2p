@@ -76,7 +76,7 @@ class BorrowerNewLoan extends Component {
       <NavBar/>
       <div id="new-loan">
         <h1>Borrower - New Loan</h1>
-        <div>Select purpose:</div>
+        <h2>Select purpose:</h2>
         <div id="purposes">
           {purposes.map(p => (
             <button
@@ -114,9 +114,8 @@ class BorrowerNewLoan extends Component {
             </div>
             
           </div>
-          <div>
-            <label id="monthly-payment-l">Monthly Payment:</label>
-            <span>{this.props.InputStore.monthlyPayment}</span>
+          <div id="monthly">
+            <div >Monthly Payment: {this.props.InputStore.monthlyPayment}</div>
           </div>
           <Link to = "/takeLoan">
           <button className='btn' onClick={this.handleClick} id="submit-new-loan">

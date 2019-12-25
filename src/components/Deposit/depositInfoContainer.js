@@ -7,13 +7,14 @@ import './Deposit.css'
 class InfoContainer extends Component {
   render() {
     const UserStore = this.props.UserStore;
+    console.log(UserStore)
     return (
       <div >
-        <div>
-          <p>Portfolio Value: ${UserStore.user.length}</p>
+        <div className ="value">
+          Portfolio Value: ${UserStore.user.totalWorth}
         </div>
-        <div>
-          <p>Available Cash: ${UserStore.user.length}</p>
+        <div className ="value">
+          Available Cash: ${UserStore.user.availableCash}
         </div>
       </div>
     );
