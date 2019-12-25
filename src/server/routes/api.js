@@ -17,9 +17,12 @@ const {
   getLoansByIssuanceDate,
   addTransaction
 } = require("./helpers");
+
 const {
   getNumOfUsers,
-  getLoansOverall
+  getLoansOverall,
+  adminLoansByCategory,
+  getLoansByStatus
 } = require("./analytics");
 
 router.post("/addLoan", async function (req, res) {
@@ -60,42 +63,42 @@ router.post("/fundLoan", async function (req, res) {
 
 router.get("/userData/:username", async function (req, res) {
   const username = req.params.username;
-  try {
-    const [userID, type, availableCash] = await getUserInfo(username);
-    const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
-    const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
-    const openLoans = await getOpenLoans(userID);
-    const monthlyPayment = getMonthlyPayment(openLoans);
-    const nextPayments = await getNextPayment(userID);
-    const [loansByCategoryByNumber, loansByCategoryByValue] =
-      await getLoansByCategory(userID)
-    const [loansByMonthByNumber, loansByMonthByValue] =
-      await getLoansByIssuanceDate(userID)
-    const chartsData = {
-      loansByCategoryByNumber,
-      loansByCategoryByValue,
-      loansByMonthByNumber,
-      loansByMonthByValue
-    }
-    const user = {
-      userID,
-      username,
-      noOfLoans,
-      monthlyPayment,
-      totalWorth,
-      remainingAmount,
-      openLoans,
-      availableCash,
-      interest,
-      nextPayments,
-      type,
-      chartsData
-    };
-
-    res.send(user);
-  } catch (e) {
-    res.send(e.message);
+  // try {
+  const [userID, type, availableCash] = await getUserInfo(username);
+  const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
+  const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
+  const openLoans = await getOpenLoans(userID);
+  const monthlyPayment = getMonthlyPayment(openLoans);
+  const nextPayments = await getNextPayment(userID);
+  const [loansByCategoryByNumber, loansByCategoryByValue] =
+    await getLoansByCategory(userID)
+  const [loansByMonthByNumber, loansByMonthByValue] =
+    await getLoansByIssuanceDate(userID)
+  const chartsData = {
+    loansByCategoryByNumber,
+    loansByCategoryByValue,
+    loansByMonthByNumber,
+    loansByMonthByValue
   }
+  const user = {
+    userID,
+    username,
+    noOfLoans,
+    monthlyPayment,
+    totalWorth,
+    remainingAmount,
+    openLoans,
+    availableCash,
+    interest,
+    nextPayments,
+    type,
+    chartsData
+  };
+
+  res.send(user);
+  // } catch (e) {
+  // res.send(e.message);
+  // }
 });
 
 router.post("/newUser", async function (req, res) {
@@ -106,14 +109,24 @@ router.post("/newUser", async function (req, res) {
   res.end();
 });
 
-router.get("/adminData",async function (req,res){
-  let [totalUsers,activeLenders,activeBorrowers] = await getNumOfUsers();
-  [totalUsers,activeLenders,activeBorrowers] = [totalUsers[0],activeLenders[0],activeBorrowers[0]]
-  const [count,sum,totalCommission] = await getLoansOverall();
+router.get("/adminData", async function (req, res) {
+  let [totalUsers, activeLenders, activeBorrowers] = await getNumOfUsers();
+  [totalUsers, activeLenders, activeBorrowers] = [totalUsers[0], activeLenders[0], activeBorrowers[0]]
+  const [openLoans, totalLoanAmoun, totalCommission] = await getLoansOverall();
+  const [loansByCategoryByNumber, loansByCategoryByValue] = await adminLoansByCategory()
+  const [loansByStatusByNumber, loansByStatusByValue] = await getLoansByStatus()
+
   const userData = [
     totalUsers,
     activeLenders,
-    activeBorrowers
+    activeBorrowers,
+    openLoans,
+    totalLoanAmoun,
+    totalCommission,
+    loansByCategoryByNumber,
+    loansByCategoryByValue,
+    loansByStatusByNumber,
+    loansByStatusByValue
   ]
   res.send(userData)
 })

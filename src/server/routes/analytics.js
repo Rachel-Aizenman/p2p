@@ -3,9 +3,6 @@ const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 const moment = require("moment");
 
 
-
-
-//TOTAL NUMBER OF USERS
 async function getNumOfUsers(){
     let threeMonthsAgo=moment().subtract(3,'months')
     threeMonthsAgo = threeMonthsAgo.format('YYYY-MM-DD')
@@ -44,18 +41,28 @@ async function getLoansOverall(){
     const totalCommission=sum*commission
     return [count,sum,totalCommission]
 }
-//GET LOANS BY MONTH
-//GET LOANS BY CATEGORY - NUMBER
-//GET LOANS BY CATEGORY - AMOUNT
 
+async function adminLoansByCategory(){
 
-// LOANS BY STATUS
+    let query = `SELECT loan.purpose AS purpose, count(*) AS count, sum(loan.amount) AS total_amount
+    FROM loan
+    INNER JOIN loan_lender ON loan.id=loan_lender.loanID
+    GROUP BY loan.purpose`;
+    let result = await sequelize.query(query);
+    const loansByCategoryByNumber = result[0].map(r => { return { name: r.purpose, value: r.count } })
+    const loansByCategoryByValue = result[0].map(r => { return { name: r.purpose, value: r.total_amount } })
+    return [loansByCategoryByNumber, loansByCategoryByValue]
+
+}
 
 async function getLoansByStatus(){
-    query='SELECT count(*) FROM loan GROUP BY status'
-    sequelize.query(query);
+    let query='SELECT status, count(*) AS count, sum(loan.amount) AS total_amount FROM loan GROUP BY status'
+    let result=sequelize.query(query);
+    const loansByStatusByNumber = result[0].map(r => { return { name: r.purpose, value: r.count } })
+    const loansByStatusByValue = result[0].map(r => { return { name: r.purpose, value: r.total_amount } })
+    return [loansByStatusByNumber, loansByStatusByValue]
 }
 
 module.exports = {
-    getNumOfUsers, getLoansOverall, getLoansByStatus
+    getNumOfUsers, getLoansOverall, adminLoansByCategory,getLoansByStatus
 }
