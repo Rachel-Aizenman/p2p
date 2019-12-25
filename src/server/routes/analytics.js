@@ -3,9 +3,6 @@ const sequelize = new Sequelize("mysql://root:@localhost/p2p");
 const moment = require("moment");
 
 
-
-
-//TOTAL NUMBER OF USERS
 async function getNumOfUsers(){
     let threeMonthsAgo=moment().subtract(3,'months')
     threeMonthsAgo = threeMonthsAgo.format('YYYY-MM-DD')
@@ -59,9 +56,11 @@ async function adminLoansByCategory(){
 }
 
 async function getLoansByStatus(){
-    let query='SELECT count(*) FROM loan GROUP BY status'
+    let query='SELECT status, count(*) AS count, sum(loan.amount) AS total_amount FROM loan GROUP BY status'
     let result=sequelize.query(query);
-    return  result
+    const loansByStatusByNumber = result[0].map(r => { return { name: r.purpose, value: r.count } })
+    const loansByStatusByValue = result[0].map(r => { return { name: r.purpose, value: r.total_amount } })
+    return [loansByStatusByNumber, loansByStatusByValue]
 }
 
 module.exports = {
