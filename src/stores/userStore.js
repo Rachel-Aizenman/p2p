@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action } from "mobx";
 import axios from "axios";
 const dataRoute = "http://localhost:3001/userData/";
 const newLoansRoute = "http://localhost:3001/newLoans";
@@ -11,8 +11,8 @@ export class UserStore {
   @observable adminData = [];
   @observable path;
 
-  @action login=async username=>{
-    if (username==="Moishe")
+  @action login = async username => {
+    if (username === "Moishe")
       await this.getAdminInfo()
     else
       await this.getData(username)
@@ -41,87 +41,28 @@ export class UserStore {
 
   @action getNewLoans = async () => {
     let data = await axios.get(newLoansRoute);
-    console.log(data);
-    if (data) {
-      data = data.data;
-      this.newLoans = data;
-    }
+    if (data) { this.newLoans = data.data; }
   };
   @action getAdminInfo = async () => {
     let data = await axios.get(adminRoute);
     data = data.data;
-    console.log(data);
     data.loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
     data.loansByStatusByValue.forEach(l => l.value = parseInt(l.value))
     data.loansByCategoryByNumber.forEach(l => l.value = parseInt(l.value))
     data.loansByStatusByNumber.forEach(l => l.value = parseInt(l.value))
+    this.user=data
+    this.adminData=[]
     this.adminData.push(data)
-    console.log(this.adminData)
-  };
-  @action setPath() {
-    if (this.user.type === "l") {
-      this.path = "/giveLoan";
+  }
+    @action setPath() {
+      if (this.user.type === "l") {
+        this.path = "/giveLoan"
+      }
+      if (this.user.type === "b") {
+        this.path = "/takeLoan";
+      }
     }
-    if (this.user.type === "b") {
-      this.path = "/takeLoan";
-    }
+
   }
 
-  //   this.user = {
-  //     "userID":1,
-  //     "username": "Rachel",
-  //     "noOfLoans":3,
-  //     "monthlyPayment":500,
-  //     "total worth": 5000,
-  //     "remaining amount": 6,
-  //     "open loans": 4,
-  //     "available cash": 6000,
-  //     "average return": 7.8,
-  //     "next payment": "15-02-19"
-  //   }
-
-  //   this.openLoans = [{
-  //     "id": "5df8ddf394e5d85a35ac7830",
-  //     "username":  "shooobert",
-  //     "period": 24,
-  //     "purpose": "coding bootcamp",
-  //     "amount": 452,
-  //     "interest": 5,
-  //     "funded": 82,
-  //     "remaining amount": 4300,
-  //     "status": "OK",
-  //     "issuance date": "15-09-19",
-  //     "next payment": "15-01-20",
-  //   },
-  //   {
-  //     "id": "5df8ddf3adcfbef10a8ec967",
-  //     "username":  "dudi",
-  //     "period": 24,
-  //     "purpose": "coding bootcamp",
-  //     "amount": 1345,
-  //     "interest": 6,
-  //     "funded": 70,
-  //     "remaining amount": 4300,
-  //     "status": "OK",
-  //     "issuance date": "15-09-19",
-  //     "next payment": "15-01-20"
-  //   },
-  //   {
-  //     "id": "5df8ddf3gart6ergdfgsreww23",
-  //     "username":  "rachel",
-  //     "period": 12,
-  //     "purpose": "coding bootcamp",
-  //     "amount": 934,
-  //     "interest": 5,
-  //     "funded": 90,
-  //     "remaining amount": 4300,
-  //     "status": "OK",
-  //     "issuance date": "15-09-19",
-  //     "next payment": "15-01-20",
-  //   }
-  // ]
-
-  //   console.log(this.user)
-}
-
-export default UserStore;
+  export default UserStore;

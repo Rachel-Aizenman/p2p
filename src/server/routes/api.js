@@ -63,7 +63,7 @@ router.post("/fundLoan", async function (req, res) {
 
 router.get("/userData/:username", async function (req, res) {
   const username = req.params.username;
-  // try {
+  try {
   const [userID, type, availableCash] = await getUserInfo(username);
   const [noOfLoans, totalWorth] = await overallLoanData(userID, type);
   const [remainingAmount, interest] = await remainingAmountAndInterest(userID, totalWorth, type);
@@ -96,9 +96,9 @@ router.get("/userData/:username", async function (req, res) {
   };
 
   res.send(user);
-  // } catch (e) {
-  // res.send(e.message);
-  // }
+  } catch (e) {
+  res.send(e.message);
+  }
 });
 
 router.post("/newUser", async function (req, res) {

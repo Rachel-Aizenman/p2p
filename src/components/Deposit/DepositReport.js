@@ -25,18 +25,6 @@ class DepositReport extends Component {
   render() {
     return (
       <div class="deposite-report">
-        {/* Name:
-                <input id='name' /> <br /> */}
-        {/* ID: <input id='id' /> <br /> */}
-        {/* Deposit by: <select id='deposit-by' >
-                    <option>Internet</option>
-                    <option>Credit card</option>
-                    <option>Bank transfer</option>
-                </select>  <br /> */}
-        {/* Amount: <input type="number" id='amount' />$  <br /> */}
-        {/* Date: <input type='date' id='date' /> <br />
-                <button onClick={this.deposit}>Report Deposit</button> */}
-
         <div>
           <form method="post" action="/" id="form" className="validate">
             <div className="form-field">
@@ -47,6 +35,7 @@ class DepositReport extends Component {
               <label>ID</label>
               <input id="id" />
             </div>
+
             <div className="form-field">
               <label>Deposit By</label>
               <select id="deposit-by">

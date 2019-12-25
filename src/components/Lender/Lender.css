@@ -13,11 +13,6 @@ body{
     align-content: center;
 }
 
-
-div{
-    /* background-color: whitesmoke; */
-}
-
 #recharts{
     display: flex;
     justify-content: center;
@@ -50,15 +45,20 @@ div{
   margin:10px
 }
 
+
 #av-cash{
-    font-size:100%
+    font-size:100%;
+    margin:30px 40px 20px 40px;
 }
 #annual-return{
   font-size:100%;
   text-align:center;
+  margin:30px 40px 20px 40px;
 }
 #portfolio-value{
-  font-size:100%
+  font-size:100%;
+  margin:30px 40px 20px 40px;
+
 }
 h2{
     display: flex;
@@ -126,7 +126,7 @@ p{
 
   .add-investment{
     display: inline-block;
-    margin: 20px;
+    margin:30px 40px 20px 40px;
     border-radius: 30px;
     font-family:'Oswald', sans-serif;
     color: rgb(19, 4, 4);
@@ -155,4 +155,12 @@ p{
     text-align: center;
     text-justify: center;
     width: 200px;
+  }
+
+  h1{
+    text-align:center;
+  }
+
+  .chart{
+    height:90%
   }

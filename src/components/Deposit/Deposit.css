@@ -61,3 +61,11 @@ body{
   .value{
     font-size: 25px;
   }
+#deposit-by{
+  width: 240px;
+  height:40px;
+}
+
+#date{
+  text-align:justify
+}

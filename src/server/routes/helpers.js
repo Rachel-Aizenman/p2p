@@ -95,7 +95,6 @@ async function getNextPayment(userID) {
         result = await sequelize.query(query)
         nextPayments = nextPayments.concat(result[0])
     }
-    console.log(month==12)
     nextPayments=nextPayments.map(p => {
         const paymentDay=`${p.day<10?0:""}${p.day}`
         const paymentMonth=month==12?"01":`${month<9?0:""}${month+1}`
@@ -123,7 +122,6 @@ async function updateLoanStatus(loanID) {
     sequelize.query(query);
 }
 
-// borrower and lender pichart
 async function getLoansByCategory(userID) {
     let query = `SELECT loan.purpose AS purpose, count(*) AS count, sum(loan.amount) AS total_amount
     FROM loan
@@ -136,7 +134,6 @@ async function getLoansByCategory(userID) {
     return [loansByCategoryByNumber, loansByCategoryByValue]
 }
 
-//loans by issuance date
 async function getLoansByIssuanceDate(userID) {
     const date = moment()
     const lastYear = date.year() - 1

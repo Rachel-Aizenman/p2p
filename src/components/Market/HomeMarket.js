@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import LenderNavBar from '../Lender/LenderNavBar'
 import { observer, inject } from "mobx-react";
 import DynamicTable from '../DynamicTable'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import NavBar from '../navBar/NavBar'
 
 import './Home.css'
@@ -10,10 +9,6 @@ import './Home.css'
 @inject('UserStore', 'InputStore')
 @observer
 class HomeMarket extends Component {
-  // async componentDidMount() {
-  //   await this.props.UserStore.getData(this.props.InputStore.username)
-  //   await this.props.UserStore.getNewLoans()
-  // }
   render() {
 
     const header = ['Username', 'Period (m)', 'Purpose', 'Amount ($)', 'funded (%)', 'Interest (%)']

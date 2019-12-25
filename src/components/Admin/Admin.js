@@ -9,19 +9,15 @@ class Admin extends Component {
 
   async componentWillMount() {
     await this.props.UserStore.getAdminInfo();
-    const adminData = this.props.UserStore.user;
-    console.log(adminData);
   }
   render() {
     let adminData = this.props.UserStore.adminData;
-    console.log(adminData);
     return (
       <div>
         <NavBar />
         {adminData.map(d => (
           <div id="admin">
             <h1>Admin Info</h1>
-          
             <h2>Number Of Users:{d.totalUsers.num}</h2>
             <h2>Active Lenders: {d.activeLenders.num}</h2>
             <h2>Active Borrowers: {d.activeBorrowers.num}</h2>

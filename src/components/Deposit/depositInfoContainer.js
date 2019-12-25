@@ -7,7 +7,6 @@ import './Deposit.css'
 class InfoContainer extends Component {
   render() {
     const UserStore = this.props.UserStore;
-    console.log(UserStore)
     return (
       <div >
         <div className ="value">

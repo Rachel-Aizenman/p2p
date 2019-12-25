@@ -37,8 +37,6 @@ export default function InputSlider(props) {
     }
   };
 
-  
-
   return (
     <div className={classes.root}>
       <Typography id="input-slider" gutterBottom>

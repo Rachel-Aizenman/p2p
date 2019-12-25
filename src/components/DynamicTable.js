@@ -8,32 +8,25 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
-// import { white } from 'material-ui/styles/colors';
 const fundRoute = "http://localhost:3001/fundLoan/"
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 250,
-        // color: "white",
-    },
-    TableCell: {
-        root: {
-            // color: "white"
-        }
+        minWidth: 250
     }
 });
 
-const handleClick = async(e,getData) => {
-  const loanId = e.target.id
-  const userId = e.target.name
-  const borrowerName =  e.target.value
-  const loanInfo = {
-      loanID: loanId,
-      userID: userId,
-      borrowerName: borrowerName
-  }
-  await axios.post(fundRoute, loanInfo)
-  getData()
+const handleClick = async (e, getData) => {
+    const loanId = e.target.id
+    const userId = e.target.name
+    const borrowerName = e.target.value
+    const loanInfo = {
+        loanID: loanId,
+        userID: userId,
+        borrowerName: borrowerName
+    }
+    await axios.post(fundRoute, loanInfo)
+    getData()
 }
 
 export default function SimpleTable(props) {
@@ -48,9 +41,19 @@ export default function SimpleTable(props) {
                 </TableHead>
                 <TableBody>
                     {props.rows.map(row => (
-                        <TableRow key={row.username}>
+                        <TableRow>
                             {props.keys.map(c => <TableCell align="left">{row[c]}</TableCell>)}
-                            {props.market ? <TableCell><button id={row.id} name={props.userID} value={row.borrowerName} onClick={e=>handleClick(e,props.getData)}>Select</button></TableCell> : null}
+                            {props.market ?
+                                <TableCell>
+                                    <button
+                                        id={row.id}
+                                        name={props.userID}
+                                        value={row.borrowerName}
+                                        onClick={e => handleClick(e, props.getData)}>
+                                        Select
+                                    </button>
+                                </TableCell>
+                                : null}
                         </TableRow>
                     ))}
                 </TableBody>

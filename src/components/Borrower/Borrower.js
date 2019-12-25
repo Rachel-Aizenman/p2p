@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Borrower.css";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import DynamicTable from "../DynamicTable";
 import { inject, observer } from "mobx-react";
 import NavBar from "../navBar/NavBar";
@@ -10,7 +9,7 @@ import './Borrower.css'
 @inject("UserStore", "InputStore")
 @observer
 class Borrower extends Component {
-  componentWillMount(){
+  componentWillMount() {
     const rows = this.props.UserStore.openLoans;
     let user = this.props.UserStore.user;
     let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber
@@ -44,12 +43,8 @@ class Borrower extends Component {
     return (
       <div>
         <NavBar />
-        {/* <h2>Borrower</h2> */}
         <div id="status-container">
           <span className="header">Hello {user.username}</span>{" "}
-        {/* <Link to="/newLoan">
-          <button className="btn">New Loan</button>
-        </Link> */}
           <span className="header">Status: OK</span>
         </div>
 
@@ -66,11 +61,8 @@ class Borrower extends Component {
             </div>
             <PieChart data={loansByCategoryByValue} />
           </div>
-
           <DynamicTable head={header} keys={keys} rows={rows} />
-
         </div>
-
       </div>
     );
   }
