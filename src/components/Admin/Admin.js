@@ -5,11 +5,11 @@ import  PieChart  from "../PieChart";
 @inject("UserStore")
 @observer
 class Admin extends Component {
-  // async componentWillMount() {
-  //   await this.props.UserStore.getAdminInfo();
-  //   const adminData = this.props.UserStore.user;
-  //   console.log(adminData);
-  // }
+  async componentWillMount() {
+    await this.props.UserStore.getAdminInfo();
+    const adminData = this.props.UserStore.user;
+    console.log(adminData);
+  }
   render() {
     const adminData = this.props.UserStore.user;
     adminData.loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
