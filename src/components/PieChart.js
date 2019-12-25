@@ -8,6 +8,7 @@ export default class Example extends PureComponent {
 
   render() {
     const data=this.props.data
+    console.log(data)
     return (
       <div style={{ width: '20%', height: 300 }}>
         <ResponsiveContainer>

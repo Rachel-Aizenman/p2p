@@ -20,7 +20,7 @@ class Welcome extends Component {
     const InputStore = this.props.InputStore;
     const UserStore = this.props.UserStore;
     const username = InputStore.username;
-    await UserStore.getData(username);
+    await UserStore.login(username);
     UserStore.path = true;
     UserStore.path = false;
   };
@@ -32,9 +32,11 @@ class Welcome extends Component {
   render() {
     let path = this.props.UserStore.path;
     let type = this.props.UserStore.user.type;
+    console.log(this.props.UserStore.user)
     if (path) {
       if (type === "l") return <Redirect to={"/giveLoan"} />;
       if (type === "b") return <Redirect to={"/takeLoan"} />;
+      if(type==='a') return <Redirect to={"/a"} />;
     }
     return (
       <div className="body">
