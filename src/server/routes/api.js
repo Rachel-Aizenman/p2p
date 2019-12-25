@@ -112,7 +112,7 @@ router.post("/newUser", async function (req, res) {
 router.get("/adminData", async function (req, res) {
   let [totalUsers, activeLenders, activeBorrowers] = await getNumOfUsers();
   [totalUsers, activeLenders, activeBorrowers] = [totalUsers[0], activeLenders[0], activeBorrowers[0]]
-  const [count, sum, totalCommission] = await getLoansOverall();
+  const [openLoans, totalLoanAmoun, totalCommission] = await getLoansOverall();
   const [loansByCategoryByNumber, loansByCategoryByValue] = await adminLoansByCategory()
   const [loansByStatusByNumber, loansByStatusByValue] = await getLoansByStatus()
 
@@ -120,8 +120,8 @@ router.get("/adminData", async function (req, res) {
     totalUsers,
     activeLenders,
     activeBorrowers,
-    count,
-    sum,
+    openLoans,
+    totalLoanAmoun,
     totalCommission,
     loansByCategoryByNumber,
     loansByCategoryByValue,
