@@ -6,6 +6,12 @@ import "./Admin.css";
 @inject("UserStore")
 @observer
 class Admin extends Component {
+
+  async componentWillMount() {
+    await this.props.UserStore.getAdminInfo();
+    const adminData = this.props.UserStore.user;
+    console.log(adminData);
+  }
   render() {
     let adminData = this.props.UserStore.adminData;
     console.log(adminData);
