@@ -12,10 +12,12 @@ import './Deposit.css'
 class Deposit extends Component {
   render() {
     return (
-      <div
-        id="deposit-container"
-      >
+      <div>
         <NavBar/>
+      <div
+        id="deposit"
+      >
+        
         <InfoContainer />
 
         <DepositReport />
@@ -23,12 +25,12 @@ class Deposit extends Component {
         <div
           className="info">
           Bank: Poalim
-          {}
           <br />
           Branch: 198
           <br />
           Account Number: 123456
         </div>
+      </div>
       </div>
     );
   }

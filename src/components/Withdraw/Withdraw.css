@@ -9,7 +9,13 @@ body{
   
   }
   
-  
+  #withdraw{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   .info{
       display: inline-block;
       margin: 20px;
@@ -54,9 +60,9 @@ body{
     }
 
     #available-cash{
-        font-size: 160%;
+    font-size: 160%;
     line-height: 210%;
     text-align: justify;
-    margin: 3%;
+    margin: 1%;
     font-family: sans-serif;
     }

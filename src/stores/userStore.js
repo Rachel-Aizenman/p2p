@@ -51,11 +51,11 @@ export class UserStore {
     let data = await axios.get(adminRoute);
     data = data.data;
     console.log(data);
+    data.loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
+    data.loansByStatusByValue.forEach(l => l.value = parseInt(l.value))
+    data.loansByCategoryByNumber.forEach(l => l.value = parseInt(l.value))
+    data.loansByStatusByNumber.forEach(l => l.value = parseInt(l.value))
     this.adminData.push(data)
-    this.adminData[0].loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
-    this.adminData[0].loansByStatusByValue.forEach(l => l.value = parseInt(l.value))
-    this.adminData[0].loansByCategoryByNumber.forEach(l => l.value = parseInt(l.value))
-    this.adminData[0].loansByStatusByNumber.forEach(l => l.value = parseInt(l.value))
     console.log(this.adminData)
   };
   @action setPath() {
