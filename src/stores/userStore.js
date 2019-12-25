@@ -50,10 +50,13 @@ export class UserStore {
   @action getAdminInfo = async () => {
     let data = await axios.get(adminRoute);
     data = data.data;
-    this.user=data
-    console.log(this.user);
-    // this.adminData.push(data)
-    
+    console.log(data);
+    this.adminData.push(data)
+    this.adminData[0].loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
+    this.adminData[0].loansByStatusByValue.forEach(l => l.value = parseInt(l.value))
+    this.adminData[0].loansByCategoryByNumber.forEach(l => l.value = parseInt(l.value))
+    this.adminData[0].loansByStatusByNumber.forEach(l => l.value = parseInt(l.value))
+    console.log(this.adminData)
   };
   @action setPath() {
     if (this.user.type === "l") {

@@ -5,30 +5,25 @@ import  PieChart  from "../PieChart";
 @inject("UserStore")
 @observer
 class Admin extends Component {
-  // async componentWillMount() {
-  //   await this.props.UserStore.getAdminInfo();
-  //   const adminData = this.props.UserStore.user;
-  //   console.log(adminData);
-  // }
   render() {
-    const adminData = this.props.UserStore.user;
-    adminData.loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
-    adminData.loansByStatusByValue.forEach(l => l.value = parseInt(l.value))
-
+    let adminData = this.props.UserStore.adminData;
+    console.log(adminData)
     return (
       <div>
-
         {/* <NavBar /> */}
-        <div>Number Of Users:{adminData.totalUsers.num}</div>
-        <div>Active Lenders: {adminData.activeLenders.num}</div>
-        <div>Active Borrowers: {adminData.activeBorrowers.num}</div>
-        <div>Number of Open Loans:{adminData.openLoans}</div>
-        <div>Total Amount of Open Loans: {adminData.totalLoanAmount}</div>
-        <div>Total Commision for Company: {adminData.totalCommission}</div>
-        <PieChart data={adminData.loansByCategoryByNumber}/> 
-        <PieChart data={adminData.loansByCategoryByValue}/> 
-        <PieChart data={adminData.loansByStatusByNumber}/>
-        <PieChart data={adminData.loansByStatusByValue}/>
+        {adminData.map(d=> <div>
+        <div>Number Of Users:{d.totalUsers.num}</div>
+        <div>Active Lenders: {d.activeLenders.num}</div>
+        <div>Active Borrowers: {d.activeBorrowers.num}</div>
+        <div>Number of Open Loans:{d.openLoans}</div>
+        <div>Total Amount of Open Loans: {d.totalLoanAmount}</div>
+        <div>Total Commision for Company: {d.totalCommission}</div>
+        <PieChart data={d.loansByCategoryByNumber}/> 
+        <PieChart data={d.loansByCategoryByValue}/> 
+        <PieChart data={d.loansByStatusByNumber}/>
+        <PieChart data={d.loansByStatusByValue}/>
+        </div>
+        )}
       </div>
     );
   }

@@ -24,6 +24,7 @@ import Admin from "./components/Admin/Admin"
 class App extends Component {
   componentWillMount() {
     this.props.UserStore.getNewLoans();
+    this.props.UserStore.getAdminInfo();
   }
   render() {
     return (
