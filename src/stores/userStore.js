@@ -10,6 +10,14 @@ export class UserStore {
   @observable newLoans = [];
   @observable adminData = [];
   @observable path;
+
+  @action login=async username=>{
+    if (username==="Moishe")
+      await this.getAdminInfo()
+    else
+      await this.getData(username)
+  }
+
   @action getData = async username => {
     let data = await axios.get(dataRoute + username);
     data = data.data;
@@ -42,9 +50,9 @@ export class UserStore {
   @action getAdminInfo = async () => {
     let data = await axios.get(adminRoute);
     data = data.data;
-    console.log(data);
-    this.adminData.push(data)
-    console.log(this.adminData);
+    this.user=data
+    console.log(this.user);
+    // this.adminData.push(data)
     
   };
   @action setPath() {

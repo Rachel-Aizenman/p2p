@@ -112,22 +112,23 @@ router.post("/newUser", async function (req, res) {
 router.get("/adminData", async function (req, res) {
   let [totalUsers, activeLenders, activeBorrowers] = await getNumOfUsers();
   [totalUsers, activeLenders, activeBorrowers] = [totalUsers[0], activeLenders[0], activeBorrowers[0]]
-  const [openLoans, totalLoanAmoun, totalCommission] = await getLoansOverall();
+  const [openLoans, totalLoanAmount, totalCommission] = await getLoansOverall();
   const [loansByCategoryByNumber, loansByCategoryByValue] = await adminLoansByCategory()
   const [loansByStatusByNumber, loansByStatusByValue] = await getLoansByStatus()
-
-  const userData = [
+  
+  const userData = {
+    type:'a',
     totalUsers,
     activeLenders,
     activeBorrowers,
     openLoans,
-    totalLoanAmoun,
+    totalLoanAmount,
     totalCommission,
     loansByCategoryByNumber,
     loansByCategoryByValue,
     loansByStatusByNumber,
     loansByStatusByValue
-  ]
+  }
   res.send(userData)
 })
 

@@ -12,20 +12,22 @@ class InfoContainer extends Component {
       <div id="info-container" style={{ display: "flex" }}>
 
 
-        <div className="info">
+        <div
+          id="portfolio-value"
+          className="info">
           Portfolio Value: {user.totalWorth}
         </div>
 
 
         <div
-          id="available-cash"
+          id="av-cash"
           className='info'
         >
           Available Cash: {user.availableCash}
         </div>
 
         <div
-          id="available-cash"
+          id="annual-return"
           className='info'
         >
           Annual Return: {user.averageReturn}

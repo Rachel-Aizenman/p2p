@@ -23,8 +23,15 @@ div{
     justify-content: center;
 }
 
-.available-cash{
-    display: flex;
+#av-cash{
+    font-size:100%
+}
+#annual-return{
+  font-size:100%;
+  text-align:center;
+}
+#portfolio-value{
+  font-size:100%
 }
 h2{
     display: flex;
@@ -77,6 +84,7 @@ p{
     text-align: center;
     text-justify: center;
     width: 200px;
+    font-size:100%;
 }
 
 .body{
