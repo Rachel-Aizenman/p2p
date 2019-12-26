@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import NavBar from "../navBar/NavBar";
+import AdminNavBar from "./AdminNavBar";
 import PieChart from "../PieChart";
 import "./Admin.css";
 @inject("UserStore")
@@ -14,7 +14,7 @@ class Admin extends Component {
     let adminData = this.props.UserStore.adminData;
     return (
       <div>
-        <NavBar />
+        <AdminNavBar />
         {adminData.map(d => (
           <div id="admin">
             <h1>Admin Info</h1>

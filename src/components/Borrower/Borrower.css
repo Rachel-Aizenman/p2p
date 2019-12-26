@@ -67,3 +67,10 @@ table, th, td {
       flex-direction:column;
       margin:0 10vw 0 10vw;
   }
+  .chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }

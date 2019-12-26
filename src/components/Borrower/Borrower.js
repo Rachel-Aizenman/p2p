@@ -3,25 +3,25 @@ import "./Borrower.css";
 import DynamicTable from "../DynamicTable";
 import { inject, observer } from "mobx-react";
 import NavBar from "../navBar/NavBar";
-import PieChart from '../PieChart'
+import PieChart from "../PieChart";
 
-import './Borrower.css'
+import "./Borrower.css";
 @inject("UserStore", "InputStore")
 @observer
 class Borrower extends Component {
   componentWillMount() {
     const rows = this.props.UserStore.openLoans;
     let user = this.props.UserStore.user;
-    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber
-    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue
-    loansByCategoryByValue.forEach(l => l.value = parseInt(l.value))
+    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber;
+    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue;
+    loansByCategoryByValue.forEach(l => (l.value = parseInt(l.value)));
   }
 
   render() {
     let user = this.props.UserStore.user;
     const rows = this.props.UserStore.openLoans;
-    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber
-    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue
+    let loansByCategoryByNumber = user.chartsData.loansByCategoryByNumber;
+    let loansByCategoryByValue = user.chartsData.loansByCategoryByValue;
     const header = [
       "Amount",
       "Interest",
@@ -50,16 +50,21 @@ class Borrower extends Component {
 
         <div>
           <div id="charts-container">
-            <PieChart data={loansByCategoryByNumber} />
+            <div className="chart">
+              <h1>Loans By Category By Number</h1>
+              <PieChart data={loansByCategoryByNumber} />
+            </div>
             <div id="infos">
               <div className="info" id="amount-remained">
                 Amount remained to pay: {Math.round(user.remainingAmount)} $
-            </div>
+              </div>
               <div className="info">Monthly payment: {user.monthlyPayment}</div>
               <div className="info">Open loans </div>
-
             </div>
-            <PieChart data={loansByCategoryByValue} />
+            <div className="chart">
+              <h1>Loans By Category By Value</h1>
+              <PieChart data={loansByCategoryByValue} />
+            </div>
           </div>
           <DynamicTable head={header} keys={keys} rows={rows} />
         </div>

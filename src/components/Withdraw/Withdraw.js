@@ -20,7 +20,6 @@ class Withdraw extends Component {
     axios.put("https://localhost:3001/transaction", withdrawal);
   };
   render() {
-    this.props.UserStore.getData();
     return (
       <div>
         <NavBar />
